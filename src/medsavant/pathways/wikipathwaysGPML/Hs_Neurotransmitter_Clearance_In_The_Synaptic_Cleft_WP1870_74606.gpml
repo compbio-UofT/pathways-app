@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Neurotransmitter Clearance In The Synaptic Cleft" Data-Source="Reactome - http://www.reactome.org" Version="release 46" Author="Mahajan, SS" Maintainer="Mahajan, SS" Email="mahajs01@med.nyu.edu" Organism="Homo sapiens">
+  <Comment Source="Wikipathways-description">Neurotransmitter released in the synaptic cleft binds to specific  receptors on the post-synaptic cell and the excess of the neurotransmitter is cleared to prevent over activation of the post-synaptic cell. The neurotransmitter is cleared by either re-uptake by the pre-synaptic neuron, diffusion in the perisynaptic area, uptake by astrocytes surrounding the synaptic cleft or enzymatic degradation of the neurotransmitter.&lt;BR&gt;This topic will be annotated in a future release.
+Original Pathway at Reactome: http://www.reactome.org/PathwayBrowser/#DB=gk_current&amp;FOCUS_SPECIES_ID=48887&amp;FOCUS_PATHWAY_ID=112311</Comment>
+  <Graphics BoardWidth="1398.0" BoardHeight="1062.0" />
+  <DataNode TextLabel="AcCho" GraphId="e1abf" Type="Metabolite">
+    <Graphics CenterX="1315.5" CenterY="477.0" Width="105.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15355" />
+  </DataNode>
+  <DataNode TextLabel="Cho" GraphId="d96e6" Type="Metabolite">
+    <Graphics CenterX="1099.0" CenterY="472.0" Width="58.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15354" />
+  </DataNode>
+  <DataNode TextLabel="NAd" GraphId="b68ac" Type="Metabolite">
+    <Graphics CenterX="1114.0" CenterY="68.0" Width="98.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18357" />
+  </DataNode>
+  <DataNode TextLabel="NAd" GraphId="a41f3" Type="Metabolite">
+    <Graphics CenterX="835.0" CenterY="69.0" Width="98.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18357" />
+  </DataNode>
+  <DataNode TextLabel="SLC22A2" GraphId="f8eec" Type="Protein">
+    <Graphics CenterX="986.5" CenterY="162.0" Width="117.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O15244" />
+  </DataNode>
+  <DataNode TextLabel="Na+" GraphId="b2e32" Type="Metabolite">
+    <Graphics CenterX="1180.5" CenterY="262.0" Width="79.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29101" />
+  </DataNode>
+  <DataNode TextLabel="DA" GraphId="fd8ea" Type="Metabolite">
+    <Graphics CenterX="1183.5" CenterY="164.0" Width="75.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18243" />
+  </DataNode>
+  <DataNode TextLabel="DA" GraphId="d7818" Type="Metabolite">
+    <Graphics CenterX="648.5" CenterY="252.0" Width="75.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18243" />
+  </DataNode>
+  <DataNode TextLabel="Na+" GraphId="fadc4" Type="Metabolite">
+    <Graphics CenterX="744.5" CenterY="148.0" Width="79.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29101" />
+  </DataNode>
+  <DataNode TextLabel="SLC6A3" GraphId="a32af" Type="Protein">
+    <Graphics CenterX="970.0" CenterY="293.0" Width="116.0" Height="58.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q01959" />
+  </DataNode>
+  <DataNode TextLabel="AdoMet" GraphId="d3b6c" Type="Metabolite">
+    <Graphics CenterX="832.0" CenterY="263.0" Width="130.0" Height="44.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15414" />
+  </DataNode>
+  <DataNode TextLabel="AdoHcy" GraphId="b302b" Type="Metabolite">
+    <Graphics CenterX="688.0" CenterY="483.0" Width="88.0" Height="52.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16680" />
+  </DataNode>
+  <DataNode TextLabel="CDNB" GraphId="acb59" Type="Metabolite">
+    <Graphics CenterX="826.5" CenterY="487.0" Width="103.0" Height="44.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:34718" />
+  </DataNode>
+  <DataNode TextLabel="COMT" GraphId="e5b6e" Type="Protein">
+    <Graphics CenterX="991.5" CenterY="496.0" Width="111.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21964" />
+  </DataNode>
+  <DataNode TextLabel="O2" GraphId="aa6cd" Type="Metabolite">
+    <Graphics CenterX="626.5" CenterY="780.0" Width="59.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15379" />
+  </DataNode>
+  <DataNode TextLabel="H2O" GraphId="d21a1" Type="Metabolite">
+    <Graphics CenterX="531.0" CenterY="738.0" Width="42.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15377" />
+  </DataNode>
+  <DataNode TextLabel="H2O2" GraphId="a1358" Type="Metabolite">
+    <Graphics CenterX="461.0" CenterY="551.0" Width="50.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16240" />
+  </DataNode>
+  <DataNode TextLabel="5HT-N-CH3" GraphId="fd199" Type="Metabolite">
+    <Graphics CenterX="515.0" CenterY="473.0" Width="158.0" Height="66.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:3210" />
+  </DataNode>
+  <DataNode TextLabel="NH3" GraphId="ddcf2" Type="Metabolite">
+    <Graphics CenterX="599.0" CenterY="544.0" Width="42.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16134" />
+  </DataNode>
+  <DataNode TextLabel="MAOA-FAD complex" GraphId="db4e7" Type="Complex">
+    <Graphics CenterX="358.0" CenterY="461.0" Width="126.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_5113" />
+  </DataNode>
+  <DataNode TextLabel="MAOA " GraphId="d4b99" Type="Protein" GroupRef="fcfba">
+    <Graphics CenterX="100.0" CenterY="1002.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21397" />
+  </DataNode>
+  <DataNode TextLabel="FAD " GraphId="c0a54" Type="Metabolite" GroupRef="fcfba">
+    <Graphics CenterX="100.0" CenterY="1022.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16238" />
+  </DataNode>
+  <DataNode TextLabel="H2O" GraphId="d1a16" Type="Metabolite">
+    <Graphics CenterX="530.0" CenterY="214.0" Width="42.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15377" />
+  </DataNode>
+  <DataNode TextLabel="O2" GraphId="b3ab0" Type="Metabolite">
+    <Graphics CenterX="439.5" CenterY="253.0" Width="59.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15379" />
+  </DataNode>
+  <DataNode TextLabel="NH3" GraphId="f4255" Type="Metabolite">
+    <Graphics CenterX="594.0" CenterY="399.0" Width="42.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16134" />
+  </DataNode>
+  <DataNode TextLabel="HCYS" GraphId="bd432" Type="Metabolite">
+    <Graphics CenterX="846.0" CenterY="766.0" Width="96.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:17230" />
+  </DataNode>
+  <DataNode TextLabel="5HT-N-CH3" GraphId="b3070" Type="Metabolite">
+    <Graphics CenterX="697.0" CenterY="689.0" Width="154.0" Height="68.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:3210" />
+  </DataNode>
+  <DataNode TextLabel="AdoMet" GraphId="edfd0" Type="Metabolite">
+    <Graphics CenterX="832.0" CenterY="593.0" Width="130.0" Height="44.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15414" />
+  </DataNode>
+  <DataNode TextLabel="5HT" GraphId="da908" Type="Metabolite">
+    <Graphics CenterX="1148.5" CenterY="803.0" Width="69.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="5HT" GraphId="b292b" Type="Metabolite">
+    <Graphics CenterX="712.0" CenterY="859.0" Width="126.0" Height="44.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="Sodium dependent Serotonin transporter" GraphId="f750e">
+    <Graphics CenterX="1004.0" CenterY="699.0" Width="130.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_15766" />
+  </DataNode>
+  <DataNode TextLabel="Na+" GraphId="c7043" Type="Metabolite">
+    <Graphics CenterX="724.5" CenterY="792.0" Width="79.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29101" />
+  </DataNode>
+  <DataNode TextLabel="Na+" GraphId="d378e" Type="Metabolite">
+    <Graphics CenterX="1149.5" CenterY="877.0" Width="79.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29101" />
+  </DataNode>
+  <DataNode TextLabel="HIALD" GraphId="ca583" Type="Metabolite">
+    <Graphics CenterX="277.0" CenterY="777.0" Width="116.0" Height="44.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:50157" />
+  </DataNode>
+  <DataNode TextLabel="NAD+" GraphId="e88c5" Type="Metabolite">
+    <Graphics CenterX="302.0" CenterY="677.0" Width="52.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15846" />
+  </DataNode>
+  <DataNode TextLabel="HIAA" GraphId="a47ae" Type="Metabolite">
+    <Graphics CenterX="135.0" CenterY="793.0" Width="118.0" Height="44.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:27823" />
+  </DataNode>
+  <DataNode TextLabel="H+" GraphId="c4294" Type="Metabolite">
+    <Graphics CenterX="116.5" CenterY="722.0" Width="35.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15378" />
+  </DataNode>
+  <DataNode TextLabel="NADH" GraphId="e7ad6" Type="Metabolite">
+    <Graphics CenterX="139.5" CenterY="676.0" Width="51.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16908" />
+  </DataNode>
+  <DataNode TextLabel="aldehyde dehydrogenase, mitochondrial, tetramer" GraphId="a8994" Type="Complex">
+    <Graphics CenterX="220.5" CenterY="613.0" Width="105.0" Height="64.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_2466" />
+  </DataNode>
+  <DataNode TextLabel="ALDH2 " GraphId="d30dd" Type="Protein" GroupRef="fed65">
+    <BiopaxRef>cc3</BiopaxRef>
+    <BiopaxRef>ef7</BiopaxRef>
+    <Graphics CenterX="210.0" CenterY="1002.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P05091" />
+  </DataNode>
+  <DataNode TextLabel="H2O" GraphId="b1b66" Type="Metabolite">
+    <Graphics CenterX="649.5" CenterY="919.0" Width="43.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15377" />
+  </DataNode>
+  <DataNode TextLabel="HIALD" GraphId="e5771" Type="Metabolite">
+    <Graphics CenterX="434.5" CenterY="866.0" Width="137.0" Height="58.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:50157" />
+  </DataNode>
+  <DataNode TextLabel="H2O2" GraphId="c37be" Type="Metabolite">
+    <Graphics CenterX="477.0" CenterY="803.0" Width="50.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16240" />
+  </DataNode>
+  <DataNode TextLabel="NH3" GraphId="ff220" Type="Metabolite">
+    <Graphics CenterX="490.0" CenterY="917.0" Width="42.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16134" />
+  </DataNode>
+  <DataNode TextLabel="H2O" GraphId="e9005" Type="Metabolite">
+    <Graphics CenterX="1312.5" CenterY="397.0" Width="43.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15377" />
+  </DataNode>
+  <DataNode TextLabel="acetate" GraphId="c8be6" Type="Metabolite">
+    <Graphics CenterX="1093.5" CenterY="396.0" Width="59.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:30089" />
+  </DataNode>
+  <DataNode TextLabel="ACHE oligomer" GraphId="e2a6f" Type="Complex">
+    <Graphics CenterX="1015.5" CenterY="357.0" Width="95.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_117773" />
+  </DataNode>
+  <DataNode TextLabel="OCT2" GraphId="c2b37" Type="Protein">
+    <Comment Source="Reactome">This CandidateSet contains sequences identified by William Pearson's analysis of Reactome catalyst entities. Catalyst entity sequences were used to identify analagous sequences that shared overall homology and active site homology. Sequences in this Candidate set were identified in an April 24, 2012 analysis.</Comment>
+    <Graphics CenterX="996.5" CenterY="111.0" Width="43.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_160574" />
+  </DataNode>
+  <Interaction GraphId="c71a9">
+    <Comment Source="Reactome">Acetylcholinesterase (ACHE) oligomers (comprising monomers, dimers and tetramers), anchored to the extracellular side of the plasma membrane, hydrolyze acetylcholine (AcCho) to form choline (Cho) and acetate (Weinstock &amp; Groner 2008, Velan et al. 1991, Kryger et al. 2000).&lt;br&gt;&lt;br&gt;Acetylcholine from the synaptic cleft is degraded into inactive molecules, Cho and acetate by ACHE, which is located in the synaptic cleft (Weinstock &amp; Groner 2008).</Comment>
+    <BiopaxRef>d0e</BiopaxRef>
+    <BiopaxRef>cd0</BiopaxRef>
+    <BiopaxRef>f69</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1249.0" Y="435.0" />
+      <Point X="1147.0" Y="435.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="d8887" />
+      <Anchor Position="0.99" Shape="None" GraphId="ef7fe" />
+      <Anchor Position="0.5" Shape="None" GraphId="d9871" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_14816" />
+  </Interaction>
+  <Interaction GraphId="b1286">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1291.0" Y="459.0" GraphRef="e1abf" RelX="-0.4666666666666667" RelY="-1.2" />
+      <Point X="1249.0" Y="435.0" GraphRef="d8887" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_14816" />
+  </Interaction>
+  <Interaction GraphId="f9d84">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1288.0" Y="409.0" GraphRef="e9005" RelX="-1.1395348837209303" RelY="0.8" />
+      <Point X="1249.0" Y="435.0" GraphRef="d8887" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_14816" />
+  </Interaction>
+  <Interaction GraphId="b173e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1147.0" Y="435.0" GraphRef="ef7fe" RelX="-1.0199999999999818" RelY="0.0" />
+      <Point X="1113.0" Y="414.0" GraphRef="c8be6" RelX="0.6610169491525424" RelY="1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_14816" />
+  </Interaction>
+  <Interaction GraphId="cd636">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1147.0" Y="435.0" GraphRef="ef7fe" RelX="-1.0199999999999818" RelY="0.0" />
+      <Point X="1118.0" Y="454.0" GraphRef="d96e6" RelX="0.6551724137931034" RelY="-1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_14816" />
+  </Interaction>
+  <Interaction GraphId="ba398">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1066.0" Y="356.0" GraphRef="e2a6f" RelX="1.063157894736842" RelY="-0.09090909090909091" />
+      <Point X="1202.0" Y="435.0" GraphRef="d9871" RelX="4.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_14816" />
+  </Interaction>
+  <Interaction GraphId="bf4d7">
+    <Comment Source="Reactome">Noradrenaline is cleared from the synaptic cleft by Noaradrenaline uptake transporter. This reaction is carried out by neurons as well as astrocytes.</Comment>
+    <BiopaxRef>bf0</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1062.0" Y="68.0" />
+      <Point X="887.0" Y="68.0" />
+      <Anchor Position="0.5" Shape="None" GraphId="c59bc" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15341" />
+  </Interaction>
+  <Interaction GraphId="a112f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="993.0" Y="97.0" GraphRef="c2b37" RelX="-0.16279069767441862" RelY="-1.2727272727272727" />
+      <Point X="986.0" Y="68.0" GraphRef="c59bc" RelX="11.5" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15341" />
+  </Interaction>
+  <Interaction GraphId="f862c">
+    <Comment Source="Reactome">The human gene SLC6A3 encodes the sodium-dependent dopamine transporter, DAT which mediates the re-uptake of dopamine from the synaptic cleft (Vandenbergh DJ et al, 2000). Dopamine can then be degraded by either COMT or monoamine oxidase.</Comment>
+    <BiopaxRef>b29</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1038.0" Y="204.0" />
+      <Point X="808.0" Y="203.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="bb48c" />
+      <Anchor Position="0.99" Shape="None" GraphId="a23f5" />
+      <Anchor Position="0.5" Shape="None" GraphId="f7a4a" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15468" />
+  </Interaction>
+  <Interaction GraphId="c9f35">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1143.0" Y="244.0" GraphRef="d378e" RelX="-0.16455696202531644" RelY="-42.2" />
+      <Point X="1038.0" Y="204.0" GraphRef="bb48c" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15468" />
+  </Interaction>
+  <Interaction GraphId="fff34">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1143.0" Y="174.0" GraphRef="fd8ea" RelX="-1.08" RelY="0.6666666666666666" />
+      <Point X="1038.0" Y="204.0" GraphRef="bb48c" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15468" />
+  </Interaction>
+  <Interaction GraphId="b618b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="808.0" Y="203.0" GraphRef="a23f5" RelX="-2.2999999999999545" RelY="-0.009999999999990905" />
+      <Point X="689.0" Y="240.0" GraphRef="d7818" RelX="1.08" RelY="-0.8" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15468" />
+  </Interaction>
+  <Interaction GraphId="e4792">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="808.0" Y="203.0" GraphRef="a23f5" RelX="-2.2999999999999545" RelY="-0.009999999999990905" />
+      <Point X="761.0" Y="166.0" GraphRef="c7043" RelX="0.9240506329113924" RelY="-41.733333333333334" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15468" />
+  </Interaction>
+  <Interaction GraphId="a237f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="969.0" Y="261.0" GraphRef="a32af" RelX="-0.017241379310344827" RelY="-1.103448275862069" />
+      <Point X="968.0" Y="203.0" GraphRef="f7a4a" RelX="45.0" RelY="-0.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15468" />
+  </Interaction>
+  <Interaction GraphId="aa425">
+    <Comment Source="Reactome">Dopamine in the cytosol is metabolized to 3-methoxytyramine by catecholamine o-methyltransferase (COMT), which uses s-adenosylmethionine as a methyl group donor.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="742.0" Y="332.0" />
+      <Point X="743.0" Y="428.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="aa330" />
+      <Anchor Position="0.99" Shape="None" GraphId="e8fe6" />
+      <Anchor Position="0.5" Shape="None" GraphId="e2c6d" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15531" />
+  </Interaction>
+  <Interaction GraphId="ce257">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="665.0" Y="270.0" GraphRef="d7818" RelX="0.44" RelY="1.2" />
+      <Point X="742.0" Y="332.0" GraphRef="aa330" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15531" />
+  </Interaction>
+  <Interaction GraphId="f439a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="803.0" Y="288.0" GraphRef="edfd0" RelX="-0.4461538461538462" RelY="-13.863636363636363" />
+      <Point X="742.0" Y="332.0" GraphRef="aa330" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15531" />
+  </Interaction>
+  <Interaction GraphId="e1b49">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="743.0" Y="428.0" GraphRef="e8fe6" RelX="0.009999999999990905" RelY="0.9600000000000364" />
+      <Point X="714.0" Y="454.0" GraphRef="b302b" RelX="0.5909090909090909" RelY="-1.1153846153846154" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15531" />
+  </Interaction>
+  <Interaction GraphId="c09f5">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="743.0" Y="428.0" GraphRef="e8fe6" RelX="0.009999999999990905" RelY="0.9600000000000364" />
+      <Point X="795.0" Y="462.0" GraphRef="acb59" RelX="-0.6116504854368932" RelY="-1.1363636363636365" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15531" />
+  </Interaction>
+  <Interaction GraphId="b5140">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="950.0" Y="475.0" GraphRef="e5b6e" RelX="-0.7477477477477478" RelY="-1.1666666666666667" />
+      <Point X="742.0" Y="384.0" GraphRef="e2c6d" RelX="-0.5" RelY="4.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15531" />
+  </Interaction>
+  <Interaction GraphId="cc4a2">
+    <Comment Source="Reactome">3-methoxytyramine generated by COMT after methylation of dopamine is oxidized into homovanillic acid by monoamine oxidase A</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="555.0" Y="701.0" />
+      <Point X="554.0" Y="627.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="c43ae" />
+      <Anchor Position="0.99" Shape="None" GraphId="e88e1" />
+      <Anchor Position="0.5" Shape="None" GraphId="d8965" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="b8de2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="612.0" Y="762.0" GraphRef="b3ab0" RelX="5.8474576271186445" RelY="33.93333333333333" />
+      <Point X="555.0" Y="701.0" GraphRef="c43ae" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="bce35">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="540.0" Y="720.0" GraphRef="b1b66" RelX="-5.093023255813954" RelY="-13.266666666666667" />
+      <Point X="555.0" Y="701.0" GraphRef="c43ae" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="d8fdb">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="798.0" Y="512.0" GraphRef="acb59" RelX="-0.5533980582524272" RelY="1.1363636363636365" />
+      <Point X="555.0" Y="701.0" GraphRef="c43ae" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="f142b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="554.0" Y="627.0" GraphRef="e88e1" RelX="-0.009999999999990905" RelY="-0.7400000000000091" />
+      <Point X="479.0" Y="569.0" GraphRef="c37be" RelX="0.08" RelY="-15.6" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="a7718">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="554.0" Y="627.0" GraphRef="e88e1" RelX="-0.009999999999990905" RelY="-0.7400000000000091" />
+      <Point X="523.0" Y="509.0" GraphRef="b3070" RelX="-2.25974025974026" RelY="-5.294117647058823" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="e0550">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="554.0" Y="627.0" GraphRef="e88e1" RelX="-0.009999999999990905" RelY="-0.7400000000000091" />
+      <Point X="783.0" Y="512.0" GraphRef="acb59" RelX="-0.8446601941747572" RelY="1.1363636363636365" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="ca9d1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="554.0" Y="627.0" GraphRef="e88e1" RelX="-0.009999999999990905" RelY="-0.7400000000000091" />
+      <Point X="590.0" Y="562.0" GraphRef="ff220" RelX="4.761904761904762" RelY="-23.666666666666668" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="f22f9">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="363.0" Y="475.0" GraphRef="db4e7" RelX="0.07936507936507936" RelY="1.2727272727272727" />
+      <Point X="554.0" Y="660.0" GraphRef="d8965" RelX="-0.5" RelY="-4.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15434" />
+  </Interaction>
+  <Interaction GraphId="e0e63">
+    <Comment Source="Reactome">Dopamine is oxidized to 3,4-dihydroxyphenylacetic acid by monoamine oxidase.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="526.0" Y="290.0" />
+      <Point X="525.0" Y="374.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a224d" />
+      <Anchor Position="0.99" Shape="None" GraphId="fb8af" />
+      <Anchor Position="0.5" Shape="None" GraphId="cada8" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15485" />
+  </Interaction>
+  <Interaction GraphId="a1048">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="608.0" Y="263.0" GraphRef="d7818" RelX="-1.08" RelY="0.7333333333333333" />
+      <Point X="526.0" Y="290.0" GraphRef="a224d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15485" />
+  </Interaction>
+  <Interaction GraphId="e20fd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="529.0" Y="232.0" GraphRef="b1b66" RelX="-5.604651162790698" RelY="-45.8" />
+      <Point X="526.0" Y="290.0" GraphRef="a224d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15485" />
+  </Interaction>
+  <Interaction GraphId="c4ed5">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="472.0" Y="265.0" GraphRef="b3ab0" RelX="1.1016949152542372" RelY="0.8" />
+      <Point X="526.0" Y="290.0" GraphRef="a224d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15485" />
+  </Interaction>
+  <Interaction GraphId="a357a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="525.0" Y="374.0" GraphRef="fb8af" RelX="-0.009999999999990905" RelY="0.8400000000000318" />
+      <Point X="518.0" Y="437.0" GraphRef="b3070" RelX="-2.324675324675325" RelY="-7.411764705882353" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15485" />
+  </Interaction>
+  <Interaction GraphId="bc9ec">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="525.0" Y="374.0" GraphRef="fb8af" RelX="-0.009999999999990905" RelY="0.8400000000000318" />
+      <Point X="570.0" Y="391.0" GraphRef="ff220" RelX="3.8095238095238093" RelY="-35.06666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15485" />
+  </Interaction>
+  <Interaction GraphId="e073e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="366.0" Y="447.0" GraphRef="db4e7" RelX="0.12698412698412698" RelY="-1.2727272727272727" />
+      <Point X="526.0" Y="336.0" GraphRef="cada8" RelX="0.5" RelY="4.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15485" />
+  </Interaction>
+  <Interaction GraphId="e2c5b">
+    <Comment Source="Reactome">3,4-dihydroxyphenylacetic acid, generated after oxidation of dopamine by monoamineoxidase, is methylated by catecholamine o-methyltransferase to homovanillic acid.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="817.0" Y="654.0" />
+      <Point X="811.0" Y="726.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="b5a68" />
+      <Anchor Position="0.99" Shape="None" GraphId="a8695" />
+      <Anchor Position="0.5" Shape="None" GraphId="dcb52" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15553" />
+  </Interaction>
+  <Interaction GraphId="f0f56">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="777.0" Y="666.0" GraphRef="b3070" RelX="1.0389610389610389" RelY="-0.6764705882352942" />
+      <Point X="817.0" Y="654.0" GraphRef="b5a68" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15553" />
+  </Interaction>
+  <Interaction GraphId="d8a96">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="826.0" Y="618.0" GraphRef="edfd0" RelX="-0.09230769230769231" RelY="1.1363636363636365" />
+      <Point X="817.0" Y="654.0" GraphRef="b5a68" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15553" />
+  </Interaction>
+  <Interaction GraphId="a45e5">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="811.0" Y="726.0" GraphRef="a8695" RelX="-0.05999999999994543" RelY="0.7200000000000273" />
+      <Point X="832.0" Y="748.0" GraphRef="bd432" RelX="-0.2916666666666667" RelY="-1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15553" />
+  </Interaction>
+  <Interaction GraphId="e001a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="811.0" Y="726.0" GraphRef="a8695" RelX="-0.05999999999994543" RelY="0.7200000000000273" />
+      <Point X="777.0" Y="713.0" GraphRef="b3070" RelX="1.0389610389610389" RelY="0.7058823529411765" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15553" />
+  </Interaction>
+  <Interaction GraphId="aa753">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="975.0" Y="517.0" GraphRef="e5b6e" RelX="-0.2972972972972973" RelY="1.1666666666666667" />
+      <Point X="816.0" Y="693.0" GraphRef="dcb52" RelX="2.0" RelY="3.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15553" />
+  </Interaction>
+  <Interaction GraphId="dc894">
+    <Comment Source="Reactome">The human gene SLC6A4 encodes the sodium-dependent serotonin transporter 5HTT which mediates the re-uptake of serotonin from the synaptic cleft thus terminating the action of serotonin (Canli T and Lesch KP, 2007). The serotonin taken up in the cytosol from the synaptic cleft may be recycled into synaptic vesicles or metabolized.</Comment>
+    <BiopaxRef>a68</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1054.0" Y="841.0" />
+      <Point X="903.0" Y="839.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a74c5" />
+      <Anchor Position="0.99" Shape="None" GraphId="d7140" />
+      <Anchor Position="0.5" Shape="None" GraphId="f73c5" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15458" />
+  </Interaction>
+  <Interaction GraphId="c351c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1111.0" Y="816.0" GraphRef="da908" RelX="-1.0869565217391304" RelY="0.8666666666666667" />
+      <Point X="1054.0" Y="841.0" GraphRef="a74c5" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15458" />
+  </Interaction>
+  <Interaction GraphId="c2d90">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1107.0" Y="862.0" GraphRef="d378e" RelX="-1.0759493670886076" RelY="-1.0" />
+      <Point X="1054.0" Y="841.0" GraphRef="a74c5" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15458" />
+  </Interaction>
+  <Interaction GraphId="de0c6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="903.0" Y="839.0" GraphRef="d7140" RelX="-1.509999999999991" RelY="-0.01999999999998181" />
+      <Point X="778.0" Y="852.0" GraphRef="b292b" RelX="1.0476190476190477" RelY="-0.3181818181818182" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15458" />
+  </Interaction>
+  <Interaction GraphId="b8e0b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="903.0" Y="839.0" GraphRef="d7140" RelX="-1.509999999999991" RelY="-0.01999999999998181" />
+      <Point X="767.0" Y="802.0" GraphRef="c7043" RelX="1.0759493670886076" RelY="0.6666666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15458" />
+  </Interaction>
+  <Interaction GraphId="dffb2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1004.0" Y="720.0" GraphRef="f750e" RelX="0.0" RelY="1.1666666666666667" />
+      <Point X="1006.0" Y="841.0" GraphRef="f73c5" RelX="27.5" RelY="1.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15458" />
+  </Interaction>
+  <Interaction GraphId="f5cb5">
+    <Comment Source="Reactome">5-hydroxyindole acetaldehyde is then catalyzed by aldehyde dehydrogenase to form 5-hydroxyindole acetic acid</Comment>
+    <BiopaxRef>a57</BiopaxRef>
+    <BiopaxRef>b14</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="251.0" Y="724.0" />
+      <Point X="193.0" Y="723.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="a0a47" />
+      <Anchor Position="0.99" Shape="None" GraphId="a626f" />
+      <Anchor Position="0.5" Shape="None" GraphId="f739a" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15407" />
+  </Interaction>
+  <Interaction GraphId="ef9f6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="266.0" Y="752.0" GraphRef="ca583" RelX="-0.1896551724137931" RelY="-1.1363636363636365" />
+      <Point X="251.0" Y="724.0" GraphRef="a0a47" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15407" />
+  </Interaction>
+  <Interaction GraphId="bcd66">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="285.0" Y="695.0" GraphRef="e88c5" RelX="-0.6538461538461539" RelY="1.2" />
+      <Point X="251.0" Y="724.0" GraphRef="a0a47" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15407" />
+  </Interaction>
+  <Interaction GraphId="d63c4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="193.0" Y="723.0" GraphRef="a626f" RelX="-0.5799999999999841" RelY="-0.009999999999990905" />
+      <Point X="153.0" Y="768.0" GraphRef="a47ae" RelX="0.3050847457627119" RelY="-1.1363636363636365" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15407" />
+  </Interaction>
+  <Interaction GraphId="fc9e1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="193.0" Y="723.0" GraphRef="a626f" RelX="-0.5799999999999841" RelY="-0.009999999999990905" />
+      <Point X="137.0" Y="722.0" GraphRef="c4294" RelX="1.1714285714285715" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15407" />
+  </Interaction>
+  <Interaction GraphId="d667f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="193.0" Y="723.0" GraphRef="a626f" RelX="-0.5799999999999841" RelY="-0.009999999999990905" />
+      <Point X="156.0" Y="694.0" GraphRef="e7ad6" RelX="0.6470588235294118" RelY="1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15407" />
+  </Interaction>
+  <Interaction GraphId="d537f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="220.0" Y="648.0" GraphRef="a8994" RelX="-0.009523809523809525" RelY="1.09375" />
+      <Point X="222.0" Y="723.0" GraphRef="f739a" RelX="0.0" RelY="-0.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15407" />
+  </Interaction>
+  <Interaction GraphId="d520b">
+    <Comment Source="Reactome">At the beginning of this reaction, 1 molecule of 'Oxygen', 1 molecule of 'H2O', and 1 molecule of '5-Hydroxytryptamine' are present. At the end of this reaction, 1 molecule of 'NH3', 1 molecule of '5-Hydroxyindoleacetaldehyde', and 1 molecule of 'H2O2' are present.&lt;br&gt;&lt;br&gt; This reaction takes place in the 'mitochondrial outer membrane' and  is mediated by the 'amine oxidase activity' of 'MAOA-FAD complex'.&lt;br&gt;</Comment>
+    <BiopaxRef>fb9</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="587.0" Y="863.0" />
+      <Point X="531.0" Y="864.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="f851a" />
+      <Anchor Position="0.99" Shape="None" GraphId="aee96" />
+      <Anchor Position="0.5" Shape="None" GraphId="ac36f" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1795" />
+  </Interaction>
+  <Interaction GraphId="e6f5b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="632.0" Y="901.0" GraphRef="b1b66" RelX="-0.813953488372093" RelY="-1.2" />
+      <Point X="587.0" Y="863.0" GraphRef="f851a" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1795" />
+  </Interaction>
+  <Interaction GraphId="e7a6e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="618.0" Y="798.0" GraphRef="b3ab0" RelX="6.0508474576271185" RelY="36.333333333333336" />
+      <Point X="587.0" Y="863.0" GraphRef="f851a" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1795" />
+  </Interaction>
+  <Interaction GraphId="dcc06">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="646.0" Y="861.0" GraphRef="b292b" RelX="-1.0476190476190477" RelY="0.09090909090909091" />
+      <Point X="587.0" Y="863.0" GraphRef="f851a" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1795" />
+  </Interaction>
+  <Interaction GraphId="b4a4e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="531.0" Y="864.0" GraphRef="aee96" RelX="-0.5599999999999454" RelY="0.009999999999990905" />
+      <Point X="506.0" Y="864.0" GraphRef="e5771" RelX="1.0437956204379562" RelY="-0.06896551724137931" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1795" />
+  </Interaction>
+  <Interaction GraphId="aa497">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="531.0" Y="864.0" GraphRef="aee96" RelX="-0.5599999999999454" RelY="0.009999999999990905" />
+      <Point X="490.0" Y="821.0" GraphRef="c37be" RelX="0.52" RelY="1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1795" />
+  </Interaction>
+  <Interaction GraphId="cc02c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="531.0" Y="864.0" GraphRef="aee96" RelX="-0.5599999999999454" RelY="0.009999999999990905" />
+      <Point X="501.0" Y="899.0" GraphRef="ff220" RelX="0.5238095238095238" RelY="-1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1795" />
+  </Interaction>
+  <Interaction GraphId="a7ed0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="362.0" Y="475.0" GraphRef="db4e7" RelX="0.06349206349206349" RelY="1.2727272727272727" />
+      <Point X="555.0" Y="863.0" GraphRef="ac36f" RelX="-4.0" RelY="-0.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1795" />
+  </Interaction>
+  <Label TextLabel="MAOA-FAD complex " GraphId="c19da">
+    <Comment Source="Reactome">REACT_5113</Comment>
+    <Graphics CenterX="100.0" CenterY="982.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="aldehyde dehydrogenase, mitochondrial, tetramer " GraphId="c2a2d">
+    <Comment Source="Reactome">REACT_2466</Comment>
+    <Graphics CenterX="210.0" CenterY="982.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="cytosol" GraphId="f6a39" GroupRef="ee64c">
+    <Graphics CenterX="529.0" CenterY="130.5" Width="64.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="mitochondrial matrix" GraphId="b60c8" GroupRef="f0b10">
+    <Graphics CenterX="241.5" CenterY="892.5" Width="147.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="fce1c" GroupRef="ee64c">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="504.0" CenterY="486.5" Width="970.0" Height="935.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ed78a" GroupRef="f0b10">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="201.5" CenterY="632.0" Width="305.0" Height="588.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="fcfba" GraphId="d1477" Style="Complex" />
+  <Group GroupId="fed65" GraphId="ca190" Style="Complex" />
+  <Group GroupId="ee64c" GraphId="b8a3c" Style="Group" />
+  <Group GroupId="f0b10" GraphId="a113b" Style="Group" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cc3">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4065146</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial aldehyde dehydrogenase from human liver. Primary structure, differences in relation to the cytosolic enzyme, and functional correlations.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hempel J, Kaiser R, Jörnvall H.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f69">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11053835</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Structures of recombinant native and E202Q mutant human acetylcholinesterase complexed with the snake-venom toxin fasciculin-II.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kryger G, Harel M, Giles K, Toker L, Velan B, Lazar A, Kronman C, Barak D, Ariel N, Shafferman A, Silman I, Sussman JL.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d0e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18457821</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rational design of a drug for Alzheimer's disease with cholinesterase inhibitory and neuroprotective activity.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Weinstock M, Groner E.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b29">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10889531</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human dopamine transporter gene: coding region conservation among normal, Tourette's disorder, alcohol dependence and attention-deficit hyperactivity disorder populations.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vandenbergh DJ, Thompson MD, Cook EH, Bendahhou E, Nguyen T, Krasowski MD, Zarrabian D, Comings D, Sellers EM, Tyndale RF, George SR, O'Dowd BF, Uhl GR.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b14">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8778744</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Changes in serotonin metabolism during treatment with the aldehyde dehydrogenase inhibitors disulfiram and cyanamide.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Beck O, Helander A, Carlsson S, Borg S.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ef7">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18196</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Two aldehyde dehydrogenases from human liver. Isolation via affinity chromatography and characterization of the isozymes.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greenfield NJ, Pietruszko R.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fb9">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6408492</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The deamination of dopamine by human brain monoamine oxidase. Specificity for the two enzyme forms in seven brain regions.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">O'Carroll AM, Fowler CJ, Phillips JP, Tobbia I, Tipton KF.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cd0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1748670</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The effect of elimination of intersubunit disulfide bonds on the activity, assembly, and secretion of recombinant human acetylcholinesterase. Expression of acetylcholinesterase Cys-580----Ala mutant.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Velan B, Grosfeld H, Kronman C, Leitner M, Gozes Y, Lazar A, Flashner Y, Marcus D, Cohen S, Shafferman A.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a57">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17010132</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Monoamine metabolism and behavioral responses to ethanol in mitochondrial aldehyde dehydrogenase knockout mice.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fernandez E, Koek W, Ran Q, Gerhardt GA, France CP, Strong R.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a68">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17726476</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Long story short: the serotonin transporter in emotion regulation and social cognition.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Canli T, Lesch KP.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bf0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9260930</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cloning and characterization of two human polyspecific organic cation transporters.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gorboulev V, Ulzheimer JC, Akhoundova A, Ulzheimer-Teuber I, Karbach U, Quester S, Baumann C, Lang F, Busch AE, Koepsell H.</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>

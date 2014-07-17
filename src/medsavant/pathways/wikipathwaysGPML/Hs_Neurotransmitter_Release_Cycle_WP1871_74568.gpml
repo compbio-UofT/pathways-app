@@ -1,0 +1,2609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Neurotransmitter Release Cycle" Data-Source="Reactome - http://www.reactome.org" Version="release 46" Author="Mahajan, SS" Maintainer="Mahajan, SS" Email="mahajs01@med.nyu.edu" Organism="Homo sapiens">
+  <Comment Source="Wikipathways-description">Neurotransmitter is stored in the synaptic vesicle in the pre-synaptic terminal prior to its release in the synaptic cleft upon depolarization of the pre-synaptic membrane. The release of the neurotransmitter is a multi-step process that is controlled by electrical signals passing through the axons in form of action potential. Neurotransmitters include glutamate, acetylcholine, nor-epinephrine,  dopamine and seratonin. Each of the neurotransmitter cycle is independently described.
+Original Pathway at Reactome: http://www.reactome.org/PathwayBrowser/#DB=gk_current&amp;FOCUS_SPECIES_ID=48887&amp;FOCUS_PATHWAY_ID=112310</Comment>
+  <BiopaxRef>ea6</BiopaxRef>
+  <BiopaxRef>ca4</BiopaxRef>
+  <BiopaxRef>b30</BiopaxRef>
+  <BiopaxRef>d27</BiopaxRef>
+  <Graphics BoardWidth="2590.0" BoardHeight="2827.0" />
+  <DataNode TextLabel="H+" GraphId="bc0d0" Type="Metabolite">
+    <Graphics CenterX="221.5" CenterY="410.0" Width="35.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15378" />
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="c90a4" Type="Metabolite">
+    <Graphics CenterX="215.5" CenterY="319.0" Width="39.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15422" />
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="aa64d" Type="Metabolite">
+    <Graphics CenterX="400.0" CenterY="410.0" Width="40.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16761" />
+  </DataNode>
+  <DataNode TextLabel="Pi" GraphId="e055e" Type="Metabolite">
+    <Graphics CenterX="400.5" CenterY="309.0" Width="109.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18367" />
+  </DataNode>
+  <DataNode TextLabel="H+" GraphId="d9f78" Type="Metabolite">
+    <Graphics CenterX="573.5" CenterY="361.0" Width="35.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15378" />
+  </DataNode>
+  <DataNode TextLabel="DA" GraphId="ef98e" Type="Metabolite">
+    <Graphics CenterX="389.5" CenterY="489.0" Width="75.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18243" />
+  </DataNode>
+  <DataNode TextLabel="DA" GraphId="be86b" Type="Metabolite">
+    <Graphics CenterX="604.5" CenterY="488.0" Width="75.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18243" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A2" GraphId="c9028" Type="Protein">
+    <Graphics CenterX="480.5" CenterY="887.0" Width="119.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q05940" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1" GraphId="ee528" Type="Protein">
+    <Graphics CenterX="1093.0" CenterY="1249.0" Width="80.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1" GraphId="d77c7" Type="Protein">
+    <Graphics CenterX="961.5" CenterY="999.0" Width="79.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="Noradrenalin loaded synaptic vesicle" GraphId="a3cc3" Type="Complex">
+    <Graphics CenterX="714.5" CenterY="1303.0" Width="131.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_17964" />
+  </DataNode>
+  <DataNode TextLabel="NAd " GraphId="f8425" Type="Metabolite" GroupRef="d9ca4">
+    <Graphics CenterX="100.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18357" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="b224c" Type="Protein" GroupRef="d9ca4">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="100.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A2 " GraphId="d4834" Type="Protein" GroupRef="d9ca4">
+    <Graphics CenterX="100.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q05940" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="f577d" Type="Protein" GroupRef="d9ca4">
+    <Graphics CenterX="100.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="e0159" Type="Protein" GroupRef="d9ca4">
+    <Graphics CenterX="100.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="Docked Noradrenalin loaded synaptic vesicle" GraphId="ef53b" Type="Complex">
+    <Graphics CenterX="1095.5" CenterY="1305.0" Width="131.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_15843" />
+  </DataNode>
+  <DataNode TextLabel="NAd " GraphId="cb578" Type="Metabolite" GroupRef="dfa08">
+    <Graphics CenterX="210.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18357" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="d4fdf" Type="Protein" GroupRef="dfa08">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="210.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A2 " GraphId="cebd7" Type="Protein" GroupRef="dfa08">
+    <Graphics CenterX="210.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q05940" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="f56ef" Type="Protein" GroupRef="dfa08">
+    <Graphics CenterX="210.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="e1724" Type="Protein" GroupRef="dfa08">
+    <Graphics CenterX="210.0" CenterY="2647.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1 " GraphId="d06c6" Type="Protein" GroupRef="dfa08">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="210.0" CenterY="2667.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="a2771" Type="Protein" GroupRef="dfa08">
+    <Graphics CenterX="210.0" CenterY="2687.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1 " GraphId="f78ae" Type="Protein" GroupRef="dfa08">
+    <Graphics CenterX="210.0" CenterY="2707.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="f47e5" Type="Protein" GroupRef="dfa08">
+    <Graphics CenterX="210.0" CenterY="2727.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="a496a" Type="Protein" GroupRef="dfa08">
+    <Graphics CenterX="210.0" CenterY="2747.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="Rab3-RIM complex" GraphId="f08b8" Type="Complex">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <BiopaxRef>beb</BiopaxRef>
+    <BiopaxRef>ad2</BiopaxRef>
+    <Graphics CenterX="1087.5" CenterY="1569.0" Width="141.0" Height="24.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_13268" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="fb744" Type="Protein" GroupRef="cda09">
+    <Graphics CenterX="320.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="ecc44" Type="Protein" GroupRef="cda09">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="320.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SNARE complex" GraphId="eb2a3" Type="Complex">
+    <Graphics CenterX="1082.5" CenterY="1032.0" Width="99.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_12700" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="bd339" Type="Protein" GroupRef="e888e">
+    <Graphics CenterX="430.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="f8dba" Type="Protein" GroupRef="e888e">
+    <Graphics CenterX="430.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="b4f48" Type="Protein" GroupRef="e888e">
+    <Graphics CenterX="430.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="NAd" GraphId="c39f1" Type="Metabolite">
+    <Graphics CenterX="1512.5" CenterY="1306.0" Width="63.0" Height="32.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18357" />
+  </DataNode>
+  <DataNode TextLabel="SYT1" GraphId="b066e" Type="Protein">
+    <Graphics CenterX="1086.0" CenterY="929.0" Width="104.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A2" GraphId="d4142" Type="Protein">
+    <Graphics CenterX="1085.5" CenterY="1088.0" Width="79.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q05940" />
+  </DataNode>
+  <DataNode TextLabel="NAd" GraphId="a2288" Type="Metabolite">
+    <Graphics CenterX="1730.0" CenterY="1305.0" Width="98.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18357" />
+  </DataNode>
+  <DataNode TextLabel="O2" GraphId="b6a33" Type="Metabolite">
+    <Graphics CenterX="1741.5" CenterY="1254.0" Width="59.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15379" />
+  </DataNode>
+  <DataNode TextLabel="H2O" GraphId="b631e" Type="Metabolite">
+    <Graphics CenterX="1724.0" CenterY="1355.0" Width="42.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15377" />
+  </DataNode>
+  <DataNode TextLabel="NH3" GraphId="f857a" Type="Metabolite">
+    <Graphics CenterX="1992.0" CenterY="1266.0" Width="42.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16134" />
+  </DataNode>
+  <DataNode TextLabel="H2O2" GraphId="c3826" Type="Metabolite">
+    <Graphics CenterX="2048.0" CenterY="1312.0" Width="50.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16240" />
+  </DataNode>
+  <DataNode TextLabel="3-Methoxy-4-hydroxyphenylglycol" GraphId="d5dff" Type="Metabolite">
+    <Graphics CenterX="2002.0" CenterY="1370.0" Width="132.0" Height="44.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16436" />
+  </DataNode>
+  <DataNode TextLabel="MAOA-FAD complex" GraphId="c3298" Type="Complex">
+    <Graphics CenterX="1859.0" CenterY="1233.0" Width="126.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_5113" />
+  </DataNode>
+  <DataNode TextLabel="MAOA " GraphId="e0b2a" Type="Protein" GroupRef="c28b9">
+    <Graphics CenterX="540.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21397" />
+  </DataNode>
+  <DataNode TextLabel="FAD " GraphId="c8fa0" Type="Metabolite" GroupRef="c28b9">
+    <Graphics CenterX="540.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16238" />
+  </DataNode>
+  <DataNode TextLabel="SLC22A2" GraphId="e9aa8" Type="Protein">
+    <Graphics CenterX="1613.5" CenterY="1171.0" Width="117.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O15244" />
+  </DataNode>
+  <DataNode TextLabel="5HT" GraphId="bfc77" Type="Metabolite">
+    <Graphics CenterX="395.0" CenterY="961.0" Width="58.0" Height="42.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="5HT" GraphId="e2108" Type="Metabolite">
+    <Graphics CenterX="576.5" CenterY="957.0" Width="69.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="Synapsin" GraphId="ed5a0" Type="Protein">
+    <Graphics CenterX="673.0" CenterY="603.5" Width="64.0" Height="21.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_18217" />
+  </DataNode>
+  <DataNode TextLabel="Serotonin loaded synaptic vesicle" GraphId="e79d2" Type="Complex">
+    <Graphics CenterX="630.5" CenterY="869.0" Width="109.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_16110" />
+  </DataNode>
+  <DataNode TextLabel="5HT " GraphId="a188c" Type="Metabolite" GroupRef="e55be">
+    <Graphics CenterX="650.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="afdbf" Type="Protein" GroupRef="e55be">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="650.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="fbe65" Type="Protein" GroupRef="e55be">
+    <Graphics CenterX="650.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="ff8a5" Type="Protein" GroupRef="e55be">
+    <Graphics CenterX="650.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A2 " GraphId="cab0e" Type="Protein" GroupRef="e55be">
+    <Graphics CenterX="650.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q05940" />
+  </DataNode>
+  <DataNode TextLabel="Docked serotonin loaded synaptic vesicle" GraphId="e1869" Type="Complex">
+    <Graphics CenterX="1085.5" CenterY="881.0" Width="113.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_17565" />
+  </DataNode>
+  <DataNode TextLabel="5HT " GraphId="f4be8" Type="Metabolite" GroupRef="fadf6">
+    <Graphics CenterX="760.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="c22d5" Type="Protein" GroupRef="fadf6">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="760.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="bd2df" Type="Protein" GroupRef="fadf6">
+    <Graphics CenterX="760.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="f819d" Type="Protein" GroupRef="fadf6">
+    <Graphics CenterX="760.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A2 " GraphId="fe824" Type="Protein" GroupRef="fadf6">
+    <Graphics CenterX="760.0" CenterY="2647.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q05940" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1 " GraphId="bdbca" Type="Protein" GroupRef="fadf6">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="760.0" CenterY="2667.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1 " GraphId="b1280" Type="Protein" GroupRef="fadf6">
+    <Graphics CenterX="760.0" CenterY="2687.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="f3141" Type="Protein" GroupRef="fadf6">
+    <Graphics CenterX="760.0" CenterY="2707.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="ede87" Type="Protein" GroupRef="fadf6">
+    <Graphics CenterX="760.0" CenterY="2727.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="ac761" Type="Protein" GroupRef="fadf6">
+    <Graphics CenterX="760.0" CenterY="2747.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A" GraphId="ef432" Type="Protein">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1081.5" CenterY="829.0" Width="47.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1" GraphId="f9c26" Type="Protein">
+    <Graphics CenterX="906.5" CenterY="457.0" Width="79.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1" GraphId="a5dea" Type="Protein">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="920.0" CenterY="1055.0" Width="54.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="Rab3-RIM complex" GraphId="afaaa" Type="Complex">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <BiopaxRef>beb</BiopaxRef>
+    <BiopaxRef>ad2</BiopaxRef>
+    <Graphics CenterX="1095.0" CenterY="269.0" Width="120.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_13268" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="ea481" Type="Protein" GroupRef="cbde0">
+    <Graphics CenterX="870.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="b5db4" Type="Protein" GroupRef="cbde0">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="870.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="5HT" GraphId="a4b36" Type="Metabolite">
+    <Graphics CenterX="1505.5" CenterY="879.0" Width="69.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28790" />
+  </DataNode>
+  <DataNode TextLabel="Dopamine loaded synaptic vesicle" GraphId="ca4aa" Type="Complex">
+    <Graphics CenterX="699.5" CenterY="342.0" Width="115.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_15992" />
+  </DataNode>
+  <DataNode TextLabel="DA " GraphId="bc9db" Type="Metabolite" GroupRef="f6f06">
+    <Graphics CenterX="980.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18243" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="d5f3c" Type="Protein" GroupRef="f6f06">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="980.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="fc908" Type="Protein" GroupRef="f6f06">
+    <Graphics CenterX="980.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="cbef5" Type="Protein" GroupRef="f6f06">
+    <Graphics CenterX="980.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A2 " GraphId="ebc42" Type="Protein" GroupRef="f6f06">
+    <Graphics CenterX="980.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q05940" />
+  </DataNode>
+  <DataNode TextLabel="Docked dopamine loaded synaptic vesicle" GraphId="b6c0e" Type="Complex">
+    <Graphics CenterX="1090.0" CenterY="344.0" Width="118.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_15684" />
+  </DataNode>
+  <DataNode TextLabel="DA " GraphId="b6838" Type="Metabolite" GroupRef="b3ce8">
+    <Graphics CenterX="1090.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18243" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="b2f3d" Type="Protein" GroupRef="b3ce8">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1090.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="fcc8b" Type="Protein" GroupRef="b3ce8">
+    <Graphics CenterX="1090.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="afdd6" Type="Protein" GroupRef="b3ce8">
+    <Graphics CenterX="1090.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A2 " GraphId="df1b9" Type="Protein" GroupRef="b3ce8">
+    <Graphics CenterX="1090.0" CenterY="2647.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q05940" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1 " GraphId="f3308" Type="Protein" GroupRef="b3ce8">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="1090.0" CenterY="2667.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1 " GraphId="b3c09" Type="Protein" GroupRef="b3ce8">
+    <Graphics CenterX="1090.0" CenterY="2687.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="f58f3" Type="Protein" GroupRef="fc359">
+    <Graphics CenterX="1090.0" CenterY="2727.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="f0de3" Type="Protein" GroupRef="fc359">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1090.0" CenterY="2747.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="cffc9" Type="Protein" GroupRef="fc359">
+    <Graphics CenterX="1090.0" CenterY="2767.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="cfee6" Type="Protein" GroupRef="fc359">
+    <Graphics CenterX="1090.0" CenterY="2787.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="DA" GraphId="d19bb" Type="Metabolite">
+    <Graphics CenterX="1490.5" CenterY="341.0" Width="75.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18243" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1" GraphId="f29c4" Type="Protein">
+    <Graphics CenterX="1092.0" CenterY="648.0" Width="80.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="SNARE complex" GraphId="c054b" Type="Complex">
+    <Graphics CenterX="1076.5" CenterY="518.0" Width="99.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_12700" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="e8b76" Type="Protein" GroupRef="b217f">
+    <Graphics CenterX="1200.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="db23f" Type="Protein" GroupRef="b217f">
+    <Graphics CenterX="1200.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="fef49" Type="Protein" GroupRef="b217f">
+    <Graphics CenterX="1200.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="SYT1" GraphId="dcf3b" Type="Protein">
+    <Graphics CenterX="1087.0" CenterY="575.0" Width="104.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="Na+" GraphId="a856f" Type="Metabolite">
+    <Graphics CenterX="1240.5" CenterY="149.0" Width="79.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29101" />
+  </DataNode>
+  <DataNode TextLabel="L-Gln" GraphId="b444e" Type="Metabolite">
+    <Graphics CenterX="1242.5" CenterY="101.0" Width="87.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18050" />
+  </DataNode>
+  <DataNode TextLabel="Na+" GraphId="dbcb4" Type="Metabolite">
+    <Graphics CenterX="936.5" CenterY="154.0" Width="79.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29101" />
+  </DataNode>
+  <DataNode TextLabel="L-Gln" GraphId="e5b1a" Type="Metabolite">
+    <Graphics CenterX="911.5" CenterY="107.0" Width="87.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18050" />
+  </DataNode>
+  <DataNode TextLabel="SLC38A2" GraphId="ae842" Type="Protein">
+    <Graphics CenterX="1086.0" CenterY="81.0" Width="60.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q96QD8" />
+  </DataNode>
+  <DataNode TextLabel="L-Gln" GraphId="b3621" Type="Metabolite">
+    <Graphics CenterX="671.5" CenterY="102.0" Width="87.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:18050" />
+  </DataNode>
+  <DataNode TextLabel="H2O" GraphId="e6234" Type="Metabolite">
+    <Graphics CenterX="682.0" CenterY="151.0" Width="42.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15377" />
+  </DataNode>
+  <DataNode TextLabel="NH4+" GraphId="c3393" Type="Metabolite">
+    <Graphics CenterX="510.0" CenterY="96.0" Width="52.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:28938" />
+  </DataNode>
+  <DataNode TextLabel="Glu" GraphId="cec1d" Type="Metabolite">
+    <Graphics CenterX="497.0" CenterY="152.0" Width="88.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16015" />
+  </DataNode>
+  <DataNode TextLabel="GLS dimers" GraphId="dcd44">
+    <Graphics CenterX="588.5" CenterY="81.0" Width="73.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_21656" />
+  </DataNode>
+  <DataNode TextLabel="L-Glu" GraphId="d615e" Type="Metabolite">
+    <Graphics CenterX="239.0" CenterY="1570.0" Width="88.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16015" />
+  </DataNode>
+  <DataNode TextLabel="Empty Glutamate Synaptic Vesicle" GraphId="ad80f" Type="Complex">
+    <Graphics CenterX="397.5" CenterY="1778.0" Width="111.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_14482" />
+  </DataNode>
+  <DataNode TextLabel="SLC17A7 " GraphId="bb6e3" Type="Protein" GroupRef="ea7aa">
+    <Graphics CenterX="1310.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9P2U7" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="f3f5a" Type="Protein" GroupRef="ea7aa">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1310.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="b66bb" Type="Protein" GroupRef="ea7aa">
+    <Graphics CenterX="1310.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="bf8fd" Type="Protein" GroupRef="ea7aa">
+    <Graphics CenterX="1310.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="Glutamate loaded synaptic vesicle" GraphId="a6898" Type="Complex">
+    <Graphics CenterX="673.5" CenterY="1752.0" Width="115.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_12769" />
+  </DataNode>
+  <DataNode TextLabel="Glu " GraphId="c64b9" Type="Metabolite" GroupRef="a3149">
+    <Graphics CenterX="1420.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16015" />
+  </DataNode>
+  <DataNode TextLabel="SLC17A7 " GraphId="b2e1b" Type="Protein" GroupRef="a3149">
+    <Graphics CenterX="1420.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9P2U7" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="f707e" Type="Protein" GroupRef="a3149">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1420.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="d8c08" Type="Protein" GroupRef="a3149">
+    <Graphics CenterX="1420.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="a969e" Type="Protein" GroupRef="a3149">
+    <Graphics CenterX="1420.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="Docked Glutamate Loaded Synaptic Vesicle" GraphId="eae1f" Type="Complex">
+    <Comment Source="Reactome">Glutamate synaptic vesicle contains Rab3 ( GTPase), synaptobrevin/VAMP ( V-SNARE), VGLUT1 (Glutamate transporter) and synpatotagmin which is beleived to be a Ca2+ sensor and plays a role in the synaptic vesicle fusion process.</Comment>
+    <Graphics CenterX="1092.5" CenterY="1757.0" Width="119.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_12825" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1 " GraphId="edee4" Type="Protein" GroupRef="da7c7">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="1530.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="Glu " GraphId="f6300" Type="Metabolite" GroupRef="b6c60">
+    <Graphics CenterX="1530.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16015" />
+  </DataNode>
+  <DataNode TextLabel="SLC17A7 " GraphId="ed807" Type="Protein" GroupRef="b6c60">
+    <Graphics CenterX="1530.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9P2U7" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="ccc75" Type="Protein" GroupRef="b6c60">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1530.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="f03f9" Type="Protein" GroupRef="b6c60">
+    <Graphics CenterX="1530.0" CenterY="2647.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="cbcc2" Type="Protein" GroupRef="b6c60">
+    <Graphics CenterX="1530.0" CenterY="2667.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="ec5e1" Type="Protein" GroupRef="b6c60">
+    <Graphics CenterX="1530.0" CenterY="2687.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1 " GraphId="b34f1" Type="Protein" GroupRef="b6c60">
+    <Graphics CenterX="1530.0" CenterY="2707.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="a5fc6" Type="Protein" GroupRef="b6c60">
+    <Graphics CenterX="1530.0" CenterY="2727.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="da4b7" Type="Protein" GroupRef="b6c60">
+    <Graphics CenterX="1530.0" CenterY="2747.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="UNC13B" GraphId="c33e8" Type="Protein">
+    <Graphics CenterX="951.0" CenterY="1798.0" Width="58.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14795" />
+  </DataNode>
+  <DataNode TextLabel="SLC17A7" GraphId="c8e38" Type="Protein">
+    <Graphics CenterX="1080.5" CenterY="1975.0" Width="55.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9P2U7" />
+  </DataNode>
+  <DataNode TextLabel="Glu" GraphId="ad172" Type="Metabolite">
+    <Graphics CenterX="1429.0" CenterY="1869.0" Width="88.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16015" />
+  </DataNode>
+  <DataNode TextLabel="Rab3-RIM complex" GraphId="b2f16" Type="Complex">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <BiopaxRef>beb</BiopaxRef>
+    <BiopaxRef>ad2</BiopaxRef>
+    <Graphics CenterX="1103.0" CenterY="2010.0" Width="120.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_13268" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="dace5" Type="Protein" GroupRef="bbd09">
+    <Graphics CenterX="1640.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="f7494" Type="Protein" GroupRef="bbd09">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1640.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SNARE complex" GraphId="bc6cf" Type="Complex">
+    <Graphics CenterX="1082.5" CenterY="1914.0" Width="99.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_12700" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="e50d3" Type="Protein" GroupRef="e9359">
+    <Graphics CenterX="1750.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="c92cf" Type="Protein" GroupRef="e9359">
+    <Graphics CenterX="1750.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="e2081" Type="Protein" GroupRef="e9359">
+    <Graphics CenterX="1750.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1" GraphId="f3687" Type="Protein">
+    <Graphics CenterX="847.5" CenterY="1866.0" Width="79.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1" GraphId="a1d2e" Type="Protein">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="890.0" CenterY="1829.0" Width="54.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="SYT1" GraphId="ea3bd" Type="Protein">
+    <Graphics CenterX="1075.0" CenterY="1507.0" Width="106.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="Neuronal EAATs" GraphId="dff00">
+    <Graphics CenterX="1615.5" CenterY="1742.0" Width="101.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_14035" />
+  </DataNode>
+  <DataNode TextLabel="L-Glu" GraphId="c7916" Type="Metabolite">
+    <Graphics CenterX="1769.0" CenterY="1868.0" Width="88.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16015" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1" GraphId="a8b79" Type="Protein">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="926.0" CenterY="409.0" Width="54.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="Cho" GraphId="b32f2" Type="Metabolite">
+    <Graphics CenterX="1221.0" CenterY="2126.5" Width="36.0" Height="23.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15354" />
+  </DataNode>
+  <DataNode TextLabel="Cho" GraphId="f0b92" Type="Metabolite">
+    <Graphics CenterX="942.5" CenterY="2115.5" Width="41.0" Height="27.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15354" />
+  </DataNode>
+  <DataNode TextLabel="Na+" GraphId="e9e9d" Type="Metabolite">
+    <Graphics CenterX="1203.0" CenterY="2062.5" Width="50.0" Height="29.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29101" />
+  </DataNode>
+  <DataNode TextLabel="Na+" GraphId="a26e8" Type="Metabolite">
+    <Graphics CenterX="953.5" CenterY="2053.0" Width="41.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:29101" />
+  </DataNode>
+  <DataNode TextLabel="Ac-CoA" GraphId="c41f6" Type="Metabolite">
+    <Graphics CenterX="772.0" CenterY="2037.0" Width="56.0" Height="32.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15351" />
+  </DataNode>
+  <DataNode TextLabel="AcCho" GraphId="fdd47" Type="Metabolite">
+    <Graphics CenterX="554.5" CenterY="2006.0" Width="105.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15355" />
+  </DataNode>
+  <DataNode TextLabel="CoA-SH" GraphId="cd061" Type="Metabolite">
+    <Graphics CenterX="586.5" CenterY="2113.0" Width="61.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15346" />
+  </DataNode>
+  <DataNode TextLabel="CHAT" GraphId="db073" Type="Protein">
+    <Graphics CenterX="675.0" CenterY="1988.0" Width="106.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P28329" />
+  </DataNode>
+  <DataNode TextLabel="ATP" GraphId="bfd46" Type="Metabolite">
+    <Graphics CenterX="128.5" CenterY="1885.0" Width="39.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15422" />
+  </DataNode>
+  <DataNode TextLabel="H+" GraphId="c4d28" Type="Metabolite">
+    <Graphics CenterX="289.5" CenterY="1970.0" Width="35.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15378" />
+  </DataNode>
+  <DataNode TextLabel="ADP" GraphId="dc1c8" Type="Metabolite">
+    <Graphics CenterX="279.0" CenterY="1878.0" Width="40.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16761" />
+  </DataNode>
+  <DataNode TextLabel="H+" GraphId="d5d05" Type="Metabolite">
+    <Graphics CenterX="120.5" CenterY="1950.0" Width="35.0" Height="30.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15378" />
+  </DataNode>
+  <DataNode TextLabel="Empty Acetylcholine Synaptic Vesicle" GraphId="f8d64" Type="Complex">
+    <Graphics CenterX="377.0" CenterY="1929.0" Width="126.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_12740" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="fa581" Type="Protein" GroupRef="ce4c3">
+    <Graphics CenterX="1860.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A3 " GraphId="da837" Type="Protein" GroupRef="ce4c3">
+    <Graphics CenterX="1860.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16572" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="ca743" Type="Protein" GroupRef="ce4c3">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1860.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="cb2e7" Type="Protein" GroupRef="ce4c3">
+    <Graphics CenterX="1860.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="Acetylcholine Loaded Synaptic Vesicle" GraphId="bf3c2" Type="Complex">
+    <Graphics CenterX="378.5" CenterY="2167.0" Width="133.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_17766" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="dcddc" Type="Protein" GroupRef="e0771">
+    <Graphics CenterX="1970.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="O-acetylcholine " GraphId="ba962" Type="Metabolite" GroupRef="e0771">
+    <Graphics CenterX="1970.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15355" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="ffb66" Type="Protein" GroupRef="e0771">
+    <Graphics CenterX="1970.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="b1304" Type="Protein" GroupRef="e0771">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1970.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A3 " GraphId="e09e9" Type="Protein" GroupRef="e0771">
+    <Graphics CenterX="1970.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16572" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A3" GraphId="ce29b" Type="Protein">
+    <Graphics CenterX="467.5" CenterY="2093.0" Width="85.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16572" />
+  </DataNode>
+  <DataNode TextLabel="Docked acetylcholine loaded Synaptic Vesicle" GraphId="a46d8" Type="Complex">
+    <Comment Source="Reactome">Acetylcholine synaptic vesicle contains Rab3 ( GTPase), synaptobrevin/VAMP ( V-SNARE), VGLUT1 (Glutamate transporter) and synpatotagmin which is beleived to be a Ca2+ sensor and plays a role in the synaptic vesicle fusion process.</Comment>
+    <Graphics CenterX="1104.5" CenterY="2168.0" Width="133.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_17285" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1 " GraphId="a41ae" Type="Protein" GroupRef="a29fb">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="2080.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="dc647" Type="Protein" GroupRef="a29fb">
+    <Graphics CenterX="2080.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1 " GraphId="f7439" Type="Protein" GroupRef="a29fb">
+    <Graphics CenterX="2080.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="e6121" Type="Protein" GroupRef="da472">
+    <Graphics CenterX="2080.0" CenterY="2627.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="O-acetylcholine " GraphId="e5290" Type="Metabolite" GroupRef="da472">
+    <Graphics CenterX="2080.0" CenterY="2647.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15355" />
+  </DataNode>
+  <DataNode TextLabel="SYT1 " GraphId="fe960" Type="Protein" GroupRef="da472">
+    <Graphics CenterX="2080.0" CenterY="2667.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="d4254" Type="Protein" GroupRef="da472">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="2080.0" CenterY="2687.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A3 " GraphId="fd17e" Type="Protein" GroupRef="da472">
+    <Graphics CenterX="2080.0" CenterY="2707.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16572" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="b5aab" Type="Protein" GroupRef="da472">
+    <Graphics CenterX="2080.0" CenterY="2727.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="b0605" Type="Protein" GroupRef="da472">
+    <Graphics CenterX="2080.0" CenterY="2747.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1" GraphId="f1862" Type="Protein">
+    <Graphics CenterX="1087.0" CenterY="2220.0" Width="80.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="Rab3-RIM complex" GraphId="e0277" Type="Complex">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <BiopaxRef>beb</BiopaxRef>
+    <BiopaxRef>ad2</BiopaxRef>
+    <Graphics CenterX="1097.0" CenterY="2486.0" Width="120.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_13268" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="ac316" Type="Protein" GroupRef="cc699">
+    <Graphics CenterX="2190.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="d9013" Type="Protein" GroupRef="cc699">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="2190.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1" GraphId="bb85e" Type="Protein">
+    <Graphics CenterX="909.5" CenterY="2434.0" Width="79.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1" GraphId="f1e8e" Type="Protein">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="970.0" CenterY="2366.0" Width="54.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="AcCho" GraphId="f0f9e" Type="Metabolite">
+    <Graphics CenterX="1529.0" CenterY="2165.5" Width="48.0" Height="35.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:15355" />
+  </DataNode>
+  <DataNode TextLabel="SLC18A3" GraphId="a3e92" Type="Protein">
+    <Graphics CenterX="1611.5" CenterY="2249.0" Width="85.0" Height="50.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16572" />
+  </DataNode>
+  <DataNode TextLabel="SYT1" GraphId="b6d6b" Type="Protein">
+    <Graphics CenterX="1069.0" CenterY="2390.0" Width="104.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="SNARE complex" GraphId="e0308" Type="Complex">
+    <Graphics CenterX="1072.5" CenterY="2440.0" Width="99.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_12700" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="a729d" Type="Protein" GroupRef="a2ed7">
+    <Graphics CenterX="2300.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="fb818" Type="Protein" GroupRef="a2ed7">
+    <Graphics CenterX="2300.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="e9b12" Type="Protein" GroupRef="a2ed7">
+    <Graphics CenterX="2300.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="GABA synthesis, release, reuptake and degradation" GraphId="f89f5" Type="Pathway">
+    <Comment Source="Reactome">GABA is a major inhibitory neurotransmitter in the mammalian central nervous system. GABA modulates neuronal excitability throughout the nervous system. Disruption of GABA neurotransmission leads to many neurological diseases including epilepsy and a general anxiety disorder. GABA is synthesized by two distinct enzymes GAD67 and GAD65 that differ in their cellular localization, functional properties and co-factor requirements. GABA synthesized by GAD65 is used for neurotransmission whereas GABA synthesized by GAD67 is used for processes other than neurotransmission such as synaptogenesis and protection against neuronal injury. GABA is loaded into synaptic vesicle with the help of vesicular inhibitory amino acid transporter or VGAT. GAD65 and VGAT are functionally linked at the synaptic vesicle membrane and GABA synthesized by GAD65 is preferentially loaded into the synaptic vesicle over GABA synthesized in cytoplasm by GAD67.The GABA loaded synaptic vesicles are docked at the plasma membrane with the help of the SNARE complexes and primed by interplay between various proteins including Munc18, complexin etc. Release of GABA loaded synaptic vesicle is initiated by the arrival of action potential at the presynaptic bouton and opening of N or P/Q voltage gated Ca2+ channels. Ca2+ influx results in Ca2+ binding by synaptobrevin, which is a part of the SNARE complex that also includes SNAP25 and syntaxin, leading to synaptic vesicle fusion. Release of GABA in the synaptic cleft leads to binding of GABA by the GABA receptors and post ligand binding events.</Comment>
+    <BiopaxRef>c75</BiopaxRef>
+    <BiopaxRef>ddb</BiopaxRef>
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="1395.0" CenterY="40.0" Width="474.0" Height="42.0" ZOrder="32768" FontSize="10" Valign="Middle" LineThickness="0.0" Color="14961e" />
+    <Xref Database="Reactome" ID="REACT_23947" />
+  </DataNode>
+  <DataNode TextLabel="STX1A" GraphId="eca89" Type="Protein">
+    <Graphics CenterX="1082.0" CenterY="729.0" Width="56.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25" GraphId="f6645" Type="Protein">
+    <Graphics CenterX="1079.5" CenterY="167.0" Width="65.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="OCT2" GraphId="ec3f6" Type="Protein">
+    <Comment Source="Reactome">This CandidateSet contains sequences identified by William Pearson's analysis of Reactome catalyst entities. Catalyst entity sequences were used to identify analagous sequences that shared overall homology and active site homology. Sequences in this Candidate set were identified in an April 24, 2012 analysis.</Comment>
+    <Graphics CenterX="1610.0" CenterY="1228.0" Width="46.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_160574" />
+  </DataNode>
+  <DataNode TextLabel="SLC5A7" GraphId="efe02" Type="Protein">
+    <Graphics CenterX="1082.5" CenterY="2057.0" Width="37.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q9GZV3" />
+  </DataNode>
+  <DataNode TextLabel="STX1A" GraphId="f401e" Type="Protein">
+    <Graphics CenterX="1079.0" CenterY="1135.0" Width="56.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25" GraphId="e13ef" Type="Protein">
+    <Graphics CenterX="1088.0" CenterY="1182.5" Width="80.0" Height="31.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A" GraphId="b4b8a" Type="Protein">
+    <Graphics CenterX="1079.0" CenterY="2289.0" Width="56.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25" GraphId="fb904" Type="Protein">
+    <Graphics CenterX="1079.5" CenterY="2257.0" Width="65.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="SYT1" GraphId="ddd91" Type="Protein">
+    <Graphics CenterX="1071.0" CenterY="1872.0" Width="104.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P21579" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25" GraphId="a3067" Type="Protein">
+    <Graphics CenterX="1075.5" CenterY="1711.0" Width="65.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A" GraphId="f5787" Type="Protein">
+    <Graphics CenterX="1078.0" CenterY="1676.0" Width="56.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1" GraphId="c5df7" Type="Protein">
+    <Graphics CenterX="1086.0" CenterY="1632.0" Width="80.0" Height="36.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="STXBP1-1" GraphId="d06cd" Type="Protein">
+    <Comment Source="Reactome">Munc 18 interacts with syntaxin in the plasma membrane, with Mint (Munc 18 interacting) which in turn interacts with CASK and neurexins. Munc18 also interacts with   granulophilin. Granulophilin is interacts simultaneously with syntaxin and Munc18. These interactions are believed to be involved in the docking of the synaptic vesicle to the plasma membrane. However, the sequence of events is unclear.</Comment>
+    <BiopaxRef>f83</BiopaxRef>
+    <Graphics CenterX="955.0" CenterY="1386.0" Width="54.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P61764-1" />
+  </DataNode>
+  <DataNode TextLabel="SNARE complex" GraphId="d5d66" Type="Complex">
+    <Graphics CenterX="1073.5" CenterY="1439.0" Width="99.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_12700" />
+  </DataNode>
+  <DataNode TextLabel="VAMP2 " GraphId="d7086" Type="Protein" GroupRef="ae60c">
+    <Graphics CenterX="2410.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P63027" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25 " GraphId="fcf47" Type="Protein" GroupRef="ae60c">
+    <Graphics CenterX="2410.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A " GraphId="d245b" Type="Protein" GroupRef="ae60c">
+    <Graphics CenterX="2410.0" CenterY="2587.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="CPLX1" GraphId="adc9c" Type="Protein">
+    <Graphics CenterX="912.5" CenterY="1432.0" Width="79.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="O14810" />
+  </DataNode>
+  <DataNode TextLabel="SNAP25" GraphId="ba387" Type="Protein">
+    <Graphics CenterX="1082.5" CenterY="767.0" Width="65.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P60880" />
+  </DataNode>
+  <DataNode TextLabel="STX1A" GraphId="f9f73" Type="Protein">
+    <Graphics CenterX="1082.0" CenterY="218.0" Width="56.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q16623" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A" GraphId="b5668" Type="Protein">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="1082.5" CenterY="479.0" Width="47.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <DataNode TextLabel="Rab3-RIM complex" GraphId="e99f0" Type="Complex">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <BiopaxRef>beb</BiopaxRef>
+    <BiopaxRef>ad2</BiopaxRef>
+    <Graphics CenterX="1088.0" CenterY="798.0" Width="120.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Reactome" ID="REACT_13268" />
+  </DataNode>
+  <DataNode TextLabel="RIMS1 " GraphId="f503e" Type="Protein" GroupRef="d2479">
+    <Graphics CenterX="2520.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="Q86UR5" />
+  </DataNode>
+  <DataNode TextLabel="RAB3A " GraphId="d9cb6" Type="Protein" GroupRef="d2479">
+    <Comment Source="Reactome">Rab3A, located in the synaptic vesicle membrane, interacts with RIM ( Rab3A interacting Molecule) and with Doc2. These interactions are beleived to initiate the process of priming which precedes the fuison of the synaptic vesicle with the plasma membrane.</Comment>
+    <Graphics CenterX="2520.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Uniprot-TrEMBL" ID="P20336" />
+  </DataNode>
+  <Interaction GraphId="bc456">
+    <Comment Source="Reactome">Loading of the monoamine vesicle is preceded by acidifcation of the vesicle by ATPAse.</Comment>
+    <BiopaxRef>c18</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="287.0" Y="361.0" />
+      <Point X="374.0" Y="362.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="b41ab" />
+      <Anchor Position="0.99" Shape="None" GraphId="e9201" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15379" />
+  </Interaction>
+  <Interaction GraphId="db01e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="242.0" Y="397.0" GraphRef="d5d05" RelX="6.942857142857143" RelY="-103.53333333333333" />
+      <Point X="287.0" Y="361.0" GraphRef="b41ab" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15379" />
+  </Interaction>
+  <Interaction GraphId="d7aed">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="238.0" Y="330.0" GraphRef="bfd46" RelX="5.615384615384615" RelY="-103.66666666666667" />
+      <Point X="287.0" Y="361.0" GraphRef="b41ab" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15379" />
+  </Interaction>
+  <Interaction GraphId="f8599">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="374.0" Y="362.0" GraphRef="e9201" RelX="0.8700000000000045" RelY="0.009999999999990905" />
+      <Point X="391.0" Y="392.0" GraphRef="dc1c8" RelX="5.6" RelY="-99.06666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15379" />
+  </Interaction>
+  <Interaction GraphId="ba2c7">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="374.0" Y="362.0" GraphRef="e9201" RelX="0.8700000000000045" RelY="0.009999999999990905" />
+      <Point X="392.0" Y="327.0" GraphRef="e055e" RelX="-0.1559633027522936" RelY="1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15379" />
+  </Interaction>
+  <Interaction GraphId="b62a1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="374.0" Y="362.0" GraphRef="e9201" RelX="0.8700000000000045" RelY="0.009999999999990905" />
+      <Point X="553.0" Y="361.0" GraphRef="d9f78" RelX="-1.1714285714285715" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15379" />
+  </Interaction>
+  <Interaction GraphId="eb06c">
+    <Comment Source="Reactome">Dopamine is transported from the cytosol  into the reacidified clathrin sculpted monoamine transport vesicle by membranous vesicular monoamine transporter</Comment>
+    <BiopaxRef>fbb</BiopaxRef>
+    <BiopaxRef>da1</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="430.0" Y="488.0" />
+      <Point X="564.0" Y="487.0" />
+      <Anchor Position="0.5" Shape="None" GraphId="c8b4d" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15524" />
+  </Interaction>
+  <Interaction GraphId="b853b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="479.0" Y="859.0" GraphRef="c9028" RelX="-0.025210084033613446" RelY="-1.12" />
+      <Point X="478.0" Y="487.0" GraphRef="c8b4d" RelX="-19.0" RelY="-0.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15524" />
+  </Interaction>
+  <Interaction GraphId="ea287">
+    <Comment Source="Reactome">Docking and priming of clathrin sculpted Noradrenaline loaded transport vesicle occurs once the synaptic vesicle has moved from the cytoplasm to a region apposed to the plasma membrane. The details of the docking and priming recation have been worked out using synaptic vesicle loaded with glutamate and similar reactions may occur during the transport cycle of noradrenaline. The vesicle is held in close apposition to the plasma membrane by several proteins that bridge the synaptic vesicle to the plasma membrane. Some of these proteins are in the plasma membrane while others are in the synaptic vesicle. Vesicle fusion is preceded by a priming event where molecular interactions between the docked vesicle and the plasma membrane undergo changes. The molecules in the docking and the priming process are known, however, the exact sequence and the precise molecular changes involved in docking and priming are not well dissected. In this reaction the process of docking and priming has been condensed. It is known that Munc18 along with its interactors is critical for membrane docking and fusion events while Munc 13 along with its interacting proteins is central to priming. Munc 13 could act as a positive regulator for the priming recation. Finally the primed fusion complex is clamped in the pre-fusion form by a Complexin. Complexins are Ca2+ independent cytosolic proteins that bind to partly or fully assembled SNARE complexes. Complexins play both a positive and a negative role in the release process.&lt;br&gt;</Comment>
+    <BiopaxRef>c32</BiopaxRef>
+    <BiopaxRef>bea</BiopaxRef>
+    <BiopaxRef>b67</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="893.0" Y="1299.0" />
+      <Point X="1027.0" Y="1301.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="e96f7" />
+      <Anchor Position="0.5" Shape="None" GraphId="d7c49" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15411" />
+  </Interaction>
+  <Interaction GraphId="d34d6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="783.0" Y="1301.0" GraphRef="a3cc3" RelX="1.0458015267175573" RelY="-0.1111111111111111" />
+      <Point X="893.0" Y="1299.0" GraphRef="e96f7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15411" />
+  </Interaction>
+  <Interaction GraphId="b2094">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1050.0" Y="1259.0" GraphRef="c5df7" RelX="-0.9" RelY="-20.72222222222222" />
+      <Point X="893.0" Y="1299.0" GraphRef="e96f7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15411" />
+  </Interaction>
+  <Interaction GraphId="c893b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1066.0" Y="1149.0" GraphRef="f9f73" RelX="-0.5714285714285714" RelY="84.63636363636364" />
+      <Point X="893.0" Y="1299.0" GraphRef="e96f7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15411" />
+  </Interaction>
+  <Interaction GraphId="f43bb">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1062.0" Y="1201.0" GraphRef="ba387" RelX="-0.6307692307692307" RelY="39.45454545454545" />
+      <Point X="893.0" Y="1299.0" GraphRef="e96f7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15411" />
+  </Interaction>
+  <Interaction GraphId="c5c6b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="947.0" Y="1372.0" GraphRef="d06cd" RelX="-0.2962962962962963" RelY="-1.2727272727272727" />
+      <Point X="893.0" Y="1299.0" GraphRef="e96f7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15411" />
+  </Interaction>
+  <Interaction GraphId="bb632">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="910.0" Y="1418.0" GraphRef="adc9c" RelX="-0.06329113924050633" RelY="-1.2727272727272727" />
+      <Point X="893.0" Y="1299.0" GraphRef="e96f7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15411" />
+  </Interaction>
+  <Interaction GraphId="db503">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="783.0" Y="1309.0" GraphRef="a3cc3" RelX="1.0458015267175573" RelY="0.3333333333333333" />
+      <Point X="947.0" Y="1298.0" GraphRef="d7c49" RelX="-13.0" RelY="-2.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15411" />
+  </Interaction>
+  <Interaction GraphId="f803a">
+    <Comment Source="Reactome">Once vesicles are docked, primed and ready to be released fusion of the synaptic vesicle with the plasma membrane can be triggered by an influx of Ca2+ through the voltage gated Ca2+ channels (N, P/Q and R type). Ca2+ influx initiates a cascade of events in which the Ca2+ sensing protein, synaptotagmin-1 (sty-1) is central. Sty-1 promotes the membrane fusion between the synaptic vesicle and the plasma membrane by Ca2+ dependant induction of membrane curvature. Synaptotagmin competes with SNARE complex binding in a Ca2+ dependent manner thereby displacing complexin-1 and causing membrane curvature and fusion of the synaptic vesicle with the plasma membrane. The fusion is characterized by the formation of a trans SNARE complex in which SNAP 25, syntaxin and synaptobrevin along with VGLUT1, the glutamate transporter, synaptotagmin, and Rab3a either become a part of the plasma membrane or membrane delimited in the vesicular membrane. Vesicle fusion ultimately results in the release of the noradrenalin into the synaptic cleft.</Comment>
+    <BiopaxRef>b04</BiopaxRef>
+    <BiopaxRef>bde</BiopaxRef>
+    <BiopaxRef>a99</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1164.0" Y="1304.0" />
+      <Point X="1419.0" Y="1305.0" />
+      <Anchor Position="0.99" Shape="None" GraphId="ffdd0" />
+      <Anchor Position="0.5" Shape="None" GraphId="e3015" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="a1ea8">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1419.0" Y="1305.0" GraphRef="ffdd0" RelX="2.5499999999999545" RelY="0.009999999999990905" />
+      <Point X="1102.0" Y="1554.0" GraphRef="e99f0" RelX="0.23333333333333334" RelY="68.72727272727273" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="c671d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1419.0" Y="1305.0" GraphRef="ffdd0" RelX="2.5499999999999545" RelY="0.009999999999990905" />
+      <Point X="1478.0" Y="1305.0" GraphRef="c39f1" RelX="-1.0952380952380953" RelY="-0.0625" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="fca31">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1419.0" Y="1305.0" GraphRef="ffdd0" RelX="2.5499999999999545" RelY="0.009999999999990905" />
+      <Point X="1123.0" Y="1116.0" GraphRef="d4142" RelX="0.9493670886075949" RelY="1.12" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="c8fb0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1419.0" Y="1305.0" GraphRef="ffdd0" RelX="2.5499999999999545" RelY="0.009999999999990905" />
+      <Point X="1100.0" Y="1489.0" GraphRef="ddd91" RelX="0.5576923076923077" RelY="-34.81818181818182" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="e140f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1419.0" Y="1305.0" GraphRef="ffdd0" RelX="2.5499999999999545" RelY="0.009999999999990905" />
+      <Point X="985.0" Y="1381.0" GraphRef="d06cd" RelX="1.1111111111111112" RelY="-0.45454545454545453" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="c493f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1419.0" Y="1305.0" GraphRef="ffdd0" RelX="2.5499999999999545" RelY="0.009999999999990905" />
+      <Point X="1101.0" Y="1425.0" GraphRef="d5d66" RelX="0.5555555555555556" RelY="-1.2727272727272727" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="a611b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1419.0" Y="1305.0" GraphRef="ffdd0" RelX="2.5499999999999545" RelY="0.009999999999990905" />
+      <Point X="955.0" Y="1422.0" GraphRef="adc9c" RelX="1.0759493670886076" RelY="-0.9090909090909091" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="d0d20">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1164.0" Y="1292.0" GraphRef="ef53b" RelX="1.0458015267175573" RelY="-0.52" />
+      <Point X="1246.0" Y="1303.0" GraphRef="e3015" RelX="-45.5" RelY="-1.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15448" />
+  </Interaction>
+  <Interaction GraphId="b651c">
+    <Comment Source="Reactome">Noradrenaline is degraded by Monoamine oxidase A, which contains FAD as a cofactor. Monoamine oxidase is located in the outer mitochondrial membrane facing the cytoplasmic site. Monoamine xoidase functions as a monomer and is functional both is astrocyes and neurons.</Comment>
+    <BiopaxRef>e3f</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1822.0" Y="1302.0" />
+      <Point X="1908.0" Y="1301.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="ed9a7" />
+      <Anchor Position="0.99" Shape="None" GraphId="c3ccf" />
+      <Anchor Position="0.5" Shape="None" GraphId="e4c2d" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15390" />
+  </Interaction>
+  <Interaction GraphId="a629d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1782.0" Y="1303.0" GraphRef="a2288" RelX="1.0612244897959184" RelY="-0.13333333333333333" />
+      <Point X="1822.0" Y="1302.0" GraphRef="ed9a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15390" />
+  </Interaction>
+  <Interaction GraphId="fb2f0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1766.0" Y="1272.0" GraphRef="b6a33" RelX="0.8305084745762712" RelY="1.2" />
+      <Point X="1822.0" Y="1302.0" GraphRef="ed9a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15390" />
+  </Interaction>
+  <Interaction GraphId="ee957">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1748.0" Y="1343.0" GraphRef="b631e" RelX="1.1428571428571428" RelY="-0.8" />
+      <Point X="1822.0" Y="1302.0" GraphRef="ed9a7" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15390" />
+  </Interaction>
+  <Interaction GraphId="f96e3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1908.0" Y="1301.0" GraphRef="c3ccf" RelX="0.8599999999999" RelY="-0.009999999999990905" />
+      <Point X="1968.0" Y="1274.0" GraphRef="f857a" RelX="-1.1428571428571428" RelY="0.5333333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15390" />
+  </Interaction>
+  <Interaction GraphId="ca3ed">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1908.0" Y="1301.0" GraphRef="c3ccf" RelX="0.8599999999999" RelY="-0.009999999999990905" />
+      <Point X="2020.0" Y="1310.0" GraphRef="c3826" RelX="-1.12" RelY="-0.13333333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15390" />
+  </Interaction>
+  <Interaction GraphId="b14bd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1908.0" Y="1301.0" GraphRef="c3ccf" RelX="0.8599999999999" RelY="-0.009999999999990905" />
+      <Point X="1972.0" Y="1345.0" GraphRef="d5dff" RelX="-0.45454545454545453" RelY="-1.1363636363636365" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15390" />
+  </Interaction>
+  <Interaction GraphId="fdcfd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1859.0" Y="1247.0" GraphRef="c3298" RelX="0.0" RelY="1.2727272727272727" />
+      <Point X="1859.0" Y="1301.0" GraphRef="e4c2d" RelX="-6.0" RelY="-0.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15390" />
+  </Interaction>
+  <Interaction GraphId="d8559">
+    <Comment Source="Reactome">Noradrenaline is cleared from the synaptic cleft by Noaradrenaline uptake transporter. This reaction is carried out by neurons as well as astrocytes.</Comment>
+    <BiopaxRef>bf2</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1547.0" Y="1305.0" />
+      <Point X="1678.0" Y="1305.0" />
+      <Anchor Position="0.5" Shape="None" GraphId="b25a8" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15472" />
+  </Interaction>
+  <Interaction GraphId="d724b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1610.0" Y="1242.0" GraphRef="ec3f6" RelX="0.0" RelY="1.2727272727272727" />
+      <Point X="1610.0" Y="1305.0" GraphRef="b25a8" RelX="-2.5" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15472" />
+  </Interaction>
+  <Interaction GraphId="d0c35">
+    <Comment Source="Reactome">Serotonin is loaded into the clathrin sculpted monoamine transport vesicle by vesicular monoamine transporter.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="427.0" Y="959.0" />
+      <Point X="539.0" Y="957.0" />
+      <Anchor Position="0.5" Shape="None" GraphId="cc26d" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15486" />
+  </Interaction>
+  <Interaction GraphId="c9903">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="479.0" Y="915.0" GraphRef="c9028" RelX="-0.025210084033613446" RelY="1.12" />
+      <Point X="478.0" Y="958.0" GraphRef="cc26d" RelX="-5.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15486" />
+  </Interaction>
+  <Interaction GraphId="e4f73">
+    <Comment Source="Reactome">Serotonin loaded synaptic vesicles are docked, inside the synapse in the presynaptic cell, close to the plasmamembrane. The docking brings the vesicles in close proximity to the release site to fascilitate the release of serotonin. Some of the molecules involved in the docking process are Munc 18, Rab3a, Rab 3 interacting molecule (RIM). The priming reaction brings docked but unprimed synaptic vesicles into a releaseable pool. Priming involes formation of the trimeric SNARE complex between two plasmamembrane proteins SNAP25 and Syntaxin and vesicular membrane protein, VAMP2.</Comment>
+    <BiopaxRef>b67</BiopaxRef>
+    <BiopaxRef>f32</BiopaxRef>
+    <BiopaxRef>c32</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="846.0" Y="864.0" />
+      <Point X="968.0" Y="861.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="fa2cc" />
+      <Anchor Position="0.99" Shape="None" GraphId="d2039" />
+      <Anchor Position="0.5" Shape="None" GraphId="bbfbd" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="f3776">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1062.0" Y="743.0" GraphRef="f9f73" RelX="-0.7142857142857143" RelY="47.72727272727273" />
+      <Point X="846.0" Y="864.0" GraphRef="fa2cc" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="e4ac2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="688.0" Y="867.0" GraphRef="e79d2" RelX="1.055045871559633" RelY="-0.1111111111111111" />
+      <Point X="846.0" Y="864.0" GraphRef="fa2cc" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="b4f2c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="679.0" Y="617.0" GraphRef="ed5a0" RelX="0.1875" RelY="1.2857142857142858" />
+      <Point X="846.0" Y="864.0" GraphRef="fa2cc" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="ad1ef">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="915.0" Y="1041.0" GraphRef="d06cd" RelX="-1.4814814814814814" RelY="-31.363636363636363" />
+      <Point X="846.0" Y="864.0" GraphRef="fa2cc" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="db235">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1055.0" Y="781.0" GraphRef="ba387" RelX="-0.8461538461538461" RelY="1.2727272727272727" />
+      <Point X="846.0" Y="864.0" GraphRef="fa2cc" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="ec35f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="951.0" Y="985.0" GraphRef="adc9c" RelX="0.9746835443037974" RelY="-40.63636363636363" />
+      <Point X="846.0" Y="864.0" GraphRef="fa2cc" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="c19ae">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1047.0" Y="812.0" GraphRef="e99f0" RelX="-0.6833333333333333" RelY="1.2727272727272727" />
+      <Point X="846.0" Y="864.0" GraphRef="fa2cc" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="f7841">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="968.0" Y="861.0" GraphRef="d2039" RelX="1.2200000000000273" RelY="-0.029999999999972715" />
+      <Point X="1026.0" Y="871.0" GraphRef="e1869" RelX="-1.0530973451327434" RelY="-0.4" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="b00e2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="968.0" Y="861.0" GraphRef="d2039" RelX="1.2200000000000273" RelY="-0.029999999999972715" />
+      <Point X="1055.0" Y="835.0" GraphRef="b5668" RelX="-1.1702127659574468" RelY="32.36363636363637" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="c6fe5">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="688.0" Y="873.0" GraphRef="e79d2" RelX="1.055045871559633" RelY="0.2222222222222222" />
+      <Point X="911.0" Y="862.0" GraphRef="bbfbd" RelX="4.0" RelY="-0.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15338" />
+  </Interaction>
+  <Interaction GraphId="cc582">
+    <Comment Source="Reactome">The trimeric complex formed between V-SNARE (VAMP) and the T-SNAREs (syntaxin and SNAP 25) after priming step is called transSNARE complex because the members of each group lie on the opposide side of the membrane, plasmamembrane side and the vesicular membrane side. Ca2+ influx through the Voltage gated Calcium Channels (VGCC) initaites the process of fusion of the synaptic vesicle in the presynaptic cell. The rise in Ca2+ leads to the activation of Protein Kinase A through rise in cAMP. Synaptotagmin, a Ca2+ sensor proetin also plays a role in the fusion process. Following fusion the members of V and T SNARES lie on the same membrane formin the cis-SNARES. The fusion of release causes the release of the neurotransmitter into the synaptic cleft.</Comment>
+    <BiopaxRef>b04</BiopaxRef>
+    <BiopaxRef>bde</BiopaxRef>
+    <BiopaxRef>a99</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1145.0" Y="881.0" />
+      <Point X="1372.0" Y="878.0" />
+      <Anchor Position="0.99" Shape="None" GraphId="b5701" />
+      <Anchor Position="0.5" Shape="None" GraphId="b9279" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="cee90">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="1108.0" Y="832.0" GraphRef="b5668" RelX="1.0851063829787233" RelY="32.09090909090909" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="a70ba">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="1468.0" Y="878.0" GraphRef="a4b36" RelX="-1.0869565217391304" RelY="-0.06666666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="b8751">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="699.0" Y="617.0" GraphRef="ed5a0" RelX="0.8125" RelY="1.2857142857142858" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="f817c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="1141.0" Y="919.0" GraphRef="ddd91" RelX="1.3461538461538463" RelY="-86.63636363636364" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="d03d2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="1119.0" Y="1060.0" GraphRef="d4142" RelX="0.8481012658227848" RelY="-1.12" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="ee7e6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="1102.0" Y="1018.0" GraphRef="d5d66" RelX="0.5757575757575758" RelY="-38.27272727272727" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="fb10d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="950.0" Y="1044.0" GraphRef="d06cd" RelX="-0.18518518518518517" RelY="-31.09090909090909" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="af4bc">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="998.0" Y="985.0" GraphRef="adc9c" RelX="2.1645569620253164" RelY="-40.63636363636363" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="d93dc">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1372.0" Y="878.0" GraphRef="b5701" RelX="2.269999999999982" RelY="-0.029999999999972715" />
+      <Point X="1106.0" Y="1228.0" GraphRef="c5df7" RelX="0.5" RelY="-22.444444444444443" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="bff6e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1145.0" Y="870.0" GraphRef="e1869" RelX="1.0530973451327434" RelY="-0.44" />
+      <Point X="1209.0" Y="881.0" GraphRef="b9279" RelX="-49.5" RelY="1.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15503" />
+  </Interaction>
+  <Interaction GraphId="f1613">
+    <Comment Source="Reactome">Dopamine loaded synaptic vesicles are docked, inside the synapse in the presynaptic cell, close to the plasmamembrane. The docking brings the vesicles in close proximity to the release site to fascilitate the release of dopamine. Some of the molecules involved in the docking process are Munc 18, Rab3a, Rab 3 interacting molecule (RIM). The priming reaction brings docked but unprimed synaptic vesicles into a releaseable pool. Priming involes formation of the trimeric SNARE complex between two plasmamembrane proteins SNAP25 and Syntaxin and vesicular membrane protein, VAMP2.</Comment>
+    <BiopaxRef>bec</BiopaxRef>
+    <BiopaxRef>f32</BiopaxRef>
+    <BiopaxRef>b67</BiopaxRef>
+    <BiopaxRef>c32</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="858.0" Y="340.0" />
+      <Point X="1028.0" Y="342.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="be830" />
+      <Anchor Position="0.5" Shape="None" GraphId="efbc8" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="dc51e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="680.0" Y="590.0" GraphRef="ed5a0" RelX="0.21875" RelY="-1.2857142857142858" />
+      <Point X="858.0" Y="340.0" GraphRef="be830" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="e1817">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="760.0" Y="341.0" GraphRef="ca4aa" RelX="1.0521739130434782" RelY="-0.05555555555555555" />
+      <Point X="858.0" Y="340.0" GraphRef="be830" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="a29ce">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1064.0" Y="181.0" GraphRef="ba387" RelX="-0.5692307692307692" RelY="-53.27272727272727" />
+      <Point X="858.0" Y="340.0" GraphRef="be830" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="c98cd">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="901.0" Y="443.0" GraphRef="adc9c" RelX="-0.2911392405063291" RelY="-89.9090909090909" />
+      <Point X="858.0" Y="340.0" GraphRef="be830" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="c5be4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="915.0" Y="395.0" GraphRef="d06cd" RelX="-1.4814814814814814" RelY="-90.0909090909091" />
+      <Point X="858.0" Y="340.0" GraphRef="be830" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="dbbeb">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1061.0" Y="232.0" GraphRef="f9f73" RelX="-0.75" RelY="1.2727272727272727" />
+      <Point X="858.0" Y="340.0" GraphRef="be830" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="eef7e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1058.0" Y="283.0" GraphRef="e99f0" RelX="-0.5" RelY="-46.81818181818182" />
+      <Point X="858.0" Y="340.0" GraphRef="be830" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="ad1ec">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="760.0" Y="348.0" GraphRef="ca4aa" RelX="1.0521739130434782" RelY="0.3333333333333333" />
+      <Point X="947.0" Y="340.0" GraphRef="efbc8" RelX="4.0" RelY="-1.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15517" />
+  </Interaction>
+  <Interaction GraphId="d4588">
+    <Comment Source="Reactome">The trimeric complex formed between V-SNARE (VAMP) and the T-SNAREs (syntaxin and SNAP 25) after priming step is called transSNARE complex because the members of each group lie on the opposide side of the membrane, plasmamembrane side and the vesicular membrane side. Ca2+ influx through the Voltage gated Calcium Channels (VGCC) initaites the process of fusion of the synaptic vesicle in the presynaptic cell. The rise in Ca2+ leads to the activation of Protein Kinase A through rise in cAMP. Synaptotagmin, a Ca2+ sensor proetin also plays a role in the fusion process. Following fusion the members of V and T SNARES lie on the same membrane formin the cis-SNARES. The fusion of release causes the release of the neurotransmitter into the synaptic cleft.</Comment>
+    <BiopaxRef>b04</BiopaxRef>
+    <BiopaxRef>bde</BiopaxRef>
+    <BiopaxRef>a99</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1152.0" Y="341.0" />
+      <Point X="1391.0" Y="337.0" />
+      <Anchor Position="0.99" Shape="None" GraphId="da1cf" />
+      <Anchor Position="0.5" Shape="None" GraphId="f4dbf" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="d8377">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="701.0" Y="590.0" GraphRef="ed5a0" RelX="0.875" RelY="-1.2857142857142858" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="a0191">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="1450.0" Y="339.0" GraphRef="d19bb" RelX="-1.08" RelY="-0.13333333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="dcbb0">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="1095.0" Y="1060.0" GraphRef="d4142" RelX="0.24050632911392406" RelY="-1.12" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="e1645">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="949.0" Y="447.0" GraphRef="adc9c" RelX="0.9240506329113924" RelY="-89.54545454545455" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="c4750">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="956.0" Y="404.0000000000001" GraphRef="d06cd" RelX="0.037037037037037035" RelY="-89.27272727272727" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="ae8c8">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="1101.0" Y="561.0" GraphRef="ddd91" RelX="0.5769230769230769" RelY="-119.18181818181819" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="e8668">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="1109.0" Y="627.0" GraphRef="c5df7" RelX="0.575" RelY="-55.833333333333336" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="b5b39">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="1095.0" Y="504.0" GraphRef="d5d66" RelX="0.43434343434343436" RelY="-85.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="b1d74">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1391.0" Y="337.0" GraphRef="da1cf" RelX="2.3899999999998727" RelY="-0.040000000000020464" />
+      <Point X="1105.0" Y="465.0" GraphRef="b5668" RelX="0.9574468085106383" RelY="-1.2727272727272727" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="c16e1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1152.0" Y="331.0" GraphRef="b6c0e" RelX="1.0508474576271187" RelY="-0.52" />
+      <Point X="1205.0" Y="339.0" GraphRef="f4dbf" RelX="-66.5" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15533" />
+  </Interaction>
+  <Interaction GraphId="cbdb6">
+    <Comment Source="Reactome">Glutamine uptake in neurons is carried out by Na+-dependant system A neutral amino acid transporter (Melone et al. 2006).</Comment>
+    <BiopaxRef>ab4</BiopaxRef>
+    <BiopaxRef>b10</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1169.0" Y="118.0" />
+      <Point X="1013.0" Y="118.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="b22b6" />
+      <Anchor Position="0.99" Shape="None" GraphId="cbf55" />
+      <Anchor Position="0.5" Shape="None" GraphId="c9db3" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13763" />
+  </Interaction>
+  <Interaction GraphId="f4ace">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1205.0" Y="131.00000000000023" GraphRef="e9e9d" RelX="0.08" RelY="-133.20689655172413" />
+      <Point X="1169.0" Y="118.0" GraphRef="b22b6" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13763" />
+  </Interaction>
+  <Interaction GraphId="f891f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1196.0" Y="111.0" GraphRef="b444e" RelX="-1.0689655172413792" RelY="0.6666666666666666" />
+      <Point X="1169.0" Y="118.0" GraphRef="b22b6" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13763" />
+  </Interaction>
+  <Interaction GraphId="cf818">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1013.0" Y="118.0" GraphRef="cbf55" RelX="-1.5599999999999454" RelY="0.0" />
+      <Point X="968.0" Y="136.0" GraphRef="a26e8" RelX="0.7073170731707317" RelY="-127.8" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13763" />
+  </Interaction>
+  <Interaction GraphId="a2867">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1013.0" Y="118.0" GraphRef="cbf55" RelX="-1.5599999999999454" RelY="0.0" />
+      <Point X="958.0" Y="111.0" GraphRef="e5b1a" RelX="1.0689655172413792" RelY="0.26666666666666666" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13763" />
+  </Interaction>
+  <Interaction GraphId="cd8cf">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1086.0" Y="95.0" GraphRef="ae842" RelX="0.0" RelY="1.2727272727272727" />
+      <Point X="1086.0" Y="117.0" GraphRef="c9db3" RelX="-5.0" RelY="-1.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13763" />
+  </Interaction>
+  <Interaction GraphId="ba1f7">
+    <Comment Source="Reactome">Glutamine in neurons is transported into mitochondrial matrix by an unknown transporter. Because this enzyme is not yet identified, it is represented as a black box event.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="865.0" Y="105.0" />
+      <Point X="718.0" Y="102.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13703" />
+  </Interaction>
+  <Interaction GraphId="a140e">
+    <Comment Source="Reactome">Mitochondrial glutaminase (GLS) catalyzes the hydrolysis of glutamine to yield glutamate and ammonia. Two GLS enzymes have been identified, one abundantly expressed in the liver (GLS - Elgadi et al. 1999) and one abundantly expressed in kidney (GLS2 - Gomez-Fabre et al. 2000). Their biochemical properties are similar. The enzymes are inferred to function as dimers based on unpublished crystallographic data for GLS (PDB 3CZD) and studies of glutaminase enzyme purified from Ehrlich Ascites cells (Quesada et al. 1988).</Comment>
+    <BiopaxRef>cd6</BiopaxRef>
+    <BiopaxRef>c59</BiopaxRef>
+    <BiopaxRef>cac</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="645.0" Y="133.0" />
+      <Point X="560.0" Y="132.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="ebe2d" />
+      <Anchor Position="0.99" Shape="None" GraphId="f232d" />
+      <Anchor Position="0.5" Shape="None" GraphId="a7597" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1700" />
+  </Interaction>
+  <Interaction GraphId="ab5d6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="658.0" Y="140.0" GraphRef="e6234" RelX="-1.1428571428571428" RelY="-0.7333333333333333" />
+      <Point X="645.0" Y="133.0" GraphRef="ebe2d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1700" />
+  </Interaction>
+  <Interaction GraphId="e3f8e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="658.0" Y="120.0" GraphRef="b3621" RelX="-0.3103448275862069" RelY="1.2" />
+      <Point X="645.0" Y="133.0" GraphRef="ebe2d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1700" />
+  </Interaction>
+  <Interaction GraphId="f8a41">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="560.0" Y="132.0" GraphRef="f232d" RelX="-0.8500000000000227" RelY="-0.009999999999990905" />
+      <Point X="530.0" Y="114.0" GraphRef="c3393" RelX="0.7692307692307693" RelY="1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1700" />
+  </Interaction>
+  <Interaction GraphId="ba165">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="560.0" Y="132.0" GraphRef="f232d" RelX="-0.8500000000000227" RelY="-0.009999999999990905" />
+      <Point X="544.0" Y="138.0" GraphRef="cec1d" RelX="1.0681818181818181" RelY="-0.9333333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1700" />
+  </Interaction>
+  <Interaction GraphId="f616d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="588.0" Y="95.0" GraphRef="dcd44" RelX="-0.0136986301369863" RelY="1.2727272727272727" />
+      <Point X="590.0" Y="131.0" GraphRef="a7597" RelX="-12.5" RelY="-1.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_1700" />
+  </Interaction>
+  <Interaction GraphId="bcf8b">
+    <Comment Source="Reactome">Glutamate from the mitochondrial matrix is transported back into the cytosol, to be loaded into synaptic vesicles. Solute carrier 25 is a mitochondrial glutamate transporter known to transport glutamate, but it is unclear if this protein is involved in the transport of glutamate in neurons.</Comment>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="450.0" Y="151.0" />
+      <Point X="237.0" Y="1552.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13790" />
+  </Interaction>
+  <Interaction GraphId="bd1ef">
+    <Comment Source="Reactome">Nascent synaptic vesicles are loaded with glutamate by VGLUT1 to form glutamate containing synaptic vesicles. This process occurs while the synaptic vesicle is in the cytosol.</Comment>
+    <BiopaxRef>ce5</BiopaxRef>
+    <BiopaxRef>b7f</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="462.0" Y="1690.0" />
+      <Point X="619.0" Y="1731.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="c8712" />
+      <Anchor Position="0.5" Shape="None" GraphId="a86c8" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12503" />
+  </Interaction>
+  <Interaction GraphId="a4375">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="410.0" Y="1757.0" GraphRef="ad80f" RelX="0.22522522522522523" RelY="-1.1666666666666667" />
+      <Point X="462.0" Y="1690.0" GraphRef="c8712" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12503" />
+  </Interaction>
+  <Interaction GraphId="cac72">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="266.0" Y="1588.0" GraphRef="c7916" RelX="-34.15909090909091" RelY="-18.666666666666668" />
+      <Point X="462.0" Y="1690.0" GraphRef="c8712" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12503" />
+  </Interaction>
+  <Interaction GraphId="c29d2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="456.0" Y="1765.0" GraphRef="ad80f" RelX="1.054054054054054" RelY="-0.7222222222222222" />
+      <Point X="549.0" Y="1710.0" GraphRef="a86c8" RelX="8.5" RelY="-0.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12503" />
+  </Interaction>
+  <Interaction GraphId="e6d23">
+    <Comment Source="Reactome">Docking occurs once the synaptic vesicle has moved from the cytoplasm to a region apposed to the plasma membrane. The vesicle is held in close apposition to the plasma membrane by several proteins that bridge the synaptic vesicle to the plasma membrane. Some of these proteins are in the plasma membrane while others are in the synaptic vesicle. Vesicle fusion is preceded by a priming event where molecular interactions between the docked vesicle and the plasma membrane undergo changes. The molecules in the docking and the priming process are known, however, the exact sequence and the precise molecular changes involved in docking and priming are not well dissected. In this reaction the process of docking and priming has been condensed. It is known that Munc18 along with its interactors is critical for membrane docking and fusion events while Munc 13 along with its interacting proteins is central to priming. Munc 13 could act as a positive regulator for the priming recation. Finally the primed fusion complex is clamped in the pre-fusion form by a Complexin. Complexins are Ca2+ independent cytosolic proteins that bind to partly or fully assembled SNARE complexes. Complexins play both a positive and a negative role in the release process.&lt;br&gt;</Comment>
+    <BiopaxRef>c32</BiopaxRef>
+    <BiopaxRef>ce6</BiopaxRef>
+    <BiopaxRef>f32</BiopaxRef>
+    <BiopaxRef>b67</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="800.0" Y="1751.0" />
+      <Point X="1030.0" Y="1754.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="d4105" />
+      <Anchor Position="0.5" Shape="None" GraphId="c86e8" />
+      <Anchor Position="0.5" Shape="None" GraphId="e88ce" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="b1a10">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="734.0" Y="1751.0" GraphRef="a6898" RelX="1.0521739130434782" RelY="-0.05555555555555555" />
+      <Point X="800.0" Y="1751.0" GraphRef="d4105" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="ebfe8">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="877.0" Y="1815.0" GraphRef="d06cd" RelX="-2.888888888888889" RelY="39.0" />
+      <Point X="800.0" Y="1751.0" GraphRef="d4105" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="b7a4e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1040.0" Y="1715.0" GraphRef="ba387" RelX="-1.3076923076923077" RelY="86.18181818181819" />
+      <Point X="800.0" Y="1751.0" GraphRef="d4105" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="f93b4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1047.0" Y="1683.0" GraphRef="f9f73" RelX="-1.25" RelY="133.1818181818182" />
+      <Point X="800.0" Y="1751.0" GraphRef="d4105" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="c841c">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1043.0" Y="1648.0" GraphRef="c5df7" RelX="-1.075" RelY="0.8888888888888888" />
+      <Point X="800.0" Y="1751.0" GraphRef="d4105" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="b67d9">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="842.0" Y="1852.0" GraphRef="adc9c" RelX="-1.7848101265822784" RelY="38.18181818181818" />
+      <Point X="800.0" Y="1751.0" GraphRef="d4105" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="fa44d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="734.0" Y="1759.0" GraphRef="a6898" RelX="1.0521739130434782" RelY="0.3888888888888889" />
+      <Point X="889.0" Y="1749.0" GraphRef="c86e8" RelX="-26.0" RelY="-3.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="e7522">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="937.0" Y="1784.0" GraphRef="c33e8" RelX="-0.4827586206896552" RelY="-1.2727272727272727" />
+      <Point X="889.0" Y="1749.0" GraphRef="e88ce" RelX="-26.0" RelY="-3.5" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12617" />
+  </Interaction>
+  <Interaction GraphId="abe84">
+    <Comment Source="Reactome">Once vesicles are docked, primed and ready to be released fusion of the synaptic vesicle with the plasma membrane can be triggered by an influx of Ca2+ through the voltage gated Ca2+ channels (N, P/Q and R type). Ca2+ influx initiates a cascade of events in which the Ca2+ sensing protein, synaptotagmin-1 (sty-1) is central. Sty-1 promotes the membrane fusion between the synaptic vesicle and the plasma membrane by Ca2+ dependant induction of membrane curvature. Synaptotagmin competes with SNARE complex binding in a Ca2+ dependent manner thereby displacing complexin-1 and causing membrane curvature and fusion of the synaptic vesicle with the plasma membrane. The fusion is characterized by the formation of a trans SNARE complex in which SNAP 25, syntaxin and synaptobrevin along with VGLUT1, the glutamate transporter, synaptotagmin, and Rab3a either become a part of the plasma membrane or membrane delimited in the vesicular membrane. Vesicle fusion ultimately results in the release of the glutamate into the synaptic cleft. </Comment>
+    <BiopaxRef>b04</BiopaxRef>
+    <BiopaxRef>bde</BiopaxRef>
+    <BiopaxRef>a99</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1155.0" Y="1774.0" />
+      <Point X="1323.0" Y="1825.0" />
+      <Anchor Position="0.99" Shape="None" GraphId="b9797" />
+      <Anchor Position="0.5" Shape="None" GraphId="fdeb4" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="d2263">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1323.0" Y="1825.0" GraphRef="b9797" RelX="1.6800000000000637" RelY="0.5099999999999909" />
+      <Point X="1392.0" Y="1851.0" GraphRef="ad172" RelX="-0.8409090909090909" RelY="-1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="ae336">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1323.0" Y="1825.0" GraphRef="b9797" RelX="1.6800000000000637" RelY="0.5099999999999909" />
+      <Point X="1097.0" Y="1961.0" GraphRef="c8e38" RelX="0.6" RelY="-1.2727272727272727" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="febda">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1323.0" Y="1825.0" GraphRef="b9797" RelX="1.6800000000000637" RelY="0.5099999999999909" />
+      <Point X="920.0" Y="1828.0" GraphRef="d06cd" RelX="-1.2962962962962963" RelY="40.18181818181818" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="fc729">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1323.0" Y="1825.0" GraphRef="b9797" RelX="1.6800000000000637" RelY="0.5099999999999909" />
+      <Point X="890.0" Y="1862.0" GraphRef="adc9c" RelX="-0.569620253164557" RelY="39.09090909090909" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="a851f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1323.0" Y="1825.0" GraphRef="b9797" RelX="1.6800000000000637" RelY="0.5099999999999909" />
+      <Point X="1116.0" Y="1996.0" GraphRef="e99f0" RelX="0.4666666666666667" RelY="108.9090909090909" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="de75e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1323.0" Y="1825.0" GraphRef="b9797" RelX="1.6800000000000637" RelY="0.5099999999999909" />
+      <Point X="1111.0" Y="1900.0" GraphRef="d5d66" RelX="0.7575757575757576" RelY="41.90909090909091" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="e9eee">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1323.0" Y="1825.0" GraphRef="b9797" RelX="1.6800000000000637" RelY="0.5099999999999909" />
+      <Point X="1126.0" Y="1862.0" GraphRef="ddd91" RelX="1.0576923076923077" RelY="-0.9090909090909091" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="ab3c3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1155.0" Y="1759.0" GraphRef="eae1f" RelX="1.050420168067227" RelY="0.08" />
+      <Point X="1206.0" Y="1790.0" GraphRef="fdeb4" RelX="-33.0" RelY="-9.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_12411" />
+  </Interaction>
+  <Interaction GraphId="c9c06">
+    <Comment Source="Reactome">Excess L-Glutamate released by the pre-synaptic neuron in the synaptic cleft is cleared by high affinity transporters called the excitatory amino acid transporters (EAATs) to terminate synaptic actions of the neurotransmitter and to recycle these molecules. Five types of EAATs have been identified EAAT1-EAAT5 in the mammalian CNS. EAAT1 and EAAT2 are mainly expressed by astrocytes whereas EAAT3 and  EAAT4 are predominantly neuronal. EAAT3 are expressed throughout the CNS however, EAAT4 is predominantly localized to purkinje cells.  EAAT5 are expressed rod photoreceptor and bipolar cells  of retina. Astrocytic EAATs are expressed in astrocytes in close apposition to the synapses and neuronal EAATs are expressed in the extra-synaptic or peri-synaptic locations on the neurons. Astrocytic EAATs are responsible for majority of the glutamate uptake, neuronal transporters are responsible for glutamate clearance in specialized synapses in cerebellum where the spatial relationship between the glutamate receptors and EAATs is altered and glutamate receptors are expressed in the peri-synaptic region.</Comment>
+    <BiopaxRef>f42</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1476.0" Y="1868.0" />
+      <Point X="1722.0" Y="1868.0" />
+      <Anchor Position="0.5" Shape="None" GraphId="f6452" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13574" />
+  </Interaction>
+  <Interaction GraphId="a7c0f">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1614.0" Y="1756.0" GraphRef="dff00" RelX="-0.0297029702970297" RelY="1.2727272727272727" />
+      <Point X="1614.0" Y="1868.0" GraphRef="f6452" RelX="15.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13574" />
+  </Interaction>
+  <Interaction GraphId="e0955">
+    <Comment Source="Reactome">Choline transporter symports Na ion and Choline from the extracellular region into the cytosol. The choline transporters are located in the nerve terminals of cholinergic neurons.</Comment>
+    <BiopaxRef>ec0</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1146.0" Y="2099.0" />
+      <Point X="1024.0" Y="2099.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="cef07" />
+      <Anchor Position="0.99" Shape="None" GraphId="df9ca" />
+      <Anchor Position="0.5" Shape="None" GraphId="d978f" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15552" />
+  </Interaction>
+  <Interaction GraphId="c29a3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1200.0" Y="2119.0" GraphRef="b32f2" RelX="-1.1666666666666667" RelY="-0.6521739130434783" />
+      <Point X="1146.0" Y="2099.0" GraphRef="cef07" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15552" />
+  </Interaction>
+  <Interaction GraphId="be6c4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1180.0" Y="2080.0" GraphRef="e9e9d" RelX="-0.92" RelY="1.206896551724138" />
+      <Point X="1146.0" Y="2099.0" GraphRef="cef07" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15552" />
+  </Interaction>
+  <Interaction GraphId="de7c6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1024.0" Y="2099.0" GraphRef="df9ca" RelX="-1.2200000000000273" RelY="0.0" />
+      <Point X="966.0" Y="2111.0" GraphRef="f0b92" RelX="1.146341463414634" RelY="-0.3333333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15552" />
+  </Interaction>
+  <Interaction GraphId="be2c3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1024.0" Y="2099.0" GraphRef="df9ca" RelX="-1.2200000000000273" RelY="0.0" />
+      <Point X="977.0" Y="2066.0" GraphRef="a26e8" RelX="1.146341463414634" RelY="0.8666666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15552" />
+  </Interaction>
+  <Interaction GraphId="a0a74">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1082.0" Y="2071.0" GraphRef="efe02" RelX="-0.02702702702702703" RelY="1.2727272727272727" />
+      <Point X="1083.0" Y="2099.0" GraphRef="d978f" RelX="-2.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15552" />
+  </Interaction>
+  <Interaction GraphId="d66c9">
+    <Comment Source="Reactome">In the cytosol, choline O-acetyltransferase (CHAT) acetylates choline (Cho) to produce acetylcholine (AcCho) (Toussaint 1992).&lt;br&gt;&lt;br&gt;AcCho is synthesised in the cytoplasm of cholinergic neurons from acetyl-CoA and Cho by CHAT enzyme.</Comment>
+    <BiopaxRef>dac</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="731.0" Y="2068.0" />
+      <Point X="639.0" Y="2068.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="e4a9a" />
+      <Anchor Position="0.99" Shape="None" GraphId="a4dbf" />
+      <Anchor Position="0.5" Shape="None" GraphId="b2e03" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15484" />
+  </Interaction>
+  <Interaction GraphId="b728a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="750.0" Y="2056.0" GraphRef="c41f6" RelX="-0.7857142857142857" RelY="1.1875" />
+      <Point X="731.0" Y="2068.0" GraphRef="e4a9a" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15484" />
+  </Interaction>
+  <Interaction GraphId="cc8a4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="919.0" Y="2110.0" GraphRef="f0b92" RelX="-1.146341463414634" RelY="-0.4074074074074074" />
+      <Point X="731.0" Y="2068.0" GraphRef="e4a9a" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15484" />
+  </Interaction>
+  <Interaction GraphId="b3947">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="639.0" Y="2068.0" GraphRef="a4dbf" RelX="-0.9199999999999591" RelY="0.0" />
+      <Point X="574.0" Y="2024.0" GraphRef="fdd47" RelX="0.37142857142857144" RelY="1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15484" />
+  </Interaction>
+  <Interaction GraphId="c0a4b">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="639.0" Y="2068.0" GraphRef="a4dbf" RelX="-0.9199999999999591" RelY="0.0" />
+      <Point X="603.0" Y="2095.0" GraphRef="cd061" RelX="0.5409836065573771" RelY="-1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15484" />
+  </Interaction>
+  <Interaction GraphId="fae7d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="675.0" Y="2009.0" GraphRef="db073" RelX="0.0" RelY="1.1666666666666667" />
+      <Point X="676.0" Y="2069.0" GraphRef="b2e03" RelX="-9.0" RelY="1.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15484" />
+  </Interaction>
+  <Interaction GraphId="ea5d2">
+    <Comment Source="Reactome">The proton gradient for the acetylcholine uptake is provided by vH+ type ATPase pump located in the acetylcholine vesicular membrane.</Comment>
+    <BiopaxRef>ae1</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="160.0" Y="1921.0" />
+      <Point X="230.0" Y="1920.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="b7de4" />
+      <Anchor Position="0.99" Shape="None" GraphId="e0d33" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13770" />
+  </Interaction>
+  <Interaction GraphId="adfb3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="141.0" Y="1903.0" GraphRef="bfd46" RelX="0.6410256410256411" RelY="1.2" />
+      <Point X="160.0" Y="1921.0" GraphRef="b7de4" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13770" />
+  </Interaction>
+  <Interaction GraphId="e61bb">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="141.0" Y="1937.0" GraphRef="d5d05" RelX="1.1714285714285715" RelY="-0.8666666666666667" />
+      <Point X="160.0" Y="1921.0" GraphRef="b7de4" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13770" />
+  </Interaction>
+  <Interaction GraphId="f3ae3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="230.0" Y="1920.0" GraphRef="e0d33" RelX="0.6999999999999886" RelY="-0.009999999999990905" />
+      <Point X="269.0" Y="1955.0" GraphRef="c4d28" RelX="-1.1714285714285715" RelY="-1.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13770" />
+  </Interaction>
+  <Interaction GraphId="b6e43">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="230.0" Y="1920.0" GraphRef="e0d33" RelX="0.6999999999999886" RelY="-0.009999999999990905" />
+      <Point X="261.0" Y="1896.0" GraphRef="dc1c8" RelX="-0.9" RelY="1.2" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_13770" />
+  </Interaction>
+  <Interaction GraphId="e5cac">
+    <Comment Source="Reactome">Acetylcholine is actively transported from the cytosol to the lumen of the clathrin sculpted synaptic vesicle by vesicular acetylcholine transporter. Two protons are exchanged for 1 molecule of acetylcholine. The vesicular acetylcholine transporter is located in the membrane of the clathrin sculpted synaptic vesicle.</Comment>
+    <BiopaxRef>c44</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="377.0" Y="2029.0" />
+      <Point X="378.0" Y="2119.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="bb39d" />
+      <Anchor Position="0.99" Shape="None" GraphId="c89e3" />
+      <Anchor Position="0.5" Shape="None" GraphId="c7f25" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15317" />
+  </Interaction>
+  <Interaction GraphId="e4e8e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="377.0" Y="1950.0" GraphRef="f8d64" RelX="0.0" RelY="1.1666666666666667" />
+      <Point X="377.0" Y="2029.0" GraphRef="bb39d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15317" />
+  </Interaction>
+  <Interaction GraphId="cc0e3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="310.0" Y="1981.0" GraphRef="c4d28" RelX="1.1714285714285715" RelY="0.7333333333333333" />
+      <Point X="377.0" Y="2029.0" GraphRef="bb39d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15317" />
+  </Interaction>
+  <Interaction GraphId="b1c92">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="499.0" Y="2012.0" GraphRef="fdd47" RelX="-1.0571428571428572" RelY="0.4" />
+      <Point X="377.0" Y="2029.0" GraphRef="bb39d" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15317" />
+  </Interaction>
+  <Interaction GraphId="b1738">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="378.0" Y="2119.0" GraphRef="c89e3" RelX="0.009999999999990905" RelY="0.900000000000091" />
+      <Point X="378.0" Y="2146.0" GraphRef="bf3c2" RelX="-0.007518796992481203" RelY="-1.1666666666666667" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15317" />
+  </Interaction>
+  <Interaction GraphId="c0c44">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="378.0" Y="2119.0" GraphRef="c89e3" RelX="0.009999999999990905" RelY="0.900000000000091" />
+      <Point X="141.0" Y="1961.0" GraphRef="d5d05" RelX="1.1714285714285715" RelY="0.7333333333333333" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15317" />
+  </Interaction>
+  <Interaction GraphId="a95c3">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="422.0" Y="2091.0" GraphRef="ce29b" RelX="-1.0705882352941176" RelY="-0.08" />
+      <Point X="377.0" Y="2090.0" GraphRef="c7f25" RelX="-0.5" RelY="16.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15317" />
+  </Interaction>
+  <Interaction GraphId="ae94c">
+    <Comment Source="Reactome">Docking and priming of clathrin sculpted acetylcholine loaded transport vesicle occurs once the synaptic vesicle has moved from the cytoplasm to a region apposed to the plasma membrane. The details of the docking and priming reaction have been worked out using synaptic vesicles loaded with glutamate and similar reactions may occur during the transport cycle of acetylcholine. The vesicle is held in close apposition to the plasma membrane by several proteins that bridge the synaptic vesicle to the plasma membrane. Some of these proteins are in the plasma membrane while others are in the synaptic vesicle. Vesicle fusion is preceded by a priming event where molecular interactions between the docked vesicle and the plasma membrane undergo changes. The molecules in the docking and the priming process are known, however, the exact sequence and the precise molecular changes involved in docking and priming are not well dissected. In this reaction the process of docking and priming has been condensed. It is known that Munc18 along with its interactors is critical for membrane docking and fusion events while Munc 13 along with its interacting proteins is central to priming. Munc 13 could act as a positive regulator for the priming recation. Finally the primed fusion complex is clamped in the pre-fusion form by a Complexin. Complexins are Ca2+ independent cytosolic proteins that bind to partly or fully assembled SNARE complexes. Complexins play both a positive and a negative role in the release process.&lt;br&gt;</Comment>
+    <BiopaxRef>c32</BiopaxRef>
+    <BiopaxRef>ce6</BiopaxRef>
+    <BiopaxRef>f32</BiopaxRef>
+    <BiopaxRef>b67</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="828.0" Y="2171.0" />
+      <Point X="1035.0" Y="2168.0" />
+      <Anchor Position="0.0" Shape="None" GraphId="cec16" />
+      <Anchor Position="0.5" Shape="None" GraphId="c3d6e" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15483" />
+  </Interaction>
+  <Interaction GraphId="ee72d">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="448.0" Y="2167.0" GraphRef="bf3c2" RelX="1.0451127819548873" RelY="0.0" />
+      <Point X="828.0" Y="2171.0" GraphRef="cec16" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15483" />
+  </Interaction>
+  <Interaction GraphId="ce5e2">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1044.0" Y="2212.0" GraphRef="c5df7" RelX="-1.05" RelY="32.22222222222222" />
+      <Point X="828.0" Y="2171.0" GraphRef="cec16" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15483" />
+  </Interaction>
+  <Interaction GraphId="e19df">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="961.0" Y="2352.0" GraphRef="d06cd" RelX="0.2222222222222222" RelY="87.81818181818181" />
+      <Point X="828.0" Y="2171.0" GraphRef="cec16" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15483" />
+  </Interaction>
+  <Interaction GraphId="c1c0a">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="905.0" Y="2420.0" GraphRef="adc9c" RelX="-0.189873417721519" RelY="89.81818181818181" />
+      <Point X="828.0" Y="2171.0" GraphRef="cec16" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15483" />
+  </Interaction>
+  <Interaction GraphId="ec3f4">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1044.0" Y="2245.0" GraphRef="ba387" RelX="-1.1846153846153846" RelY="134.36363636363637" />
+      <Point X="828.0" Y="2171.0" GraphRef="cec16" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15483" />
+  </Interaction>
+  <Interaction GraphId="f15e6">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1055.0" Y="2275.0" GraphRef="f9f73" RelX="-0.9642857142857143" RelY="187.0" />
+      <Point X="828.0" Y="2171.0" GraphRef="cec16" RelX="0.0" RelY="0.0" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15483" />
+  </Interaction>
+  <Interaction GraphId="d25c9">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="448.0" Y="2164.0" GraphRef="bf3c2" RelX="1.0451127819548873" RelY="-0.16666666666666666" />
+      <Point X="923.0" Y="2169.0" GraphRef="c3d6e" RelX="-8.5" RelY="-0.5" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15483" />
+  </Interaction>
+  <Interaction GraphId="a969b">
+    <Comment Source="Reactome">Once vesicles are docked, primed and ready to be released fusion of the synaptic vesicle with the plasma membrane can be triggered by an influx of Ca2+ through the voltage gated Ca2+ channels (N, P/Q and R type). Ca2+ influx initiates a cascade of events in which the Ca2+ sensing protein, synaptotagmin-1 (sty-1) is central. Sty-1 promotes the membrane fusion between the synaptic vesicle and the plasma membrane by Ca2+ dependant induction of membrane curvature. Synaptotagmin competes with SNARE complex binding in a Ca2+ dependent manner thereby displacing complexin-1 and causing membrane curvature and fusion of the synaptic vesicle with the plasma membrane. The fusion is characterized by the formation of a trans SNARE complex in which SNAP 25, syntaxin and synaptobrevin along with VGLUT1, the glutamate transporter, synaptotagmin, and Rab3a either become a part of the plasma membrane or membrane delimited in the vesicular membrane. Vesicle fusion ultimately results in the release of the acetylcholine into the synaptic cleft.</Comment>
+    <BiopaxRef>b04</BiopaxRef>
+    <BiopaxRef>bde</BiopaxRef>
+    <BiopaxRef>a99</BiopaxRef>
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1174.0" Y="2168.0" />
+      <Point X="1439.0" Y="2166.0" />
+      <Anchor Position="0.99" Shape="None" GraphId="db443" />
+      <Anchor Position="0.5" Shape="None" GraphId="de74b" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Interaction GraphId="c61bb">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1439.0" Y="2166.0" GraphRef="db443" RelX="2.650000000000091" RelY="-0.01999999999998181" />
+      <Point X="1566.0" Y="2228.0" GraphRef="a3e92" RelX="-1.0705882352941176" RelY="-0.84" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Interaction GraphId="e99d1">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1439.0" Y="2166.0" GraphRef="db443" RelX="2.650000000000091" RelY="-0.01999999999998181" />
+      <Point X="1502.0" Y="2165.0" GraphRef="f0f9e" RelX="-1.125" RelY="-0.02857142857142857" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Interaction GraphId="ab8b8">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1439.0" Y="2166.0" GraphRef="db443" RelX="2.650000000000091" RelY="-0.01999999999998181" />
+      <Point X="995.0" Y="2352.0" GraphRef="d06cd" RelX="1.4814814814814814" RelY="87.81818181818181" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Interaction GraphId="bee76">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1439.0" Y="2166.0" GraphRef="db443" RelX="2.650000000000091" RelY="-0.01999999999998181" />
+      <Point X="930.0" Y="2420.0" GraphRef="adc9c" RelX="0.4430379746835443" RelY="89.81818181818181" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Interaction GraphId="adebc">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1439.0" Y="2166.0" GraphRef="db443" RelX="2.650000000000091" RelY="-0.01999999999998181" />
+      <Point X="1108.0" Y="2472.0" GraphRef="e99f0" RelX="0.3333333333333333" RelY="152.1818181818182" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Interaction GraphId="cdeea">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1439.0" Y="2166.0" GraphRef="db443" RelX="2.650000000000091" RelY="-0.01999999999998181" />
+      <Point X="1087.0" Y="2376.0" GraphRef="ddd91" RelX="0.3076923076923077" RelY="45.81818181818182" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Interaction GraphId="a1571">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1439.0" Y="2166.0" GraphRef="db443" RelX="2.650000000000091" RelY="-0.01999999999998181" />
+      <Point X="1086.0" Y="2426.0" GraphRef="d5d66" RelX="0.25252525252525254" RelY="89.72727272727273" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Interaction GraphId="e9b8e">
+    <Graphics ConnectorType="Segmented" ZOrder="12288" LineThickness="1.0">
+      <Point X="1174.0" Y="2177.0" GraphRef="a46d8" RelX="1.0451127819548873" RelY="0.36" />
+      <Point X="1275.0" Y="2168.0" GraphRef="de74b" RelX="-31.5" RelY="1.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="Reactome" ID="REACT_15404" />
+  </Interaction>
+  <Label TextLabel="Noradrenalin loaded synaptic vesicle " GraphId="a0631">
+    <Comment Source="Reactome">REACT_17964</Comment>
+    <Graphics CenterX="100.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Docked Noradrenalin loaded synaptic vesicle " GraphId="dc090">
+    <Comment Source="Reactome">REACT_15843</Comment>
+    <Graphics CenterX="210.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Noradrenalin loaded synaptic vesicle " GraphId="af40f">
+    <Comment Source="Reactome">REACT_17964</Comment>
+    <Graphics CenterX="210.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Rab3-RIM complex " GraphId="a4b46">
+    <Comment Source="Reactome">REACT_13268</Comment>
+    <Graphics CenterX="320.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SNARE complex " GraphId="edd2e">
+    <Comment Source="Reactome">REACT_12700</Comment>
+    <Graphics CenterX="430.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="MAOA-FAD complex " GraphId="a63f4">
+    <Comment Source="Reactome">REACT_5113</Comment>
+    <Graphics CenterX="540.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Serotonin loaded synaptic vesicle " GraphId="f3f5e">
+    <Comment Source="Reactome">REACT_16110</Comment>
+    <Graphics CenterX="650.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Docked serotonin loaded synaptic vesicle " GraphId="e20dc">
+    <Comment Source="Reactome">REACT_17565</Comment>
+    <Graphics CenterX="760.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Serotonin loaded synaptic vesicle " GraphId="f0556">
+    <Comment Source="Reactome">REACT_16110</Comment>
+    <Graphics CenterX="760.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Rab3-RIM complex " GraphId="dda15">
+    <Comment Source="Reactome">REACT_13268</Comment>
+    <Graphics CenterX="870.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Dopamine loaded synaptic vesicle " GraphId="e9b8f">
+    <Comment Source="Reactome">REACT_15992</Comment>
+    <Graphics CenterX="980.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Docked dopamine loaded synaptic vesicle " GraphId="b1cbb">
+    <Comment Source="Reactome">REACT_15684</Comment>
+    <Graphics CenterX="1090.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Dopamine loaded synaptic vesicle " GraphId="afeb9">
+    <Comment Source="Reactome">REACT_15992</Comment>
+    <Graphics CenterX="1090.0" CenterY="2547.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Rab3-RIM complex " GraphId="d9c3e">
+    <Comment Source="Reactome">REACT_13268</Comment>
+    <Graphics CenterX="1090.0" CenterY="2707.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SNARE complex " GraphId="f9695">
+    <Comment Source="Reactome">REACT_12700</Comment>
+    <Graphics CenterX="1200.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Empty Glutamate Synaptic Vesicle " GraphId="f8cef">
+    <Comment Source="Reactome">REACT_14482</Comment>
+    <Graphics CenterX="1310.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Glutamate loaded synaptic vesicle " GraphId="fa051">
+    <Comment Source="Reactome">REACT_12769</Comment>
+    <Graphics CenterX="1420.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Docked Glutamate Loaded Synaptic Vesicle " GraphId="cb684">
+    <Comment Source="Reactome">REACT_12825</Comment>
+    <Graphics CenterX="1530.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Glutamate loaded synaptic vesicle " GraphId="b5e80">
+    <Comment Source="Reactome">REACT_12769</Comment>
+    <Graphics CenterX="1530.0" CenterY="2567.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Rab3-RIM complex " GraphId="a3acd">
+    <Comment Source="Reactome">REACT_13268</Comment>
+    <Graphics CenterX="1640.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SNARE complex " GraphId="cda75">
+    <Comment Source="Reactome">REACT_12700</Comment>
+    <Graphics CenterX="1750.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Empty Acetylcholine Synaptic Vesicle " GraphId="c7521">
+    <Comment Source="Reactome">REACT_12740</Comment>
+    <Graphics CenterX="1860.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Acetylcholine Loaded Synaptic Vesicle " GraphId="f5d45">
+    <Comment Source="Reactome">REACT_17766</Comment>
+    <Graphics CenterX="1970.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Docked acetylcholine loaded Synaptic Vesicle " GraphId="ada36">
+    <Comment Source="Reactome">REACT_17285</Comment>
+    <Graphics CenterX="2080.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Acetylcholine Loaded Synaptic Vesicle " GraphId="f2f4f">
+    <Comment Source="Reactome">REACT_17766</Comment>
+    <Graphics CenterX="2080.0" CenterY="2607.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Rab3-RIM complex " GraphId="ca331">
+    <Comment Source="Reactome">REACT_13268</Comment>
+    <Graphics CenterX="2190.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SNARE complex " GraphId="da5e7">
+    <Comment Source="Reactome">REACT_12700</Comment>
+    <Graphics CenterX="2300.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="SNARE complex " GraphId="c8e7e">
+    <Comment Source="Reactome">REACT_12700</Comment>
+    <Graphics CenterX="2410.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Rab3-RIM complex " GraphId="efdec">
+    <Comment Source="Reactome">REACT_13268</Comment>
+    <Graphics CenterX="2520.0" CenterY="2527.0" Width="80.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="cytosol" GraphId="b1b07" GroupRef="a3383">
+    <Graphics CenterX="98.0" CenterY="1825.5" Width="64.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="cytosol" GraphId="a2610" GroupRef="e0a93">
+    <Graphics CenterX="2065.0" CenterY="2293.5" Width="64.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="mitochondrial matrix" GraphId="c67ec" GroupRef="b17c3">
+    <Graphics CenterX="1908.5" CenterY="1191.5" Width="147.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="clathrin-sculpted monoamine transport vesicle lumen" GraphId="eae99" GroupRef="d9893">
+    <Graphics CenterX="599.0" CenterY="674.5" Width="206.0" Height="47.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="mitochondrial matrix" GraphId="c74a8" GroupRef="ba178">
+    <Graphics CenterX="701.5" CenterY="189.5" Width="147.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="clathrin-coated endocytic vesicle" GraphId="d2ac8" GroupRef="a06f0">
+    <Graphics CenterX="704.5" CenterY="1379.5" Width="225.0" Height="33.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="clathrin-sculpted glutamate transport vesicle lumen" GraphId="f9f70" GroupRef="eb092">
+    <Graphics CenterX="357.0" CenterY="2247.5" Width="260.0" Height="47.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="clathrin-sculpted acetylcholine transport vesicle lumen" GraphId="d54ef" GroupRef="cbde8">
+    <Graphics CenterX="241.5" CenterY="1671.5" Width="215.0" Height="47.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="ae744" GroupRef="a3383">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="556.5" CenterY="1251.5" Width="1067.0" Height="2495.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b36d3" GroupRef="e0a93">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="1862.0" CenterY="1180.5" Width="512.0" Height="2341.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="f691d" GroupRef="b17c3">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="1885.0" CenterY="1114.0" Width="226.0" Height="250.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="df71f" GroupRef="d9893">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="586.0" CenterY="677.0" Width="236.0" Height="812.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e8a8d" GroupRef="ba178">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="599.5" CenterY="131.5" Width="401.0" Height="167.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a9d93" GroupRef="a06f0">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="697.5" CenterY="1331.5" Width="237.0" Height="155.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a006f" GroupRef="eb092">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="344.0" CenterY="2126.0" Width="272.0" Height="336.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="bf18e" GroupRef="cbde8">
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="256.0" CenterY="1592.0" Width="250.0" Height="250.0" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Group GroupId="d9ca4" GraphId="bfee5" Style="Complex" />
+  <Group GroupId="de1b3" GraphId="b4414" Style="Complex" />
+  <Group GroupId="dfa08" GraphId="de15d" Style="Complex" />
+  <Group GroupId="cda09" GraphId="f135e" Style="Complex" />
+  <Group GroupId="e888e" GraphId="dd166" Style="Complex" />
+  <Group GroupId="c28b9" GraphId="e8795" Style="Complex" />
+  <Group GroupId="e55be" GraphId="cfd82" Style="Complex" />
+  <Group GroupId="ef14a" GraphId="e2472" Style="Complex" />
+  <Group GroupId="fadf6" GraphId="cb6a1" Style="Complex" />
+  <Group GroupId="cbde0" GraphId="a98e3" Style="Complex" />
+  <Group GroupId="f6f06" GraphId="d2083" Style="Complex" />
+  <Group GroupId="b91ea" GraphId="f0f6b" Style="Complex" />
+  <Group GroupId="b3ce8" GraphId="b4592" Style="Complex" />
+  <Group GroupId="fc359" GraphId="aaa78" Style="Complex" />
+  <Group GroupId="b217f" GraphId="faa66" Style="Complex" />
+  <Group GroupId="ea7aa" GraphId="d3916" Style="Complex" />
+  <Group GroupId="a3149" GraphId="a9908" Style="Complex" />
+  <Group GroupId="da7c7" GraphId="b98e7" Style="Complex" />
+  <Group GroupId="b6c60" GraphId="a9a8c" Style="Complex" />
+  <Group GroupId="bbd09" GraphId="dad4b" Style="Complex" />
+  <Group GroupId="e9359" GraphId="a7233" Style="Complex" />
+  <Group GroupId="ce4c3" GraphId="cd054" Style="Complex" />
+  <Group GroupId="e0771" GraphId="cb33a" Style="Complex" />
+  <Group GroupId="a29fb" GraphId="b21d9" Style="Complex" />
+  <Group GroupId="da472" GraphId="d61f0" Style="Complex" />
+  <Group GroupId="cc699" GraphId="c47cf" Style="Complex" />
+  <Group GroupId="a2ed7" GraphId="dd8aa" Style="Complex" />
+  <Group GroupId="ae60c" GraphId="ec1fc" Style="Complex" />
+  <Group GroupId="d2479" GraphId="ccfa4" Style="Complex" />
+  <Group GroupId="a3383" GraphId="f3676" Style="Group" />
+  <Group GroupId="e0a93" GraphId="ff22f" Style="Group" />
+  <Group GroupId="b17c3" GraphId="ed14b" Style="Group" />
+  <Group GroupId="d9893" GraphId="ed57a" Style="Group" />
+  <Group GroupId="ba178" GraphId="d9d23" Style="Group" />
+  <Group GroupId="a06f0" GraphId="b8266" Style="Group" />
+  <Group GroupId="eb092" GraphId="da9d6" Style="Group" />
+  <Group GroupId="cbde8" GraphId="accbe" Style="Group" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f42">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16212990</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expression of GFP-tagged neuronal glutamate transporters in cerebellar Purkinje neurons.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meera P, Dodson PD, Karakossian MH, Otis TS.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c18">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10864948</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Immunoisolation of GABA-specific synaptic vesicles defines a functionally distinct subset of synaptic vesicles.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Takamori S, Riedel D, Jahn R.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b10">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11756489</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Glutamine uptake by neurons: interaction of protons with system a transporters.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Chaudhry FA, Schmitz D, Reimer RJ, Larsson P, Gray AT, Nicoll R, Kavanaugh M, Edwards RH.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fbb">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8095030</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A human synaptic vesicle monoamine transporter cDNA predicts posttranslational modifications, reveals chromosome 10 gene localization and identifies TaqI RFLPs.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Surratt CK, Persico AM, Yang XD, Edgar SR, Bird GS, Hawkins AL, Griffin CA, Li X, Jabs EW, Uhl GR.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f32">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17989281</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dual modes of Munc18-1/SNARE interactions are coupled by functionally critical binding to syntaxin-1 N terminus.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Khvotchev M, Dulubova I, Sun J, Dai H, Rizo J, Südhof TC.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ce6">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10440375</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Munc13-1 is essential for fusion competence of glutamatergic synaptic vesicles.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Augustin I, Rosenmund C, Südhof TC, Brose N.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f83">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11010978</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Modulation of amyloid precursor protein metabolism by X11alpha /Mint-1. A deletion analysis of protein-protein interaction domains.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mueller HT, Borg JP, Margolis B, Turner RS.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c75">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16787421</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The glutamate/GABA-glutamine cycle: aspects of transport, neurotransmitter homeostasis and ammonia transfer.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bak LK, Schousboe A, Waagepetersen HS.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bec">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18617632</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Syntaxin 1A interaction with the dopamine transporter promotes amphetamine-induced dopamine efflux.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Binda F, Dipace C, Bowton E, Robertson SD, Lute BJ, Fog JU, Zhang M, Sen N, Colbran RJ, Gnegy ME, Gether U, Javitch JA, Erreger K, Galli A.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d27">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16865347</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Molecular organization of the presynaptic active zone.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schoch S, Gundelfinger ED.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cac">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3214421</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Purification of phosphate-dependent glutaminase from isolated mitochondria of Ehrlich ascites-tumour cells.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quesada AR, Sanchez-Jimenez F, Perez-Rodriguez J, Marquez J, Medina MA, Nuñez de Castro I.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ca4">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16819626</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vesicle pools, docking, priming, and release.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Becherer U, Rettig J.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b7f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18215623</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sensorineural deafness and seizures in mice lacking vesicular glutamate transporter 3.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Seal RP, Akil O, Yi E, Weber CM, Grant L, Yoo J, Clause A, Kandler K, Noebels JL, Glowatzki E, Lustig LR, Edwards RH.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="beb">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11278839</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rab3a binding and secretion-enhancing domains in Rim1 are separate and unique. Studies in adrenal chromaffin cells.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sun L, Bittner MA, Holz RW.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b04">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12519779</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Phosphorylation of Munc18 by protein kinase C regulates the kinetics of exocytosis.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Barclay JW, Craig TJ, Fisher RJ, Ciufo LF, Evans GJ, Morgan A, Burgoyne RD.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bea">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17301226</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Munc18-1 binds directly to the neuronal SNARE complex.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dulubova I, Khvotchev M, Liu S, Huryeva I, Südhof TC, Rizo J.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b30">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15217342</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The synaptic vesicle cycle.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sudhof TC.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ae1">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7401925</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Determination of delta pH in cholinergic synaptic vesicles: its effect on storage and release of acetylcholine.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Michaelson DM, Angel I.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="da1">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17766642</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification of the substrate binding region of vesicular monoamine transporter-2 (VMAT-2) using iodoaminoflisopolol as a novel photoprobe.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gopalakrishnan A, Sievert M, Ruoho AE.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cd6">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11015561</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cloning and analysis of unique human glutaminase isoforms generated by tissue-specific alternative splicing.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Elgadi KM, Meguid RA, Qian M, Souba WW, Abcouwer SF.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c59">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10620514</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Molecular cloning, sequencing and expression studies of the human breast cancer cell glutaminase.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gómez-Fabre PM, Aledo JC, Del Castillo-Olivares A, Alonso FJ, Núñez De Castro I, Campos JA, Márquez J.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ec0">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11068039</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functional characterization of the human high-affinity choline transporter.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Okuda T, Haga T.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bde">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17478680</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">How synaptotagmin promotes membrane fusion.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Martens S, Kozlov MM, McMahon HT.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="dac">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1339386</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human choline acetyltransferase (CHAT): partial gene sequence and potential control regions.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toussaint JL, Geoffroy V, Schmitt M, Werner A, Garnier JM, Simoni P, Kempf J.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a99">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17891149</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Synaptotagmin activates membrane fusion through a Ca2+-dependent trans interaction with phospholipids.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stein A, Radhakrishnan A, Riedel D, Fasshauer D, Jahn R.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ddb">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19428801</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A novel mechanism for GABA synthesis and packaging into synaptic vesicles.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Buddhala C, Hsu CC, Wu JY.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ab4">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16616430</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Localization of the Na(+)-coupled neutral amino acid transporter 2 in the cerebral cortex.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Melone M, Varoqui H, Erickson JD, Conti F.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="e3f">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8211186</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abnormal behavior associated with a point mutation in the structural gene for monoamine oxidase A.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brunner HG, Nelen M, Breakefield XO, Ropers HH, van Oost BA.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="bf2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9260930</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cloning and characterization of two human polyspecific organic cation transporters.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gorboulev V, Ulzheimer JC, Akhoundova A, Ulzheimer-Teuber I, Karbach U, Quester S, Baumann C, Lang F, Busch AE, Koepsell H.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c32">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9701566</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Interaction of Munc-18-2 with syntaxin 3 controls the association of apical SNAREs in epithelial cells.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Riento K, Galli T, Jansson S, Ehnholm C, Lehtonen E, Olkkonen VM.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c44">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8071310</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functional identification of a vesicular acetylcholine transporter and its expression from a "cholinergic" gene locus.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Erickson JD, Varoqui H, Schäfer MK, Modi W, Diebler MF, Weihe E, Rand J, Eiden LE, Bonner TI, Usdin TB.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ea6">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17880890</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The neurotransmitter cycle and quantal size.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Edwards RH.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ad2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12871946</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rim, a component of the presynaptic active zone and modulator of exocytosis, binds 14-3-3 through its N terminus.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sun L, Bittner MA, Holz RW.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ce5">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11001057</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification of a vesicular glutamate transporter that defines a glutamatergic phenotype in neurons.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Takamori S, Rhee JS, Rosenmund C, Jahn R.</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b67">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15935055</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Munc18-1 stabilizes syntaxin 1, but is not essential for syntaxin 1 targeting and SNARE complex formation.</bp:TITLE>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toonen RF, de Vries KJ, Zalm R, Südhof TC, Verhage M.</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>
