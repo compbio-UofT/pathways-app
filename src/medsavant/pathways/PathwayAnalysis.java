@@ -55,6 +55,7 @@ import org.ut.biolab.medsavant.shared.model.SessionExpiredException;
 import org.ut.biolab.medsavant.shared.serverapi.VariantManagerAdapter;
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
+import org.apache.commons.io.FileUtils;
 /**
  * This is a prototype for a MedSavant plugin that allows the user to
  *  perform a hypergeometric test on a list of variants and pathways
@@ -638,11 +639,15 @@ public class PathwayAnalysis {
             writer.print("</title>\n  <script src=\"http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js\"></script>\n<script src=\"showmore.js\"></script>\n  <link rel=\"stylesheet\" href=\"./cytoscape_javascript_prototype.css\" />\n\n<div class=\"text-container\">\n<h1>");
             writer.print(pathwayName+"</h1><div class=\"text-content short-text\">");
             writer.println(pathwayDescription);
-            writer.print("</div>\n    <div class=\"show-more\">\n        <a href=\"#\">Show more</a>\n    </div>\n    </div>\n\n</head>\n\n<body>\n\n\n  <div id=\"cy\">\n<script type=\"text/javascript\" src=\"./");
+            writer.print("</div>\n    <div class=\"show-more\">\n        <a href=\"#\">Show more</a>\n    </div>\n    </div>\n <img src=\"cytoscapeJSlegend.png\" class=\"centeredImage\" alt=\"legend\" align = \"middle\"> \n</head>\n\n<body>\n\n\n  <div id=\"cy\">\n<script type=\"text/javascript\" src=\"./");
             writer.print(gpmlFileName.replaceFirst("\\.gpml","\\.js"));
             writer.println("\"></script>\n  </div>\n</body>\n</html>");
             writer.close();
             
+            //copy legend image
+            URL legendURL = getClass().getClassLoader().getResource("medsavant/pathways/cytoscapeJS/displayLegend/legend.png");
+            File legendDestination = new File(CACHEFOLDER+OUTPUTDIR+HTMLFOLDER+"legend.png");
+            FileUtils.copyURLToFile(legendURL, legendDestination);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -834,7 +839,7 @@ public class PathwayAnalysis {
     private void writeCSS(String fileName) {
         try {
             PrintWriter writer = new PrintWriter(fileName);
-            writer.println("body { \n  font: 14px helvetica neue, helvetica, arial, sans-serif;\n}\n\ndiv.text-container {\n\n    text-align: center;\n    margin: 0 auto;\n    width: 75%;    \n\n}\n\n.text-content{\n    line-height: 1em;\n\n    text-align: left;\n\n}\n\n.short-text {\n    overflow: hidden;\n    height: 2em;\n}\n\n.full-text{\n    height: auto;\n}\n\nh1 {\n    font-size: 24px;   \n}\n\n.show-more {\n    padding: 10px 0;\n    text-align: center;\n}\n\n#cy {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n}");
+            writer.println("body { \n  font: 14px helvetica neue, helvetica, arial, sans-serif;\n}\n\ndiv.text-container {\n\n    text-align: center;\n    margin: 0 auto;\n    width: 75%;    \n\n}\n\n.text-content{\n    line-height: 1em;\n\n    text-align: left;\n\n}\n\n.short-text {\n    overflow: hidden;\n    height: 2em;\n}\n\n.full-text{\n    height: auto;\n}\n\nh1 {\n    font-size: 24px;   \n}\n\n.show-more {\n    padding: 10px 0;\n    text-align: center;\n}\n\n#cy {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n}\n.centeredImage\\n{\\n    display: block;\\n    margin-left: auto;\\n    margin-right: auto;\\n}\n");
             writer.close();
         }
         catch (Exception e) {
