@@ -23,9 +23,11 @@ public class TestedPathway {
     private String htmlFilePath;
     private String pngFilePath;
     private String gpmlFilePath;
+    private int totalGenes;
     public static int PATHWAYNAMEINDEX = 1;
     public static int PVALUEINDEX = 0;
     public static int GENESINDEX = 2;
+    public static int NUMGENESINDEX = 3;
     /**
      * Initialize tested pathway.
      * @param p double p-value of tested pathway from hypergeometric test results.
@@ -39,13 +41,14 @@ public class TestedPathway {
     }*/
     
     
-    public TestedPathway(double p, String name, HashSet<String> genes, String gpmlPath) {
+    public TestedPathway(double p, String name, HashSet<String> genes, String gpmlPath, int totalGenes) {
         this.p = p;
         this.name = name;
         this.genes = new HashSet<String>(genes);
         this.gpmlFilePath = gpmlPath;
         this.htmlFilePath = gpmlFilePath.replaceFirst("\\.gpml","\\.html");
         this.pngFilePath = gpmlFilePath.replaceFirst("\\.gpml","\\.png");
+        this.totalGenes = totalGenes;
     }
     
     /**
@@ -78,6 +81,7 @@ public class TestedPathway {
         objectArray[0] = this.getPValue();
         objectArray[1] = this.name;
         objectArray[2] = genesToString();
+        objectArray[3] = this.totalGenes;
         return objectArray;
     }
     

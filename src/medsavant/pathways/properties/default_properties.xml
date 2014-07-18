@@ -2,7 +2,8 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>This is easy!</comment>
-<entry key="pValueColumnWidth">200</entry>
-<entry key="pathwayNameColumnWidth">400</entry>
-<entry key="genesColumnWidth">400</entry>
+<entry key="pValueColumnWidth">100</entry>
+<entry key="pathwayNameColumnWidth">300</entry>
+<entry key="genesColumnWidth">150</entry>
+<entry key="numGenesColumnWidth">100</entry>
 </properties>

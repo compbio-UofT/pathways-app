@@ -84,7 +84,6 @@ public class PathwayAnalysis {
     private String[] pathwayTitles;
     //list of all pathway file paths (GPML wikipathways format)
     private String[] pathwayGpmlFileNames;
-    private String[] pathwayPValues;
     //Regular expressions for extracting variant information from VCF file
     final String GENE_REGEX="HGVS=([^:^(]*)";
     final String EFFECT_REGEX = "EFFECT=([^;]*)";
@@ -112,6 +111,10 @@ public class PathwayAnalysis {
     private List<PGXGene> pgxGenes= new LinkedList<PGXGene>();
     private HashMap<String,ImageIcon> pathwayLinks;
     private HashMap<String,String> pathwayGpmls;
+    private int minPathwayGenes;
+    private int maxPathwayGenes;
+    private int minPathwayGenesFilter;
+    private int maxPathwayGenesFilter;
     final public int NUM_TABLE_COLS=3;
     final double PVALUE_CUTOFF = 0.0000001; // you could turn this into something related to the number of pathways
     /**
@@ -121,7 +124,8 @@ public class PathwayAnalysis {
         header = new ArrayList<String>();
         header.add("P-values");
         header.add("Pathway Name");
-        header.add("Genes associated with patient variants in pathway");
+        header.add("Genes associated\nwith patient variants\nin pathway");
+        header.add("Genes\nin\npathway");
         positionMap = new HashMap<String,String>();
         //make output directories if they don't exist already
         File outputdir = new File(CACHEFOLDER+OUTPUTDIR+HTMLFOLDER);
@@ -194,12 +198,13 @@ public class PathwayAnalysis {
      * @param VcfFile
      * @param pathwayfolder 
      */
-    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes) {
+    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter) {
+        this.minPathwayGenesFilter = minPathwayGenesFilter;
+        this.maxPathwayGenesFilter = maxPathwayGenesFilter;
+        
         try {
             //this.wikipathways2GMT();
             this.queryVariants(currentDNAID, mutationTypes);
-            //process gene sets
-            this.readWikiPathwayGeneSet(WIKIPATHWAYSGMTFILE);
             //perform analysis
             this.hypergeometricWikiPathwaysTest();
             //output pathways and p-values
@@ -243,10 +248,12 @@ public class PathwayAnalysis {
      *  they are stored in this object
      * @param filename 
      */
-    public void readWikiPathwayGeneSet(String filename) {
+    public void readWikiPathwayGeneSet() {
         //store genesets as hashmap of hashset, hashmap is the pathway name.
         //store genes as hashmap of ArrayList filled with pathways.
         genesets = new HashMap<String,HashMap<String,Integer>>();
+        minPathwayGenes = Integer.MAX_VALUE;
+        maxPathwayGenes = Integer.MIN_VALUE;
         allgenes = new HashSet<String>();
         pathwayGpmls = new HashMap<String,String>();
         String[] linecomponents = new String[0];
@@ -278,6 +285,12 @@ public class PathwayAnalysis {
                     }
                     this.genesets.put(pathwayName,pathwaygenes);
                     pathwayGpmls.put(pathwayName, linecomponents[0]);
+                    if (pathwaygenes.size() < minPathwayGenes && pathwaygenes.size()!=0){
+                        minPathwayGenes = pathwaygenes.size();
+                    }
+                    if (pathwaygenes.size() > maxPathwayGenes){
+                        maxPathwayGenes = pathwaygenes.size();
+                    }
                 }
                 else {
                     System.out.println("unused genesets line: "+line);
@@ -290,6 +303,7 @@ public class PathwayAnalysis {
             this.pathwayGpmlFileNames = gpmls.toArray(pathwayGpmlFileNames);
             this.pathwayHtmlFileNames = new String[1];
             this.pathwayHtmlFileNames = htmls.toArray(pathwayHtmlFileNames);
+            System.out.println("calculated min and max pathway genes are: MIN - " +minPathwayGenes+" MAX - "+maxPathwayGenes);
         }
         catch (Exception e) {
             for (int counter = 0; counter < linecomponents.length; counter++) {
@@ -360,6 +374,13 @@ public class PathwayAnalysis {
 		return t;
 	}
     
+    public int getMaxPathwayGenes() {
+        return this.maxPathwayGenes;
+    }
+    
+    public int getMinPathwayGenes() {
+        return this.minPathwayGenes;
+    }
     
     /**
      * process gene sets (derived from GeneSets gmt files) so that
@@ -612,6 +633,10 @@ public class PathwayAnalysis {
         }
         
     }
+    
+    public int getNumGenesInPathway(String pathwayName) {
+        return ( (HashMap)genesets.get(pathwayName) ).size();
+    }
     private void writeShowMore(String folder) {
         try {
             PrintWriter writer = new PrintWriter(folder+"showmore.js");
@@ -639,7 +664,7 @@ public class PathwayAnalysis {
             writer.print("</title>\n  <script src=\"http://cytoscape.github.io/cytoscape.js/api/cytoscape.js-latest/cytoscape.min.js\"></script>\n<script src=\"showmore.js\"></script>\n  <link rel=\"stylesheet\" href=\"./cytoscape_javascript_prototype.css\" />\n\n<div class=\"text-container\">\n<h1>");
             writer.print(pathwayName+"</h1><div class=\"text-content short-text\">");
             writer.println(pathwayDescription);
-            writer.print("</div>\n    <div class=\"show-more\">\n        <a href=\"#\">Show more</a>\n    </div>\n    </div>\n <img src=\"cytoscapeJSlegend.png\" class=\"centeredImage\" alt=\"legend\" align = \"middle\"> \n</head>\n\n<body>\n\n\n  <div id=\"cy\">\n<script type=\"text/javascript\" src=\"./");
+            writer.print("</div>\n    <div class=\"show-more\">\n        <a href=\"#\">Show more</a>\n    </div>\n    </div>\n <img src=\"legend.png\" class=\"centeredImage\" alt=\"legend\"> \n</head>\n\n<body>\n\n\n  <div id=\"cy\">\n<script type=\"text/javascript\" src=\"./");
             writer.print(gpmlFileName.replaceFirst("\\.gpml","\\.js"));
             writer.println("\"></script>\n  </div>\n</body>\n</html>");
             writer.close();
@@ -714,7 +739,9 @@ public class PathwayAnalysis {
 		return queryMap;		
 	}
 	
-    
+    public int genesInVariants() {
+        return this.geneset.size();
+    }
     
     
     private void queryVariants(String dnaID, List<String> filterMutationTypes) throws SQLException, RemoteException, SessionExpiredException {
@@ -839,7 +866,7 @@ public class PathwayAnalysis {
     private void writeCSS(String fileName) {
         try {
             PrintWriter writer = new PrintWriter(fileName);
-            writer.println("body { \n  font: 14px helvetica neue, helvetica, arial, sans-serif;\n}\n\ndiv.text-container {\n\n    text-align: center;\n    margin: 0 auto;\n    width: 75%;    \n\n}\n\n.text-content{\n    line-height: 1em;\n\n    text-align: left;\n\n}\n\n.short-text {\n    overflow: hidden;\n    height: 2em;\n}\n\n.full-text{\n    height: auto;\n}\n\nh1 {\n    font-size: 24px;   \n}\n\n.show-more {\n    padding: 10px 0;\n    text-align: center;\n}\n\n#cy {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n}\n.centeredImage\\n{\\n    display: block;\\n    margin-left: auto;\\n    margin-right: auto;\\n}\n");
+            writer.println("body { \n  font: 14px helvetica neue, helvetica, arial, sans-serif;\n}\n\ndiv.text-container {\n\n    text-align: center;\n    margin: 0 auto;\n    width: 75%;    \n\n}\n\n.text-content{\n    line-height: 1em;\n\n    text-align: left;\n\n}\n\n.short-text {\n    overflow: hidden;\n    height: 2em;\n}\n\n.full-text{\n    height: auto;\n}\n\nh1 {\n    font-size: 24px;   \n}\n\n.show-more {\n    padding: 10px 0;\n    text-align: center;\n}\n\n#cy {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n}\n.centeredImage\n{\n    display: block;\n    margin-left: auto;\n    margin-right: auto;\n}\n");
             writer.close();
         }
         catch (Exception e) {
@@ -1636,8 +1663,6 @@ public class PathwayAnalysis {
         Hypergeometric h;
         testedPathways = new ArrayList<TestedPathway>();
         double p;
-        this.initializePValues();
-        int index = 0;
         while (pathwaynames.hasNext()) {
             pathwayname = (String) pathwaynames.next();
             //get pathway
@@ -1649,17 +1674,15 @@ public class PathwayAnalysis {
                 try {
                     h = new Hypergeometric(samplesize, populationsize, markeditems);
                     p = h.cdf((double) commonGenes.size());
-                    this.pathwayPValues[index] = String.format("%1.2e",p);
                     //store p-value from hypergeometric test
                     //if p is less than some threshhold
                     //color all genes involved in the pathway
-                    testedPathways.add(new TestedPathway(p, pathwayname,commonGenes, pathwayGpmls.get(pathwayname)));
+                    testedPathways.add(new TestedPathway(p, pathwayname,commonGenes, pathwayGpmls.get(pathwayname), ((ArrayList<String>) genesets.get(pathwayname)).size()));
                 }
                 catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            index++;
         }
         
         //comparators.sort by cdf
@@ -1668,12 +1691,6 @@ public class PathwayAnalysis {
         //Collections.sort(testedpathways, new PathwayNameComparator());
     }
     
-    public void initializePValues() {
-        this.pathwayPValues = new String[pathwayTitles.length];
-        for (int i = 0; i < pathwayTitles.length; i++) {
-            pathwayPValues[i]="1";
-        }
-    }
     
     /**
      * perform analysis that produces a p-value to show how likely it is that
@@ -1689,28 +1706,27 @@ public class PathwayAnalysis {
         Hypergeometric h;
         testedPathways = new ArrayList<TestedPathway>();
         double p;
-        this.initializePValues();
-        int index = 0;
+        int numPathwayGenes;
         while (pathwaynames.hasNext()) {
             pathwayname = (String) pathwaynames.next();
-            //get pathway
-            commonGenes = new HashSet<String>( ( (HashMap<String,Integer>) genesets.get(pathwayname) ).keySet());
-            markeditems = commonGenes.size();
-            commonGenes.retainAll(geneset);
-            //see if there are common genes
-            //if (commonGenes.size() > 0) {
-                try {
-                    h = new Hypergeometric(samplesize, populationsize, markeditems);
-                    p = 1.0-h.cdf((double) commonGenes.size());
-                    System.out.println("p is: "+p+" formatted p: "+String.format("%1.2e",p));
-                    this.pathwayPValues[index] = String.format("%1.4e",p);
-                    testedPathways.add(new TestedPathway(p, pathwayname,commonGenes, pathwayGpmls.get(pathwayname)));
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            //}
-            index++;
+            numPathwayGenes =((HashMap) genesets.get(pathwayname)).size();
+            if (numPathwayGenes >= minPathwayGenesFilter && numPathwayGenes <= maxPathwayGenesFilter) {
+                //get pathway
+                commonGenes = new HashSet<String>( ( (HashMap<String,Integer>) genesets.get(pathwayname) ).keySet());
+                markeditems = commonGenes.size();
+                commonGenes.retainAll(geneset);
+                //see if there are common genes
+                //if (commonGenes.size() > 0) {
+                    try {
+                        h = new Hypergeometric(samplesize, populationsize, markeditems);
+                        p = 1.0-h.cdf((double) commonGenes.size());
+                        testedPathways.add(new TestedPathway(p, pathwayname,commonGenes, pathwayGpmls.get(pathwayname), numPathwayGenes));
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                //}
+            }
         }
         
         //comparators.sort by cdf

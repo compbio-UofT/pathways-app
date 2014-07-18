@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -86,6 +89,7 @@ public class PathwaysPanel {
         private JButton performAnalysisButton;
         private JButton openPathwayButton;
         private JLabel pathwayListLabel;
+        private JLabel tooFewGenesWarning;
 	private String currentHospitalID;
 	private String currentDNAID;
         private JComboBox pathwayList;
@@ -95,6 +99,12 @@ public class PathwaysPanel {
         private JPanel tablePanel;
         private JScrollPane pngScrollPane;
         private JLabel pathwayImageLabel;
+        private JLabel minPathwayGenesLabel;
+        private JLabel maxPathwayGenesLabel;
+        private JSlider minPathwayGenesSlider;
+        private JSlider maxPathwayGenesSlider;
+        private JLabel maxSliderLabel;
+        private JLabel minSliderLabel;
         private JFrame tableFrame;
         private SearchableTablePanel table;
         private Properties properties;
@@ -179,11 +189,39 @@ public class PathwaysPanel {
 		
                 optionsPanel.add(new JLabel(" "), "alignx center, wrap");
                 
+                minSliderLabel = new JLabel("Minimum number of genes allowed in pathways");
+                minSliderLabel.setVisible(false);
+                optionsPanel.add(minSliderLabel,"alignx center, wrap");
+                
+                minPathwayGenesLabel = new JLabel();
+                minPathwayGenesSlider = new JSlider();
+                minPathwayGenesSlider.addChangeListener(changeMinPathwayGenes());
+                minPathwayGenesSlider.setVisible(false);
+                optionsPanel.add(minPathwayGenesLabel,"split 2");
+                optionsPanel.add(minPathwayGenesSlider, "wrap");
+                
+                maxSliderLabel = new JLabel("Maximum number of genes allowed in pathways");
+                maxSliderLabel.setVisible(false);
+                optionsPanel.add(maxSliderLabel,"alignx center, wrap");
+                
+                maxPathwayGenesLabel = new JLabel();
+                maxPathwayGenesSlider = new JSlider();
+                maxPathwayGenesSlider.addChangeListener(changeMaxPathwayGenes());
+                maxPathwayGenesSlider.setVisible(false);
+                optionsPanel.add(maxPathwayGenesLabel,"split 2");
+                optionsPanel.add(maxPathwayGenesSlider,"wrap");
+                
                 performAnalysisButton = new JButton("Perform Hypergeometric Analysis");
                 performAnalysisButton.addActionListener(analysisAction());
                 performAnalysisButton.setVisible(false);
                 optionsPanel.add(performAnalysisButton,"alignx center, wrap");
                 
+                tooFewGenesWarning = new JLabel();
+                tooFewGenesWarning.setForeground(Color.RED);
+                Font f = tooFewGenesWarning.getFont();
+                tooFewGenesWarning.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+                tooFewGenesWarning.setVisible(false);
+                optionsPanel.add(tooFewGenesWarning,"alignx center, wrap");
                 pathwayListLabel = new JLabel("");
                 optionsPanel.add(pathwayListLabel, "alignx center, wrap");
                 
@@ -243,6 +281,38 @@ public class PathwaysPanel {
 		);
 	}
 	
+        private ChangeListener changeMinPathwayGenes() {
+            ChangeListener minChangeListener =  new ChangeListener() {
+                @Override
+		public void stateChanged(ChangeEvent e) {
+                    //make analysis blank
+                    resultPanelStartAnalysisPrompt();
+                    //change min of max
+                    maxPathwayGenesSlider.setMinimum(minPathwayGenesSlider.getValue());
+                    //change label
+                    minPathwayGenesLabel.setText(minPathwayGenesSlider.getValue()+"");
+                }
+            };
+            return minChangeListener;
+        }
+        
+        private ChangeListener changeMaxPathwayGenes() {
+            ChangeListener maxChangeListener =  new ChangeListener() {
+                @Override
+		public void stateChanged(ChangeEvent e) {
+                    //make analysis blank
+                    resultPanelStartAnalysisPrompt();
+                    //change max of min
+                    minPathwayGenesSlider.setMaximum(maxPathwayGenesSlider.getValue());
+                    //change label
+                    maxPathwayGenesLabel.setText(maxPathwayGenesSlider.getValue()+"");
+                }
+                
+            };
+            return maxChangeListener;
+        }
+        
+        
 	/**
 	 * Action to perform when choose patient button is clicked.
 	 * @return the ActionListener for this button
@@ -255,7 +325,16 @@ public class PathwaysPanel {
 				public void actionPerformed(ActionEvent ae) {
 					/* Show the patient selector window and get the patient selected
 					 * by user. */
+                                        
+                                        //process gene sets
+                                        pathwayAnalysisObject.readWikiPathwayGeneSet();
+            
+                                    
+                                    
 					patientSelector.setVisible(true);
+                                        openPathwayButton.setVisible(false);
+                                        tooFewGenesWarning.setVisible(false);
+                                        optionsPanel.revalidate();
 					Set<String> selectedIndividuals= patientSelector.getHospitalIDsOfSelectedIndividuals();
 
 					/* Once the user has made a patient hospital ID selection, get 
@@ -276,6 +355,42 @@ public class PathwaysPanel {
 					}
 
                                         resultPanelStartAnalysisPrompt();
+                                        
+                                        int minPathwayGenes = pathwayAnalysisObject.getMinPathwayGenes();
+                                        int maxPathwayGenes = pathwayAnalysisObject.getMaxPathwayGenes();
+                                        System.out.println("MIN PATHWAY GENES: "+minPathwayGenes+" MAX PATHWAY GENES: "+maxPathwayGenes);
+                                        minPathwayGenesSlider.setMinimum(minPathwayGenes);
+                                        minPathwayGenesSlider.setMaximum(maxPathwayGenes);
+                                        
+                                        if (minPathwayGenes < 10) {
+                                            minPathwayGenesSlider.setValue(10);
+                                        }
+                                        else {
+                                            minPathwayGenesSlider.setValue(minPathwayGenes);
+                                        }
+                                        
+                                        minPathwayGenesLabel.setText(minPathwayGenesSlider.getValue()+"");
+                                        
+                                        maxPathwayGenesSlider.setMinimum(minPathwayGenes);
+                                        maxPathwayGenesSlider.setMaximum(maxPathwayGenes);
+                                        
+                                        if (maxPathwayGenes > 200) {
+                                            maxPathwayGenesSlider.setValue(200);
+                                        }
+                                        else {
+                                            maxPathwayGenesSlider.setValue(maxPathwayGenes);
+                                        }
+                                        
+                                        maxPathwayGenesLabel.setText(maxPathwayGenesSlider.getValue()+"");
+                                        
+                                        minPathwayGenesSlider.setVisible(true);
+                                        maxPathwayGenesSlider.setVisible(true);
+                                        minPathwayGenesLabel.setVisible(true);
+                                        maxPathwayGenesLabel.setVisible(true);
+                                        minSliderLabel.setVisible(true);
+                                        maxSliderLabel.setVisible(true);
+                                        optionsPanel.revalidate();
+                                        System.out.println("tried to set slider min/max");
 				}
 			};
 		
@@ -459,7 +574,7 @@ public class PathwaysPanel {
       
         
         /**
-	 * Action to perform when choose patient button is clicked.
+	 * Action to perform when Perform Hypergeometric Analysis button is clicked.
 	 * @return the ActionListener for this button
 	 */
 	private ActionListener analysisAction() {
@@ -484,7 +599,7 @@ public class PathwaysPanel {
 				 * do anything with it (for example, cancel it). */
 				try {
                                         System.out.println("CURRENT DNAID IS: "+currentDNAID);
-					pathwayInfo = pathwayAnalysisObject.hypergeometricWithWikiPathways(currentDNAID, mutationFilterList);
+					pathwayInfo = pathwayAnalysisObject.hypergeometricWithWikiPathways(currentDNAID, mutationFilterList, minPathwayGenesSlider.getValue(), maxPathwayGenesSlider.getValue());
 					//cancelLatch.countDown();
 				} catch (Exception e) {
 					errorDialog(e.getMessage());
@@ -507,6 +622,14 @@ public class PathwaysPanel {
                             pathwayList.setVisible(true);
                             //add OK button
                             openPathwayButton.setVisible(true);
+                            
+                            int numGenes = pathwayAnalysisObject.genesInVariants();
+                            if (numGenes < 2) {
+                                tooFewGenesWarning.setText("Warning: "+numGenes+" genes is too few for a quality analysis.");
+                                tooFewGenesWarning.setVisible(true);
+                                optionsPanel.revalidate();
+                            }
+                            
                             optionsPanel.getRootPane().revalidate();
                             updateResultsTable();
                             setTableColumnWidths();
@@ -636,6 +759,7 @@ public class PathwaysPanel {
         sortableTable.getColumnModel().getColumn(TestedPathway.PVALUEINDEX).setPreferredWidth(Integer.parseInt(properties.getProperty("pValueColumnWidth")));
         sortableTable.getColumnModel().getColumn(TestedPathway.PATHWAYNAMEINDEX).setPreferredWidth(Integer.parseInt(properties.getProperty("pathwayNameColumnWidth")));
         sortableTable.getColumnModel().getColumn(TestedPathway.GENESINDEX).setPreferredWidth(Integer.parseInt(properties.getProperty("genesColumnWidth")));
+        sortableTable.getColumnModel().getColumn(TestedPathway.NUMGENESINDEX).setPreferredWidth(Integer.parseInt(properties.getProperty("numGenesColumnWidth")));
         
     }
     
@@ -644,6 +768,7 @@ public class PathwaysPanel {
         properties.setProperty("pValueColumnWidth",sortableTable.getColumnModel().getColumn(TestedPathway.PVALUEINDEX).getWidth()+"");
         properties.setProperty("pathwayNameColumnWidth",sortableTable.getColumnModel().getColumn(TestedPathway.PATHWAYNAMEINDEX).getWidth()+"");
         properties.setProperty("genesColumnWidth",sortableTable.getColumnModel().getColumn(TestedPathway.GENESINDEX).getWidth()+"");
+        properties.setProperty("numGenesColumnWidth",sortableTable.getColumnModel().getColumn(TestedPathway.NUMGENESINDEX).getWidth()+"");
         File newProperties = new File(CACHEFOLDER+OUTPUTDIR+PROPERTIESDIR+PROPERTIESFILENAME);
         
         try {
