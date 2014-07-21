@@ -79,6 +79,7 @@ public class PathwaysPanel {
         final String OUTPUTDIR = "pathways_plugin/";
         final String GPMLFOLDER = "gpml_files/";
         final String HTMLFOLDER = "html_files/";
+        private final int GENELIMIT = 2;
 	private String[] mutationArray;
 	private JPanel appView= new JPanel();
 	private JPanel optionsPanel= new JPanel();
@@ -624,8 +625,16 @@ public class PathwaysPanel {
                             openPathwayButton.setVisible(true);
                             
                             int numGenes = pathwayAnalysisObject.genesInVariants();
-                            if (numGenes < 2) {
-                                tooFewGenesWarning.setText("Warning: "+numGenes+" genes is too few for a quality analysis.");
+                            if (numGenes < GENELIMIT) {
+                                if (numGenes == 0) {
+                                    tooFewGenesWarning.setText("No genes associated with variants.");
+                                }
+                                else if (numGenes == 1) {
+                                    tooFewGenesWarning.setText("Warning: "+numGenes+" gene is too few for a quality analysis.");
+                                }
+                                else {
+                                    tooFewGenesWarning.setText("Warning: "+numGenes+" genes is too few for a quality analysis.");
+                                }
                                 tooFewGenesWarning.setVisible(true);
                                 optionsPanel.revalidate();
                             }
