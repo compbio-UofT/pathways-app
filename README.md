@@ -3,6 +3,14 @@ pathways-app
 
 Pathways app for MedSavant.
 
+##Usage instructions
+
+To use the Pathways plugin, you need to have the MedSavant Client and Server already installed and functional. See http://genomesavant.com/p/medsavant/ for details.
+
+Once you have the Client and Server ready, download MedSavant-App - Pathways-1.0.0.jar from the dist folder of this repository, and put in in your ~/.medsavant/plugins/ directory.
+
+The next time you log into the MedSavant Client, the icon for Pathway Analysis should be displayed. Clicking on that icon will allow you to use the Pathways plugin.
+
 ##Build instructions
 
 To build the project from source, you must have NetBeans installed. Download the source code, and go into the NetBeans menu to File > Open Project, and then navigate to the downloaded code. Select the project in the Project panel, and select Run > Clean and Build.
