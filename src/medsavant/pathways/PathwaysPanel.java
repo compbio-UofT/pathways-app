@@ -94,6 +94,7 @@ public class PathwaysPanel {
 	private String currentHospitalID;
 	private String currentDNAID;
         private JComboBox pathwayList;
+        private JComboBox multipleTestCorrectionList;
         private String[][] pathwayInfo;
         private JTabbedPane tabbedPane;
         private JScrollPane tablePane;
@@ -104,9 +105,15 @@ public class PathwaysPanel {
         private JLabel maxPathwayGenesLabel;
         private JSlider minPathwayGenesSlider;
         private JSlider maxPathwayGenesSlider;
+        private JSlider fdrSlider;
+        private JLabel fdrLabel;
         private JLabel maxSliderLabel;
         private JLabel minSliderLabel;
+        private JLabel fdrSliderLabel;
         private JFrame tableFrame;
+        public static int BONFERRONI_INDEX = 0;
+        public static int BENJAMINI_HOCHBERG_INDEX = 1;
+        private final String[] multipleTestCorrections = {"Bonferroni","Benjamini-Hochberg"};
         private SearchableTablePanel table;
         private Properties properties;
         private JScrollPane mutationPanelScroll;
@@ -180,15 +187,30 @@ public class PathwaysPanel {
 		
                 
                 mutationFilterGUI = this.mutationCheckboxPanel();
-                
                 System.out.println("mutation width: "+mutationFilterGUI.getContentPaneWidth()+" height: "+mutationFilterGUI.getContentPaneHeight());
                 System.out.println("Panel width: "+PANE_WIDTH+" offset: "+PANE_WIDTH_OFFSET);
-
+                
                 //mutationPanelScroll = new JScrollPane();
                 //mutationPanelScroll.setViewportView(mutationFilterGUI);
                 optionsPanel.add(mutationFilterGUI, "alignx center, wrap");
-		
                 optionsPanel.add(new JLabel(" "), "alignx center, wrap");
+                
+		multipleTestCorrectionList = new JComboBox(multipleTestCorrections);
+                multipleTestCorrectionList.addActionListener(multipleTestCorrectionListener());
+                optionsPanel.add(multipleTestCorrectionList,"alignx center, wrap");
+                
+                fdrLabel = new JLabel("False discovery rate threshhold");
+                fdrLabel.setVisible(false);
+                optionsPanel.add(fdrLabel,"alignx center, wrap");
+                fdrSliderLabel = new JLabel("0.05");
+                fdrSliderLabel.setVisible(false);
+                fdrSlider = new JSlider(0,50);
+                fdrSlider.setValue(5);
+                fdrSlider.addChangeListener(fdrSliderListener());
+                fdrSlider.setVisible(false);
+                optionsPanel.add(fdrSliderLabel,"split 2");
+                optionsPanel.add(fdrSlider,"alignx center, wrap");
+                
                 
                 minSliderLabel = new JLabel("Minimum number of genes allowed in pathways");
                 minSliderLabel.setVisible(false);
@@ -397,11 +419,46 @@ public class PathwaysPanel {
 		
 		return outputAL;
 	}
-        
+        private ChangeListener fdrSliderListener() {
+            return new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    String labelText;
+                    int sliderValue = fdrSlider.getValue();
+                    if (sliderValue < 10) {
+                        labelText = "0.0"+sliderValue;
+                    }
+                    else {
+                        labelText = "0."+sliderValue;
+                    }
+                    fdrSliderLabel.setText(labelText);
+                    optionsPanel.revalidate();
+                }
+            };
+        }
         /**
 	 * Update the variantPane with the set of variants.
 	 */
-	private void updateResultsTable() {	
+	private ActionListener multipleTestCorrectionListener() {
+            return new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (multipleTestCorrectionList.getSelectedIndex() == BENJAMINI_HOCHBERG_INDEX) {
+                        fdrLabel.setVisible(true);
+                        fdrSlider.setVisible(true);
+                        fdrSliderLabel.setVisible(true);
+                        optionsPanel.revalidate();
+                    }
+                    else {
+                        fdrLabel.setVisible(false);
+                        fdrSlider.setVisible(false);
+                        fdrSliderLabel.setVisible(false);
+                        optionsPanel.revalidate();
+                    }
+                }
+            };
+        }
+        private void updateResultsTable() {	
 		table = pathwayAnalysisObject.getTableOutput();
                 tablePane.setViewportView(table);
 		
@@ -529,8 +586,7 @@ public class PathwaysPanel {
 		
 		return outputAL;
 	}
-        
-        
+    
     /**
      * Open link in browser.
      * @param htmlFileLink String link file path
@@ -600,7 +656,12 @@ public class PathwaysPanel {
 				 * do anything with it (for example, cancel it). */
 				try {
                                         System.out.println("CURRENT DNAID IS: "+currentDNAID);
-					pathwayInfo = pathwayAnalysisObject.hypergeometricWithWikiPathways(currentDNAID, mutationFilterList, minPathwayGenesSlider.getValue(), maxPathwayGenesSlider.getValue());
+                                        if (multipleTestCorrectionList.getSelectedIndex() == -1 || multipleTestCorrectionList.getSelectedIndex() == 0) {
+                                            pathwayInfo = pathwayAnalysisObject.hypergeometricWithWikiPathways(currentDNAID, mutationFilterList, minPathwayGenesSlider.getValue(), maxPathwayGenesSlider.getValue(), multipleTestCorrectionList.getSelectedIndex());
+                                        }
+                                        else {
+                                            pathwayInfo = pathwayAnalysisObject.hypergeometricWithWikiPathways(currentDNAID, mutationFilterList, minPathwayGenesSlider.getValue(), maxPathwayGenesSlider.getValue(), multipleTestCorrectionList.getSelectedIndex(), fdrSlider.getValue());
+                                        }
 					//cancelLatch.countDown();
 				} catch (Exception e) {
 					errorDialog(e.getMessage());

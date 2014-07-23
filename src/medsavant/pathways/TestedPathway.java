@@ -12,6 +12,7 @@ package medsavant.pathways;
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,7 @@ public class TestedPathway {
     public static int PVALUEINDEX = 0;
     public static int GENESINDEX = 2;
     public static int NUMGENESINDEX = 3;
+    private double q;
     /**
      * Initialize tested pathway.
      * @param p double p-value of tested pathway from hypergeometric test results.
@@ -49,6 +51,7 @@ public class TestedPathway {
         this.htmlFilePath = gpmlFilePath.replaceFirst("\\.gpml","\\.html");
         this.pngFilePath = gpmlFilePath.replaceFirst("\\.gpml","\\.png");
         this.totalGenes = totalGenes;
+        this.q = 1.0;
     }
     
     /**
@@ -84,13 +87,75 @@ public class TestedPathway {
         objectArray[3] = this.totalGenes;
         return objectArray;
     }
+    public Object[] getObjectList(int numTests) {
+        if (genes.size() == 0) {
+            return null;
+        }
+        Object[] objectArray = new Object[4];
+        objectArray[0] = this.getCorrectedPValue(numTests);
+        objectArray[1] = this.name;
+        objectArray[2] = genesToString();
+        objectArray[3] = this.totalGenes;
+        return objectArray;
+    }
     
-    public static List<Object[]> convertToObjectList(List<TestedPathway> list) {
+    public static List<Object[]> convertToObjectListBonferroni(List<TestedPathway> list) {
         List<Object[]> newList = new ArrayList<Object[]>();
         Iterator it = list.iterator();
         Object[] objectArray;
+        int numTests = list.size();
         while (it.hasNext()) {
-            objectArray = ((TestedPathway) it.next()).getObjectList();
+            objectArray = ((TestedPathway) it.next()).getObjectList(numTests);
+            if (objectArray!=null) {
+                newList.add(objectArray);
+                
+            }
+        }
+        return newList;
+    }
+    
+    public static List<Object[]> convertToObjectListNoCorrection(List<TestedPathway> list) {
+        List<Object[]> newList = new ArrayList<Object[]>();
+        Iterator it = list.iterator();
+        Object[] objectArray;
+        int numTests = list.size();
+        while (it.hasNext()) {
+            objectArray = ((TestedPathway) it.next()).getObjectList(numTests);
+            if (objectArray!=null) {
+                newList.add(objectArray);
+                
+            }
+        }
+        return newList;
+    }
+    
+    private static void assignQValues(List<TestedPathway> list, double fdrCutoff) {
+        Collections.sort(list, new PathwayEnrichmentProbabilityComparator());
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            list.get(i).setQ(((double) i)*fdrCutoff/((double) size));
+        }
+    }
+    private Object[] getBHObjectList() {
+        if (genes.size() == 0) {
+            return null;
+        }
+        Object[] objectArray = new Object[4];
+        objectArray[0] = this.getQ();
+        objectArray[1] = this.name;
+        objectArray[2] = genesToString();
+        objectArray[3] = this.totalGenes;
+        return objectArray;
+    }
+    public static List<Object[]> convertToObjectListBH(List<TestedPathway> list, double fdrCutoff) {
+        // MAKE BENJAMINI HOCHBERG P-VALUES
+        assignQValues(list, fdrCutoff);
+        List<Object[]> newList = new ArrayList<Object[]>();
+        Iterator it = list.iterator();
+        Object[] objectArray;
+        int numTests = list.size();
+        while (it.hasNext()) {
+            objectArray = ((TestedPathway) it.next()).getObjectList(numTests);
             if (objectArray!=null) {
                 newList.add(objectArray);
                 
@@ -157,6 +222,16 @@ public class TestedPathway {
     }
     public String getPValue() {
         return String.format("%1.4e",this.p);
+    }
+    public double getQ() {
+        return this.q;
+    }
+    private void setQ(double q) {
+        this.q = q;
+    }
+    public String getCorrectedPValue(int numTests) {
+        double correctedP = this.p * ((double) numTests);
+        return String.format("%1.4e",correctedP);
     }
 }
 

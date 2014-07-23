@@ -113,6 +113,8 @@ public class PathwayAnalysis {
     private HashMap<String,String> pathwayGpmls;
     private int minPathwayGenes;
     private int maxPathwayGenes;
+    private int multipleTestCorrection;
+    private double fdrCutoff;
     private int minPathwayGenesFilter;
     private int maxPathwayGenesFilter;
     final public int NUM_TABLE_COLS=3;
@@ -192,13 +194,18 @@ public class PathwayAnalysis {
         //output basic stats
         System.out.println("Sample size: "+this.geneset.size()+", Population size: "+this.allgenes.size());
     }
+    
+    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter) {
+        return hypergeometricWithWikiPathways(currentDNAID, mutationTypes, minPathwayGenesFilter, maxPathwayGenesFilter, PathwaysPanel.BONFERRONI_INDEX);
+    }
     /**
      * Run analysis with Wikipathways, allows link-out visualizations of 
      *  pathways suspected to be affected
      * @param VcfFile
      * @param pathwayfolder 
      */
-    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter) {
+    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter, int multipleTestCorrection) {
+        this.multipleTestCorrection = multipleTestCorrection;
         this.minPathwayGenesFilter = minPathwayGenesFilter;
         this.maxPathwayGenesFilter = maxPathwayGenesFilter;
         
@@ -218,6 +225,7 @@ public class PathwayAnalysis {
             pathwayInfo[3] = pathwayPValues;*/
             this.assignPNGFiles();
             System.out.println("Sample size: "+this.geneset.size()+", Population size: "+this.allgenes.size());
+            
             return TestedPathway.getPathwayInfoArray(testedPathways);
         }
         catch (Exception e) {
@@ -226,6 +234,41 @@ public class PathwayAnalysis {
         }
     }
     
+    /**
+     * Run analysis with Wikipathways, allows link-out visualizations of 
+     *  pathways suspected to be affected
+     * @param VcfFile
+     * @param pathwayfolder 
+     */
+    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter, int multipleTestCorrection, double fdr) {
+        this.multipleTestCorrection = multipleTestCorrection;
+        this.minPathwayGenesFilter = minPathwayGenesFilter;
+        this.maxPathwayGenesFilter = maxPathwayGenesFilter;
+        this.fdrCutoff = fdr;
+        try {
+            //this.wikipathways2GMT();
+            this.queryVariants(currentDNAID, mutationTypes);
+            //perform analysis
+            this.hypergeometricWikiPathwaysTest();
+            //output pathways and p-values
+            this.outputEnrichedGeneList(OUTPUTFILE);
+            //make all non-inhibitor non-metabolite non-mutated gene products black
+            //this.makeGPMLnodesblack(PATHWAYOUTPUTFOLDER);
+            /*String[][] pathwayInfo = new String[4][pathwayTitles.length];
+            pathwayInfo[0] = pathwayTitles;
+            pathwayInfo[1] = pathwayHtmlFileNames;
+            pathwayInfo[2] = pathwayGpmlFileNames;
+            pathwayInfo[3] = pathwayPValues;*/
+            this.assignPNGFiles();
+            System.out.println("Sample size: "+this.geneset.size()+", Population size: "+this.allgenes.size());
+            
+            return TestedPathway.getPathwayInfoArray(testedPathways);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     
     
     private void assignPNGFiles() {
@@ -324,7 +367,16 @@ public class PathwayAnalysis {
 			@Override
 			public List<Object[]> retrieve(int start, int limit) throws Exception {            
 				//return allVariants;
-                            return TestedPathway.convertToObjectList(testedPathways);
+                            if (multipleTestCorrection == PathwaysPanel.BONFERRONI_INDEX) {
+                                return TestedPathway.convertToObjectListBonferroni(testedPathways);
+                            }
+                            else if (multipleTestCorrection == PathwaysPanel.BENJAMINI_HOCHBERG_INDEX) {
+                                return TestedPathway.convertToObjectListBH(testedPathways, fdrCutoff);
+                            }
+                            else {
+                                System.out.println("INVALID MULTIPLE TEST CORRECTION");
+                            }
+                            return null;
 			}
 
 			@Override
@@ -338,6 +390,10 @@ public class PathwayAnalysis {
 			}
 		};
 		
+                if (multipleTestCorrection == 1) {
+                    header.set(0, "Q-values");
+                }
+                
 		Class[] STRING_ONLY_COLUMN_CLASSES= new Class[header.size()];
 		for (int i= 0; i != STRING_ONLY_COLUMN_CLASSES.length; ++i)
 			STRING_ONLY_COLUMN_CLASSES[i]= String.class; // FOR NOW ONLY CALLING THESE STRINGS
@@ -1718,6 +1774,7 @@ public class PathwayAnalysis {
                 //see if there are common genes
                 //if (commonGenes.size() > 0) {
                     try {
+                        System.out.println("HYPERGEOMETRIC TEST: sample size - "+samplesize+", population size - "+populationsize+", marked items - "+markeditems);
                         h = new Hypergeometric(samplesize, populationsize, markeditems);
                         p = 1.0-h.cdf((double) commonGenes.size());
                         testedPathways.add(new TestedPathway(p, pathwayname,commonGenes, pathwayGpmls.get(pathwayname), numPathwayGenes));
