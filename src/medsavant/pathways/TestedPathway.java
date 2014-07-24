@@ -155,7 +155,7 @@ public class TestedPathway {
         Object[] objectArray;
         int numTests = list.size();
         while (it.hasNext()) {
-            objectArray = ((TestedPathway) it.next()).getObjectList(numTests);
+            objectArray = ((TestedPathway) it.next()).getBHObjectList();
             if (objectArray!=null) {
                 newList.add(objectArray);
                 

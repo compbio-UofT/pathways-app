@@ -1758,6 +1758,7 @@ public class PathwayAnalysis {
         HashSet<String> commonGenes;
         String pathwayname;
         Iterator pathwaynames = genesets.keySet().iterator();
+        geneset.retainAll(allgenes);
         int samplesize = geneset.size(), markeditems, populationsize = allgenes.size();
         Hypergeometric h;
         testedPathways = new ArrayList<TestedPathway>();
