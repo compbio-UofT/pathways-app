@@ -4,6 +4,6 @@
 <comment>This is easy!</comment>
 <entry key="pValueColumnWidth">100</entry>
 <entry key="pathwayNameColumnWidth">300</entry>
-<entry key="genesColumnWidth">150</entry>
+<entry key="genesColumnWidth">500</entry>
 <entry key="numGenesColumnWidth">100</entry>
 </properties>

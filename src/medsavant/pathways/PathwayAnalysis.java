@@ -111,6 +111,8 @@ public class PathwayAnalysis {
     private List<PGXGene> pgxGenes= new LinkedList<PGXGene>();
     private HashMap<String,ImageIcon> pathwayLinks;
     private HashMap<String,String> pathwayGpmls;
+    private HashMap<String,String> pathwayDescriptions;
+    
     private int minPathwayGenes;
     private int maxPathwayGenes;
     private int multipleTestCorrection;
@@ -126,7 +128,7 @@ public class PathwayAnalysis {
         header = new ArrayList<String>();
         header.add("P-values");
         header.add("Pathway Name");
-        header.add("Genes associated\nwith patient variants\nin pathway");
+        header.add("Genes associated with patient variants in pathway");
         header.add("Genes\nin\npathway");
         positionMap = new HashMap<String,String>();
         //make output directories if they don't exist already
@@ -195,7 +197,7 @@ public class PathwayAnalysis {
         System.out.println("Sample size: "+this.geneset.size()+", Population size: "+this.allgenes.size());
     }
     
-    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter) {
+    public String[][] hypergeometricWithWikiPathways(String currentDNAID, HashSet<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter) {
         return hypergeometricWithWikiPathways(currentDNAID, mutationTypes, minPathwayGenesFilter, maxPathwayGenesFilter, PathwaysPanel.BONFERRONI_INDEX);
     }
     /**
@@ -204,7 +206,7 @@ public class PathwayAnalysis {
      * @param VcfFile
      * @param pathwayfolder 
      */
-    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter, int multipleTestCorrection) {
+    public String[][] hypergeometricWithWikiPathways(String currentDNAID, HashSet<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter, int multipleTestCorrection) {
         this.multipleTestCorrection = multipleTestCorrection;
         this.minPathwayGenesFilter = minPathwayGenesFilter;
         this.maxPathwayGenesFilter = maxPathwayGenesFilter;
@@ -240,7 +242,7 @@ public class PathwayAnalysis {
      * @param VcfFile
      * @param pathwayfolder 
      */
-    public String[][] hypergeometricWithWikiPathways(String currentDNAID, List<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter, int multipleTestCorrection, double fdr) {
+    public String[][] hypergeometricWithWikiPathways(String currentDNAID, HashSet<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter, int multipleTestCorrection, double fdr) {
         this.multipleTestCorrection = multipleTestCorrection;
         this.minPathwayGenesFilter = minPathwayGenesFilter;
         this.maxPathwayGenesFilter = maxPathwayGenesFilter;
@@ -274,9 +276,10 @@ public class PathwayAnalysis {
     private void assignPNGFiles() {
         this.pathwayLinks = new HashMap<String,ImageIcon>();
         String path;
-        for (int i = 0; i < pathwayTitles.length; i++) {
+        int numPathways = pathwayTitles.length;
+        for (int i = 0; i < numPathways; i++) {
             try {
-                path = pathwayHtmlFileNames[i].replaceFirst("html","png");
+                path = pathwayHtmlFileNames[i].replaceFirst("html","png").toLowerCase();
                 pathwayLinks.put(pathwayTitles[i],new ImageIcon(getClass().getClassLoader().getResource(PNGFOLDER+path)));
             }
             catch (NullPointerException e) {
@@ -298,6 +301,7 @@ public class PathwayAnalysis {
         minPathwayGenes = Integer.MAX_VALUE;
         maxPathwayGenes = Integer.MIN_VALUE;
         allgenes = new HashSet<String>();
+        pathwayDescriptions = new HashMap<String,String>();
         pathwayGpmls = new HashMap<String,String>();
         String[] linecomponents = new String[0];
         try {
@@ -305,18 +309,30 @@ public class PathwayAnalysis {
             BufferedReader br = new BufferedReader( new InputStreamReader(this.getClass().getResourceAsStream("/medsavant/pathways/geneSet/wikipathways.gmt")));
             String line = br.readLine();
             String pathwayName;
+            String pathwayDescription;
             HashMap<String,Integer> pathwaygenes;
             ArrayList<String> names = new ArrayList<String>();
             ArrayList<String> gpmls = new ArrayList<String>();
             ArrayList<String> htmls = new ArrayList<String>();
+            String[] nameAndDescription;
             while (line != null) {
+                
                 line = line.trim();
                 //tab separated
                 //caps name % humancyc % abbreviation, human readable name, gene symbols
                 linecomponents = line.split("\t");
                 if (linecomponents.length >2) {
                     
-                    pathwayName = linecomponents[1].split("\\|")[0];
+                    nameAndDescription = linecomponents[1].split("\\|");
+                    
+                    pathwayName = nameAndDescription[0];
+                    if (nameAndDescription.length > 1) {
+                        pathwayDescription = nameAndDescription[1];
+                    }
+                    else {
+                        pathwayDescription = "";
+                    }
+                    pathwayDescriptions.put(pathwayName, pathwayDescription);
                     names.add(pathwayName);
                     gpmls.add(linecomponents[0]);
                     htmls.add(linecomponents[0].replaceFirst("gpml","html"));
@@ -342,12 +358,13 @@ public class PathwayAnalysis {
             }   
             pathwayTitles = new String[1];
             this.pathwayTitles = names.toArray(pathwayTitles);
+            
             this.pathwayGpmlFileNames = new String[1];
             this.pathwayGpmlFileNames = gpmls.toArray(pathwayGpmlFileNames);
             this.pathwayHtmlFileNames = new String[1];
             this.pathwayHtmlFileNames = htmls.toArray(pathwayHtmlFileNames);
             System.out.println("calculated min and max pathway genes are: MIN - " +minPathwayGenes+" MAX - "+maxPathwayGenes);
-        }
+        } 
         catch (Exception e) {
             for (int counter = 0; counter < linecomponents.length; counter++) {
                 System.out.println(linecomponents[counter]);
@@ -501,7 +518,8 @@ public class PathwayAnalysis {
      *  with mutated genes colored green with thick node outlines
      *  metabolites colored blue, and inhibitors colored red.
      */
-    public void generateHTMLFile(String gpmlPath) {
+    public void generateHTMLFile(String pathwayTitle) {
+        String gpmlPath = this.pathwayGpmls.get(pathwayTitle);
         String outputFolder = CACHEFOLDER+OUTPUTDIR;
         
         //extract nodes (Label = gene symbol, ID = something unique, use position, color = black unless in tested pathways)
@@ -555,6 +573,7 @@ public class PathwayAnalysis {
                     else {
                         pathwayDescription = "";
                     }
+                    
                 }
                 else {
                     pathwayDescription = "";
@@ -630,6 +649,10 @@ public class PathwayAnalysis {
             e.printStackTrace();
         }
         
+    }
+    
+    public String getDescription(String pathwayTitle) {
+        return pathwayDescriptions.get(pathwayTitle);
     }
     /**
      * output javascript file for HTML link out
@@ -800,7 +823,7 @@ public class PathwayAnalysis {
     }
     
     
-    private void queryVariants(String dnaID, List<String> filterMutationTypes) throws SQLException, RemoteException, SessionExpiredException {
+    private void queryVariants(String dnaID, HashSet<String> filterMutationTypes) throws SQLException, RemoteException, SessionExpiredException {
             
         
         /* Take the standard combocondition and AND it to the DNA ID for this
@@ -1793,7 +1816,8 @@ public class PathwayAnalysis {
         //Collections.sort(testedpathways, new PathwayNameComparator());
     }
     
-    public void generateGPMLFile(String pathwayTitle, String pathwayFileName) {
+    public void generateGPMLFile(String pathwayTitle) {
+       String pathwayFileName = this.pathwayGpmls.get(pathwayTitle);
        HashSet<String> commonGenes = new HashSet<String>( ( (HashMap<String,Integer>) genesets.get(pathwayTitle) ).keySet());
        //set geneset - give each pathway geneset i guess beforehand
         commonGenes.retainAll(geneset);
@@ -1949,6 +1973,11 @@ public class PathwayAnalysis {
             e.printStackTrace();
         }
     }*/
+    
+    public String getHTML(String title) {
+        return this.pathwayGpmls.get(title).replaceFirst("gpml","html");
+    }
+    
     
     
     public ImageIcon getPathwayImage(String pathwayName) {

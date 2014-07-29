@@ -81,7 +81,7 @@ public class TestedPathway {
             return null;
         }
         Object[] objectArray = new Object[4];
-        objectArray[0] = this.getPValue();
+        objectArray[0] = this.getP();
         objectArray[1] = this.name;
         objectArray[2] = genesToString();
         objectArray[3] = this.totalGenes;
@@ -129,19 +129,22 @@ public class TestedPathway {
         return newList;
     }
     
-    private static void assignQValues(List<TestedPathway> list, double fdrCutoff) {
+    private static void assignQValues(List<TestedPathway> list) {
         Collections.sort(list, new PathwayEnrichmentProbabilityComparator());
         int size = list.size();
         for (int i = 0; i < size; i++) {
-            list.get(i).setQ(((double) i)*fdrCutoff/((double) size));
+            list.get(i).setQ(((double) size)*list.get(i).getP()/((double) i));
         }
     }
-    private Object[] getBHObjectList() {
+    private Object[] getBHObjectList(double fdrCutoff) {
         if (genes.size() == 0) {
             return null;
         }
         Object[] objectArray = new Object[4];
         objectArray[0] = this.getQ();
+        if ((double) objectArray[0] > fdrCutoff) {
+            return null;
+        }
         objectArray[1] = this.name;
         objectArray[2] = genesToString();
         objectArray[3] = this.totalGenes;
@@ -149,13 +152,13 @@ public class TestedPathway {
     }
     public static List<Object[]> convertToObjectListBH(List<TestedPathway> list, double fdrCutoff) {
         // MAKE BENJAMINI HOCHBERG P-VALUES
-        assignQValues(list, fdrCutoff);
+        assignQValues(list);
         List<Object[]> newList = new ArrayList<Object[]>();
         Iterator it = list.iterator();
         Object[] objectArray;
         int numTests = list.size();
         while (it.hasNext()) {
-            objectArray = ((TestedPathway) it.next()).getBHObjectList();
+            objectArray = ((TestedPathway) it.next()).getBHObjectList(fdrCutoff);
             if (objectArray!=null) {
                 newList.add(objectArray);
                 
@@ -229,9 +232,9 @@ public class TestedPathway {
     private void setQ(double q) {
         this.q = q;
     }
-    public String getCorrectedPValue(int numTests) {
+    public double getCorrectedPValue(int numTests) {
         double correctedP = this.p * ((double) numTests);
-        return String.format("%1.4e",correctedP);
+        return correctedP;
     }
 }
 
