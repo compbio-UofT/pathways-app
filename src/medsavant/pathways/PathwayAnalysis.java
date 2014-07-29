@@ -112,7 +112,7 @@ public class PathwayAnalysis {
     private HashMap<String,ImageIcon> pathwayLinks;
     private HashMap<String,String> pathwayGpmls;
     private HashMap<String,String> pathwayDescriptions;
-    
+    private HashSet<String> genesNotInGeneSets;
     private int minPathwayGenes;
     private int maxPathwayGenes;
     private int multipleTestCorrection;
@@ -831,6 +831,23 @@ public class PathwayAnalysis {
         return this.geneset.size();
     }
     
+    
+    public String genesNotInGeneSetsText() {
+        String[] geneArray = genesNotInGeneSets.toArray(new String[genesNotInGeneSets.size()]);
+        return Arrays.toString(geneArray).replace(", ", "\n").replaceAll("[\\[\\]]", "");
+    }
+    
+    public String genesInGeneSetsText() {
+        String[] geneArray = geneset.toArray(new String[geneset.size()]);
+        return Arrays.toString(geneArray).replace(", ", "\n").replaceAll("[\\[\\]]", "");
+    }
+    
+    public int numGenesNotInGeneSets() {
+        return genesNotInGeneSets.size();
+    }
+    public int numGenesInGeneSets() {
+        return geneset.size();
+    }
     
     private void queryVariants(String dnaID, HashSet<String> filterMutationTypes) throws SQLException, RemoteException, SessionExpiredException {
             
@@ -1679,7 +1696,6 @@ public class PathwayAnalysis {
             }
             writer.close();
             geneset.retainAll(allgenes); //geneset is the set of mutated genes
-            
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -1790,6 +1806,8 @@ public class PathwayAnalysis {
         HashSet<String> commonGenes;
         String pathwayname;
         Iterator pathwaynames = genesets.keySet().iterator();
+        genesNotInGeneSets = new HashSet<String>(geneset);
+        genesNotInGeneSets.removeAll(allgenes);
         geneset.retainAll(allgenes);
         int samplesize = geneset.size(), markeditems, populationsize = allgenes.size();
         Hypergeometric h;

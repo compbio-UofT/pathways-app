@@ -925,6 +925,29 @@ public class PathwaysPanel {
                             infoPane.add(new JLabel(" "), "alignx left, wrap");
                             //cytoscape.js
                             
+                            JLabel analysisDetailsLabel = new JLabel("Analysis Details");
+                            infoPane.add(analysisDetailsLabel,"alignx left, wrap");
+                            int genesUsed = pathwayAnalysisObject.numGenesInGeneSets();
+                            int genesNotUsed = pathwayAnalysisObject.numGenesNotInGeneSets();
+                            infoPane.add(new JLabel("Number of genes used in analysis: "+genesUsed),"alignx left, wrap");
+                            if (genesUsed > 0) {
+                                JScrollPane genesUsedScrollPane = new JScrollPane();
+                                JTextArea genesUsedText = new JTextArea(pathwayAnalysisObject.genesInGeneSetsText());
+                                genesUsedText.setEditable(false);
+                                genesUsedText.setRows(5);
+                                genesUsedScrollPane.setViewportView(genesUsedText);
+                                infoPane.add(genesUsedScrollPane,"alignx left, wrap");
+                            }
+                            infoPane.add(new JLabel("Number of genes not found in Wikipathways gene set: "+genesNotUsed),"alignx left, wrap");
+                            if (genesNotUsed > 0) {
+                                JScrollPane genesNotUsedScrollPane = new JScrollPane();
+                                JTextArea genesNotUsedText = new JTextArea(pathwayAnalysisObject.genesNotInGeneSetsText());
+                                genesNotUsedText.setEditable(false);
+                                genesNotUsedText.setRows(5);
+                                genesNotUsedScrollPane.setViewportView(genesNotUsedText);
+                                infoPane.add(genesNotUsedScrollPane,"alignx left, wrap");
+                            }
+                            
                             int numGenes = pathwayAnalysisObject.genesInVariants();
                             if (numGenes < GENELIMIT) {
                                 if (numGenes == 0) {
