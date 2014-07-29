@@ -219,7 +219,7 @@ public class PathwayAnalysis {
             //output pathways and p-values
             this.outputEnrichedGeneList(OUTPUTFILE);
             //make all non-inhibitor non-metabolite non-mutated gene products black
-            //this.makeGPMLnodesblack(PATHWAYOUTPUTFOLDER);
+            
             /*String[][] pathwayInfo = new String[4][pathwayTitles.length];
             pathwayInfo[0] = pathwayTitles;
             pathwayInfo[1] = pathwayHtmlFileNames;
@@ -494,24 +494,33 @@ public class PathwayAnalysis {
      * make all nodes black in GPML files
      * @param folderpath 
      */
-/*    public void makeGPMLnodesblack(String gpmlFileName) {
+    public void makeGPMLnodesblack(String gpmlFileName) {
         try {
-            final File folder = new File(folderpath);
-            for (final File fileEntry : folder.listFiles()) {
-                Path path = Paths.get(folderpath+fileEntry.getName());
-                Charset charset = StandardCharsets.UTF_8;
-                String content = new String(Files.readAllBytes(path), charset);
-                //REPLACE COLOR REGEX WITH COLOR BLACK
-                content = content.replaceAll("foo", "bar");
-                Files.write(path, content.getBytes(charset));
-                
-                fileEntry.getName();
-            }
+            //copy GPML file out of jar
+            URI uri = this.getClass().getClassLoader().getResource(WIKIPATHWAYSFOLDER+gpmlFileName).toURI();
+            final Map<String, String> env = new HashMap<>();
+            final String[] array = uri.toString().split("!");
+            final FileSystem fs = FileSystems.newFileSystem(URI.create(array[0]), env);
+            System.out.println("uri: "+uri);
+             Path path = java.nio.file.Files.copy( 
+                   fs.getPath(array[1]), 
+                   new java.io.File(CACHEFOLDER+OUTPUTDIR+GPMLFOLDER+gpmlFileName).toPath(),
+                   java.nio.file.StandardCopyOption.REPLACE_EXISTING,
+                   java.nio.file.StandardCopyOption.COPY_ATTRIBUTES,
+                   java.nio.file.LinkOption.NOFOLLOW_LINKS );
+            fs.close();
+
+            //make all nodes black
+            Charset charset = StandardCharsets.UTF_8;
+            String content = new String(Files.readAllBytes(path), charset);
+            //REPLACE COLOR REGEX WITH COLOR BLACK
+            content = content.replaceAll("Color[ ]*=[ ]*\"[0-9a-fA-F]*\"", "Color=\"000000\"");
+            Files.write(path, content.getBytes(charset));
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
     /**
      * Generate HTML visualization of pathway, rendered by converting
      *  Wikipathways GPML into javascript displayable by cytoscape.js
@@ -1821,6 +1830,7 @@ public class PathwayAnalysis {
        HashSet<String> commonGenes = new HashSet<String>( ( (HashMap<String,Integer>) genesets.get(pathwayTitle) ).keySet());
        //set geneset - give each pathway geneset i guess beforehand
         commonGenes.retainAll(geneset);
+        this.makeGPMLnodesblack(pathwayFileName);
         this.markPathwayGenesInGPML(commonGenes, pathwayFileName, CACHEFOLDER+OUTPUTDIR+GPMLFOLDER, PVALUE_CUTOFF);
                     
     }
@@ -2003,27 +2013,15 @@ public class PathwayAnalysis {
             //Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(gpmlFile[0].getFile().getPath()));
             System.out.println(this.getClass().getClassLoader().getResourceAsStream("medsavant/pathways/wikipathwaysGPML"));
             System.out.println("pathway filename is: "+pathwayFileName);
-            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(WIKIPATHWAYSFOLDER+pathwayFileName)))));
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new BufferedReader(new InputStreamReader(new FileInputStream(CACHEFOLDER+OUTPUTDIR+GPMLFOLDER+pathwayFileName)))));
             
             XPath xpath = XPathFactory.newInstance().newXPath();
             
             Iterator enrichedGenes = commonGenes.iterator();
             
-            //if there aren't any enriched genes, copy GPML file over as-is
+            //if there aren't any enriched genes, do nothing
             if (!enrichedGenes.hasNext()) {
-                URI uri = this.getClass().getClassLoader().getResource(WIKIPATHWAYSFOLDER+pathwayFileName).toURI();
-                final Map<String, String> env = new HashMap<>();
-                final String[] array = uri.toString().split("!");
-                final FileSystem fs = FileSystems.newFileSystem(URI.create(array[0]), env);
-                System.out.println("uri: "+uri);
-                 Path path = java.nio.file.Files.copy( 
-                       fs.getPath(array[1]), 
-                       new java.io.File(CACHEFOLDER+OUTPUTDIR+GPMLFOLDER+pathwayFileName).toPath(),
-                       java.nio.file.StandardCopyOption.REPLACE_EXISTING,
-                       java.nio.file.StandardCopyOption.COPY_ATTRIBUTES,
-                       java.nio.file.LinkOption.NOFOLLOW_LINKS );
-                 
-                fs.close();
+                return;
             }
             
             while (enrichedGenes.hasNext()) {

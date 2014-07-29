@@ -65,7 +65,6 @@ import org.ut.biolab.medsavant.shared.appdevapi.AppColors;
 import org.ut.biolab.medsavant.shared.format.AnnotationFormat;
 import org.ut.biolab.medsavant.shared.format.BasicVariantColumns;
 import org.ut.biolab.medsavant.shared.format.CustomField;
-import cytoscape.util.OpenBrowser;
 /**
  * Default panel for Pathways App.
  * @author rwong
@@ -765,8 +764,16 @@ public class PathwaysPanel {
     private static void openLink(String htmlFileLink) {
         try {
             //URI uri = new URI(htmlFileLink);
+            
+            //non functional attempt to use Cytoscape's catch-all open browser method
+            
+            
             //OpenBrowser.openURL(htmlFileLink);
-            File file = new File(htmlFileLink);
+            OpenBrowser openBrowser = new OpenBrowserImpl();
+            openBrowser.openURL(htmlFileLink);
+            //results in NoClassDefFoundError
+            
+            /*File file = new File(htmlFileLink);
             if (Desktop.isDesktopSupported()) {
               try {
                 String operatingSystem = System.getProperty("os.name");
@@ -779,7 +786,7 @@ public class PathwaysPanel {
                 }
                 
               } catch (IOException e) { e.printStackTrace(); }
-            } else { System.out.println("desktop not supported - cannot open link in browsers"); }
+            } else { System.out.println("desktop not supported - cannot open link in browsers"); }*/
             
         }
         catch (Exception e) {
