@@ -236,5 +236,17 @@ public class TestedPathway {
         double correctedP = this.p * ((double) numTests);
         return correctedP;
     }
+    public String toString() {
+        return this.name;
+    }
+    public static String[] toStringArray(List<TestedPathway> testedPathways) {
+        Iterator it = testedPathways.iterator();
+        String[] pathwayArray = new String[testedPathways.size()];
+        int counter = 0;
+        while (it.hasNext()) {
+            pathwayArray[counter++] = it.next().toString();
+        }
+        return pathwayArray;
+    }
 }
 

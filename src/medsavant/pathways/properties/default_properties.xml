@@ -6,4 +6,7 @@
 <entry key="pathwayNameColumnWidth">300</entry>
 <entry key="genesColumnWidth">500</entry>
 <entry key="numGenesColumnWidth">100</entry>
+<entry key="wikipathwaysDownlaodYear">2014</entry>
+<entry key="wikipathwaysDownlaodMonth">7</entry>
+<entry key="wikipathwaysDownlaodDay">29</entry>
 </properties>

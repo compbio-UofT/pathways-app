@@ -28,8 +28,10 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -146,6 +148,13 @@ public class PathwaysPanel {
         private JButton multipleTestCorrectionHelp;
         private JButton choosePatientHelp;
         private JButton exportGPML;
+        private Font headerFont;
+        private Font subHeaderFont;
+        private Font boldFont;
+        private final int headerFontSize = 24;
+        private final int subHeaderFontSize = 20;
+        private GregorianCalendar wikipathwaysDownloadVersion;
+        private JScrollPane infoScrollPane;
         final private Color LIGHTPURPLE = new Color(242, 202, 252);
         
         private CollapsiblePane mutationFilterGUI;
@@ -224,11 +233,21 @@ public class PathwaysPanel {
 	 * Default initial view.
 	 */
 	private void initView() {
+                //set properties - column widths & wikipathways download date
+                this.getProperties();
+                
+                //set wikipathways download date
+                wikipathwaysDownloadVersion = new GregorianCalendar(Integer.parseInt(properties.getProperty("wikipathwaysDownlaodYear")), Integer.parseInt(properties.getProperty("wikipathwaysDownlaodMonth")), Integer.parseInt(properties.getProperty("wikipathwaysDownlaodDay")));
+                
                 //initialize pathway info panel (contains pathway title, description, and png link-out)
                 pathwayInfoPanel.setLayout(new MigLayout("fill"));
                 pathwayTitle = new JLabel();
+                
                 Font font = pathwayTitle.getFont();
-                Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
+                boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
+                headerFont = new Font(font.getFontName(), Font.BOLD, headerFontSize);
+                subHeaderFont = new Font(font.getFontName(), Font.BOLD, subHeaderFontSize);
+                
                 pathwayTitle.setFont(boldFont);
                 pngThumbnail = new JButton();
                 pngThumbnail.setToolTipText("Click to open pathway in browser");
@@ -361,8 +380,9 @@ public class PathwaysPanel {
                 resultPanelChoosePatientPrompt();
                 
                 infoPane = new JPanel();
-                infoPane.setLayout(new MigLayout("insets 0 0 0 0, fillx"));
-                
+                infoPane.setLayout(new MigLayout("insets 10 10 10 10, fillx"));
+                infoScrollPane = new JScrollPane();
+                infoScrollPane.setViewportView(infoPane);
                 
 		// Add all components to our main view
                 
@@ -622,7 +642,7 @@ public class PathwaysPanel {
             tablePanel.add(pathwayInfoPanel, "alignx center, growx, growy, gapbottom 0");
             tabbedPane.addTab("Results",tablePanel);
             pathwayImageLabel = new JLabel();
-            tabbedPane.addTab("Information",infoPane);
+            tabbedPane.addTab("Information",infoScrollPane);
             tabbedPane.setToolTipTextAt(0,"P-values for the enrichment of each pathway");
             tabbedPane.setToolTipTextAt(1,"Information about analysis methods");
             resultsPanel.add(tabbedPane, "alignx center, growx, growy, wrap");
@@ -699,6 +719,16 @@ public class PathwaysPanel {
 
                 }
             };
+        }
+        
+        private String fdrCutoffToString() {
+            int fdr = fdrSlider.getValue();
+            if (fdr < 10) {
+                return "0.0"+fdr;
+            }
+            else {
+                return "0."+fdr;
+            }
         }
         
         private ActionListener exportGPMLActionListener() {
@@ -902,51 +932,8 @@ public class PathwaysPanel {
                             //openPathwayButton.setVisible(true);
                             
                             //create info tab
-                            infoPane.add(new JLabel("Pathway Analysis Notes and References"), "alignx left, wrap");
-                            infoPane.add(new JLabel(" "), "alignx left, wrap");
+                            loadInfoPane();
                             
-                            infoPane.add(new JLabel("Source of Pathways"), "alignx left, wrap");
-                            infoPane.add(new JLabel(" "), "alignx left, wrap");
-                            //incl download dates.
-                            
-                            infoPane.add(new JLabel("Analysis Type"), "alignx left, wrap");
-                            infoPane.add(new JLabel(" "), "alignx left, wrap");
-                            
-                            infoPane.add(new JLabel("Analysis Parameters"), "alignx left, wrap");
-                            infoPane.add(new JLabel("Only include pathways containing between "+minPathwayGenesSlider.getValue() + " and "+ maxPathwayGenesSlider.getValue() + " genes."), "alignx left, wrap");
-                            infoPane.add(new JLabel(" "), "alignx left, wrap");
-                            
-                            
-                            infoPane.add(new JLabel("Multiple Test Correction"), "alignx left, wrap");
-                            infoPane.add(new JLabel(multipleTestCorrectionList.getSelectedItem().toString()), "alignx left, wrap");
-                            infoPane.add(new JLabel(" "), "alignx left, wrap");
-                            
-                            infoPane.add(new JLabel("Visualization"), "alignx left, wrap");
-                            infoPane.add(new JLabel(" "), "alignx left, wrap");
-                            //cytoscape.js
-                            
-                            JLabel analysisDetailsLabel = new JLabel("Analysis Details");
-                            infoPane.add(analysisDetailsLabel,"alignx left, wrap");
-                            int genesUsed = pathwayAnalysisObject.numGenesInGeneSets();
-                            int genesNotUsed = pathwayAnalysisObject.numGenesNotInGeneSets();
-                            infoPane.add(new JLabel("Number of genes used in analysis: "+genesUsed),"alignx left, wrap");
-                            if (genesUsed > 0) {
-                                JScrollPane genesUsedScrollPane = new JScrollPane();
-                                JTextArea genesUsedText = new JTextArea(pathwayAnalysisObject.genesInGeneSetsText());
-                                genesUsedText.setEditable(false);
-                                genesUsedText.setRows(5);
-                                genesUsedScrollPane.setViewportView(genesUsedText);
-                                infoPane.add(genesUsedScrollPane,"alignx left, wrap");
-                            }
-                            infoPane.add(new JLabel("Number of genes not found in Wikipathways gene set: "+genesNotUsed),"alignx left, wrap");
-                            if (genesNotUsed > 0) {
-                                JScrollPane genesNotUsedScrollPane = new JScrollPane();
-                                JTextArea genesNotUsedText = new JTextArea(pathwayAnalysisObject.genesNotInGeneSetsText());
-                                genesNotUsedText.setEditable(false);
-                                genesNotUsedText.setRows(5);
-                                genesNotUsedScrollPane.setViewportView(genesNotUsedText);
-                                infoPane.add(genesNotUsedScrollPane,"alignx left, wrap");
-                            }
                             
                             int numGenes = pathwayAnalysisObject.genesInVariants();
                             if (numGenes < GENELIMIT) {
@@ -988,6 +975,116 @@ public class PathwaysPanel {
 		return outputAL;
 	}
         
+        
+        private void loadInfoPane() {
+            JLabel largeTitleLabel = new JLabel("Pathway Analysis Notes and References");
+            largeTitleLabel.setFont(headerFont);
+            infoPane.add(largeTitleLabel, "alignx left, wrap");
+            infoPane.add(new JLabel(" "), "alignx left, wrap");
+
+            JLabel pathwayReferenceHeaderLabel = new JLabel("Source of Pathways");
+            pathwayReferenceHeaderLabel.setFont(subHeaderFont);
+            infoPane.add(pathwayReferenceHeaderLabel, "alignx left, wrap");
+            
+            SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+            
+            JLabel pathwayReferenceTextLabel = new JLabel("<html>Curated <i>Homo Sapiens</i> Pathway Collection from Wikipathways, downloaded on "+format.format(wikipathwaysDownloadVersion.getTime())+"</html>");
+            infoPane.add(pathwayReferenceTextLabel, "alignx left, wrap");
+            
+            JButton wikipathwaysLinkButton = linkButton("Wikipathways Website", "http://www.wikipathways.org");
+            infoPane.add(wikipathwaysLinkButton, "alignx left, wrap");
+            infoPane.add(new JLabel(" "), "alignx left, wrap");
+            //incl download dates.
+
+            JLabel analysisTypeHeaderLabel = new JLabel("Analysis Type");
+            analysisTypeHeaderLabel.setFont(subHeaderFont);
+            infoPane.add(analysisTypeHeaderLabel, "alignx left, wrap");
+            JTextArea analysisTypeText = new JTextArea("The analysis performed is the hypergeometric test. This determines the likelihood that, given a pathway size, a gene pool, and a list of variant genes, a pathway is enriched with genetic variants. Analysis is performed using the Hypergeometric class from the Java Statistical Classes package.");
+            //figure out how to word that better
+            analysisTypeText.setBackground(infoPane.getBackground());
+            analysisTypeText.setLineWrap(true);
+            analysisTypeText.setWrapStyleWord(true);
+            infoPane.add(analysisTypeText, "alignx left, growx, wrap");
+            JButton hypergeometricClassLink = linkButton("Hypergeometric Class from Java Statistical Classes","http://www.jsc.nildram.co.uk/api/jsc/distributions/Hypergeometric.html");
+            infoPane.add(hypergeometricClassLink, "alignx left, wrap");
+            JButton hypergeometricReferenceLink = linkButton("Wikipedia Hypergeometric Test Entry","http://en.wikipedia.org/wiki/Hypergeometric_distribution#Hypergeometric_test");
+            infoPane.add(hypergeometricReferenceLink, "alignx left, wrap");
+            
+            
+            infoPane.add(new JLabel(" "), "alignx left, wrap");
+
+            JLabel analysisParametersHeaderLabel = new JLabel("Analysis Parameters");
+            analysisParametersHeaderLabel.setFont(subHeaderFont);
+            infoPane.add(analysisParametersHeaderLabel, "alignx left, wrap");
+            infoPane.add(new JLabel("Only pathways containing between "+minPathwayGenesSlider.getValue() + " and "+ maxPathwayGenesSlider.getValue() + " genes were included in the analysis."), "alignx left, wrap");
+            infoPane.add(new JLabel(" "), "alignx left, wrap");
+
+            JLabel multipleTestCorrectionHeaderLabel = new JLabel("Multiple Test Correction");
+            multipleTestCorrectionHeaderLabel.setFont(subHeaderFont);
+            infoPane.add(multipleTestCorrectionHeaderLabel, "alignx left, wrap");
+            if (multipleTestCorrectionList.getSelectedIndex() == BENJAMINI_HOCHBERG_INDEX) {
+                infoPane.add(new JLabel("Benjamini-Hochberg multiple test correction, with a False Discovery Rate threshhold of "+fdrCutoffToString()), "alignx left, wrap");
+            }
+            else {
+                infoPane.add(new JLabel("Bonferroni multiple test correction, corrected for "+pathwayAnalysisObject.getNumTestedPathways()+"total tests."), "alignx left, wrap");
+            }
+            infoPane.add(new JLabel(" "), "alignx left, wrap");
+            //include FDR if benjamini hochberg
+
+            JLabel visualizationHeaderLabel = new JLabel("Visualization");
+            visualizationHeaderLabel.setFont(subHeaderFont);
+            infoPane.add(visualizationHeaderLabel, "alignx left, wrap");
+            JTextArea cytoscapeJSText = new JTextArea("Visualizations were created by converting the Wikipathways GPML format into pathways drawable by cytoscape.js.");
+            cytoscapeJSText.setBackground(infoPane.getBackground());
+            cytoscapeJSText.setLineWrap(true);
+            cytoscapeJSText.setWrapStyleWord(true);
+            infoPane.add(cytoscapeJSText, "alignx left, growx, wrap");
+            JButton cytoscapeJSLink = linkButton("Cytoscape.js link","http://cytoscape.github.io/cytoscape.js/");
+            infoPane.add(cytoscapeJSLink,"alignx left, wrap");
+            infoPane.add(new JLabel(" "), "alignx left, wrap");
+            //cytoscape.js
+
+            JLabel analysisDetailsLabel = new JLabel("Analysis Details");
+            analysisDetailsLabel.setFont(subHeaderFont);
+            infoPane.add(analysisDetailsLabel,"alignx left, wrap");
+            int genesUsed = pathwayAnalysisObject.numGenesInGeneSets();
+            int genesNotUsed = pathwayAnalysisObject.numGenesNotInGeneSets();
+            infoPane.add(new JLabel("Number of genes used in analysis: "+genesUsed),"alignx left, wrap");
+            if (genesUsed > 0) {
+                JScrollPane genesUsedScrollPane = new JScrollPane();
+                JTextArea genesUsedText = new JTextArea(pathwayAnalysisObject.genesInGeneSetsText());
+                genesUsedText.setEditable(false);
+                genesUsedText.setRows(5);
+                genesUsedScrollPane.setViewportView(genesUsedText);
+                infoPane.add(genesUsedScrollPane,"alignx left, wrap");
+            }
+            infoPane.add(new JLabel("Number of genes not found in Wikipathways gene set: "+genesNotUsed),"alignx left, wrap");
+            if (genesNotUsed > 0) {
+                JScrollPane genesNotUsedScrollPane = new JScrollPane();
+                JTextArea genesNotUsedText = new JTextArea(pathwayAnalysisObject.genesNotInGeneSetsText());
+                genesNotUsedText.setEditable(false);
+                genesNotUsedText.setRows(5);
+                genesNotUsedScrollPane.setViewportView(genesNotUsedText);
+                infoPane.add(genesNotUsedScrollPane,"alignx left, wrap");
+            }
+            infoPane.add(new JLabel(" "));
+            infoPane.add(new JLabel("Number of pathways in Wikipathways gene set: "+pathwayAnalysisObject.getNumPathways()),"alignx left, wrap");
+            JScrollPane allPathwaysScrollPane = new JScrollPane();
+            JTextArea allPathwaysText = new JTextArea(pathwayAnalysisObject.allPathwaysText());
+            allPathwaysText.setEditable(false);
+            allPathwaysText.setRows(5);
+            allPathwaysScrollPane.setViewportView(allPathwaysText);
+            infoPane.add(allPathwaysScrollPane,"alignx left, wrap");
+            infoPane.add(new JLabel("Number of pathways in Wikipathways gene set with associated genetic variants in this analysis: "+pathwayAnalysisObject.getNumTestedPathways()),"alignx left, wrap");
+            if (pathwayAnalysisObject.getNumTestedPathways() > 0) {
+                JScrollPane testedPathwaysScrollPane = new JScrollPane();
+                JTextArea testedPathwaysText = new JTextArea(pathwayAnalysisObject.testedPathwaysText());
+                testedPathwaysText.setEditable(false);
+                testedPathwaysText.setRows(5);
+                testedPathwaysScrollPane.setViewportView(testedPathwaysText);
+                infoPane.add(testedPathwaysScrollPane,"alignx left, wrap");
+            }
+        }
         /**
 	 * Fill combobox with pathway titles for selection
 	 */
@@ -1103,6 +1200,17 @@ public class PathwaysPanel {
 		return collapsibleMutation;
 	}
         
+    private JButton linkButton(String text, String link) {
+        final String hyperLink = link;
+        JButton button = new JButton("<HTML><FONT color=\"#000099\"><U>"+text+"</U></FONT></HTML>");
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    openLink(hyperLink);
+                }
+            });
+        return button;
+    }
     private void getProperties() {
         //check if properties dir exists
         properties = new Properties();
@@ -1186,7 +1294,6 @@ public class PathwaysPanel {
     }
     
     private void setTableColumnWidths() {
-        this.getProperties();
         SortableTable sortableTable = table.getTable();
         sortableTable.getColumnModel().getColumn(TestedPathway.PVALUEINDEX).setPreferredWidth(Integer.parseInt(properties.getProperty("pValueColumnWidth")));
         sortableTable.getColumnModel().getColumn(TestedPathway.PATHWAYNAMEINDEX).setPreferredWidth(Integer.parseInt(properties.getProperty("pathwayNameColumnWidth")));

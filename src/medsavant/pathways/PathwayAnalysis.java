@@ -381,14 +381,19 @@ public class PathwayAnalysis {
 	public SearchableTablePanel getTableOutput() {
             int[] selectedViewColumns = {0,1,2,3};
 		DataRetriever<Object[]> dr= new DataRetriever<Object[]>() {
+                        int numRows;
 			@Override
 			public List<Object[]> retrieve(int start, int limit) throws Exception {            
 				//return allVariants;
                             if (multipleTestCorrection == PathwaysPanel.BONFERRONI_INDEX) {
-                                return TestedPathway.convertToObjectListBonferroni(testedPathways);
+                                List<Object[]> filteredTestedPathways = TestedPathway.convertToObjectListBonferroni(testedPathways);
+                                this.numRows = filteredTestedPathways.size();
+                                return filteredTestedPathways;
                             }
                             else if (multipleTestCorrection == PathwaysPanel.BENJAMINI_HOCHBERG_INDEX) {
-                                return TestedPathway.convertToObjectListBH(testedPathways, fdrCutoff);
+                                List<Object[]> filteredTestedPathways = TestedPathway.convertToObjectListBH(testedPathways, fdrCutoff);
+                                this.numRows = filteredTestedPathways.size();
+                                return filteredTestedPathways;
                             }
                             else {
                                 System.out.println("INVALID MULTIPLE TEST CORRECTION");
@@ -398,8 +403,7 @@ public class PathwayAnalysis {
 
 			@Override
 			public int getTotalNum() {
-				//return allVariants.size();
-                            return testedPathways.size();
+                            return this.numRows;
 			}
 
 			@Override
@@ -725,6 +729,20 @@ public class PathwayAnalysis {
     public int getNumGenesInPathway(String pathwayName) {
         return ( (HashMap)genesets.get(pathwayName) ).size();
     }
+    
+    public int getNumTestedPathways() {
+        return this.testedPathways.size();
+    }
+    public String testedPathwaysText() {
+        String[] testedPathwayArray = TestedPathway.toStringArray(testedPathways);
+        return Arrays.toString(testedPathwayArray).replace(", ", "\n").replaceAll("[\\[\\]]", "");
+    }
+    public String allPathwaysText() {
+        return Arrays.toString(pathwayTitles).replace(", ", "\n").replaceAll("[\\[\\]]", "");
+    }
+    public int getNumPathways() {
+        return pathwayTitles.length;
+    }
     private void writeShowMore(String folder) {
         try {
             PrintWriter writer = new PrintWriter(folder+"showmore.js");
@@ -766,14 +784,6 @@ public class PathwayAnalysis {
             e.printStackTrace();
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
