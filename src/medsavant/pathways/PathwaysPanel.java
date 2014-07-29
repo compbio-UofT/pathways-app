@@ -23,15 +23,19 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import javax.swing.*;
@@ -141,6 +145,7 @@ public class PathwaysPanel {
         private JButton minSliderHelp;
         private JButton multipleTestCorrectionHelp;
         private JButton choosePatientHelp;
+        private JButton exportGPML;
         final private Color LIGHTPURPLE = new Color(242, 202, 252);
         
         private CollapsiblePane mutationFilterGUI;
@@ -235,7 +240,8 @@ public class PathwaysPanel {
                 pathwayDescription.setLineWrap(true);
                 pathwayDescription.setEditable(false);
                 pathwayDescriptionScrollPane.setViewportView(pathwayDescription);
-                
+                exportGPML = new JButton("Export Pathway to .GPML for PathVisio");
+                exportGPML.addActionListener(exportGPMLActionListener());
 		// Create the options view
 		optionsPanel.setLayout(new MigLayout("fillx"));
 		optionsPanel.setMinimumSize(new Dimension(SIDE_PANE_WIDTH, 1));
@@ -637,8 +643,9 @@ public class PathwaysPanel {
             }
             else {
                 pathwayInfoPanel.add(pathwayTitle,"alignx center, span 2");
-                pathwayInfoPanel.add(pngThumbnail,"alignx center, growy, span 1 2, wrap");
-                pathwayInfoPanel.add(pathwayDescriptionScrollPane,"alignx center, growx, growy, span 2");
+                pathwayInfoPanel.add(pngThumbnail,"alignx center, growy, span 1 3, wrap");
+                pathwayInfoPanel.add(pathwayDescriptionScrollPane,"alignx center, growx, growy, span 2, wrap");
+                pathwayInfoPanel.add(exportGPML, "alignx center");
             }
             pathwayInfoPanel.revalidate();
         }
@@ -690,6 +697,33 @@ public class PathwaysPanel {
                     generateVisualizationThread.execute();  
 
 
+                }
+            };
+        }
+        
+        private ActionListener exportGPMLActionListener() {
+            return new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    //open save dialog for user to save exported GPML file
+                    JFileChooser save = new JFileChooser();
+                    if (save.showSaveDialog(pathwayInfoPanel)==JFileChooser.APPROVE_OPTION) {
+                        //make GPML
+                        pathwayAnalysisObject.generateGPMLFile(selectedPathwayTitle);
+                        
+                        //copy to destination
+                        try {
+                         Path path = java.nio.file.Files.copy( 
+                               new java.io.File(CACHEFOLDER+OUTPUTDIR+GPMLFOLDER+pathwayAnalysisObject.getGPML(selectedPathwayTitle)).toPath(), 
+                               save.getSelectedFile().toPath(),
+                               java.nio.file.StandardCopyOption.REPLACE_EXISTING,
+                               java.nio.file.StandardCopyOption.COPY_ATTRIBUTES,
+                               java.nio.file.LinkOption.NOFOLLOW_LINKS );
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             };
         }
@@ -759,7 +793,12 @@ public class PathwaysPanel {
     
     /**
      * Open link in browser.
-     * @param htmlFileLink String link file path
+     * @param htmlFileLink String link file pathActionListener outputAL= new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent ae) {
+				//show status message and progress wheel
+                                resultsPanelAnalyzing();
      */
     private static void openLink(String htmlFileLink) {
         try {

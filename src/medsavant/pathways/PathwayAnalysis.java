@@ -1988,7 +1988,9 @@ public class PathwayAnalysis {
         return this.pathwayGpmls.get(title).replaceFirst("gpml","html");
     }
     
-    
+    public String getGPML(String title) {
+        return this.pathwayGpmls.get(title);
+    }
     
     public ImageIcon getPathwayImage(String pathwayName) {
         return this.pathwayLinks.get(pathwayName);
