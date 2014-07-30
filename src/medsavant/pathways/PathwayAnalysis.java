@@ -119,6 +119,7 @@ public class PathwayAnalysis {
     private double fdrCutoff;
     private int minPathwayGenesFilter;
     private int maxPathwayGenesFilter;
+    private final String ICONPATH = "medsavant/pathways/icon/icon.jpg";
     final public int NUM_TABLE_COLS=3;
     final double PVALUE_CUTOFF = 0.0000001; // you could turn this into something related to the number of pathways
     /**
@@ -280,7 +281,11 @@ public class PathwayAnalysis {
         for (int i = 0; i < numPathways; i++) {
             try {
                 path = pathwayHtmlFileNames[i].replaceFirst("html","png").toLowerCase();
-                pathwayLinks.put(pathwayTitles[i],new ImageIcon(getClass().getClassLoader().getResource(PNGFOLDER+path)));
+                URL imageURL = getClass().getClassLoader().getResource(PNGFOLDER+path);
+                if (imageURL == null) {
+                    imageURL = getClass().getClassLoader().getResource(ICONPATH);
+                }
+                pathwayLinks.put(pathwayTitles[i],new ImageIcon(imageURL));
             }
             catch (NullPointerException e) {
                 System.out.println("no resource at path: "+PNGFOLDER+pathwayHtmlFileNames[i].replaceFirst("html","png"));

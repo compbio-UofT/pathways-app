@@ -155,6 +155,8 @@ public class PathwaysPanel {
         private final int subHeaderFontSize = 20;
         private GregorianCalendar wikipathwaysDownloadVersion;
         private JScrollPane infoScrollPane;
+        private JLabel multipleTestCorrectionHeader;
+        private JLabel pathwayFilterHeader;
         final private Color LIGHTPURPLE = new Color(242, 202, 252);
         
         private CollapsiblePane mutationFilterGUI;
@@ -247,7 +249,6 @@ public class PathwaysPanel {
                 boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
                 headerFont = new Font(font.getFontName(), Font.BOLD, headerFontSize);
                 subHeaderFont = new Font(font.getFontName(), Font.BOLD, subHeaderFontSize);
-                
                 pathwayTitle.setFont(boldFont);
                 pngThumbnail = new JButton();
                 pngThumbnail.setToolTipText("Click to open pathway in browser");
@@ -268,6 +269,11 @@ public class PathwaysPanel {
 		optionsPanel.setBackground(LIGHTPURPLE);
 		optionsPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.LIGHT_GRAY));
 		
+                tooFewGenesWarning = new JLabel();
+                tooFewGenesWarning.setFont(boldFont);
+                tooFewGenesWarning.setForeground(Color.RED);
+                tooFewGenesWarning.setVisible(false);
+                optionsPanel.add(tooFewGenesWarning,"alignx center, wrap");
 		
 		choosePatientButton= new JButton("Choose patient");
 		choosePatientButton.addActionListener(choosePatientAction());
@@ -276,15 +282,11 @@ public class PathwaysPanel {
 		optionsPanel.add(choosePatientButton, "alignx center, split 2");
                 
                 optionsPanel.add(choosePatientHelp, "alignx center, wrap");
-		
-                
-                mutationFilterGUI = this.mutationCheckboxPanel();
-                mutationFilterGUI.setVisible(false);
-                System.out.println("mutation width: "+mutationFilterGUI.getContentPaneWidth()+" height: "+mutationFilterGUI.getContentPaneHeight());
-                System.out.println("Panel width: "+PANE_WIDTH+" offset: "+PANE_WIDTH_OFFSET);
-                
-                optionsPanel.add(mutationFilterGUI, "alignx center, wrap");
-                optionsPanel.add(new JLabel(" "), "alignx center, wrap");
+		optionsPanel.add(new JLabel(" "),"alignx center, wrap");
+                multipleTestCorrectionHeader = new JLabel("Multiple Test Correction");
+                multipleTestCorrectionHeader.setFont(boldFont);
+                multipleTestCorrectionHeader.setVisible(false);
+                optionsPanel.add(multipleTestCorrectionHeader,"alignx center, wrap");
                 
                 previouslySelectedTestCorrection = 1;
 		multipleTestCorrectionList = new JComboBox(multipleTestCorrections);
@@ -309,6 +311,11 @@ public class PathwaysPanel {
                 optionsPanel.add(fdrSliderLabel,"alignx center, split 2");
                 optionsPanel.add(fdrSlider,"alignx center, wrap");
                 
+                optionsPanel.add(new JLabel(" "),"alignx center, wrap");
+                pathwayFilterHeader = new JLabel("Pathways Filter");
+                pathwayFilterHeader.setFont(boldFont);
+                pathwayFilterHeader.setVisible(false);
+                optionsPanel.add(pathwayFilterHeader,"alignx center, wrap");
                 
                 minSliderLabel = new JLabel("Minimum number of genes allowed in pathways");
                 minSliderLabel.setVisible(false);
@@ -342,19 +349,16 @@ public class PathwaysPanel {
                 
                 optionsPanel.add(new JLabel(" "), "alignx center, wrap");
                 
+                mutationFilterGUI = this.mutationCheckboxPanel();
+                mutationFilterGUI.setVisible(false);
+                optionsPanel.add(mutationFilterGUI, "alignx center, wrap");
+                optionsPanel.add(new JLabel(" "), "alignx center, wrap");
+                
                 performAnalysisButton = new JButton("Perform Hypergeometric Analysis");
                 performAnalysisButton.addActionListener(analysisAction());
                 performAnalysisButton.setVisible(false);
+                performAnalysisButton.setFont(boldFont);
                 optionsPanel.add(performAnalysisButton,"alignx center, wrap");
-                
-                tooFewGenesWarning = new JLabel();
-                tooFewGenesWarning.setForeground(Color.RED);
-                Font f = tooFewGenesWarning.getFont();
-                tooFewGenesWarning.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
-                tooFewGenesWarning.setVisible(false);
-                optionsPanel.add(tooFewGenesWarning,"alignx center, wrap");
-                /*pathwayListLabel = new JLabel("");
-                optionsPanel.add(pathwayListLabel, "alignx center, wrap");*/
                 
                 status= new JLabel();
 		statusWheel= new ProgressWheel();
@@ -524,11 +528,12 @@ public class PathwaysPanel {
                                                         optionsPanel.revalidate();
                                                         performAnalysisButton.setVisible(true);
                                                         optionsPanel.revalidate();
-                                                        
+                                                        multipleTestCorrectionHelp.setVisible(true);
                                                         multipleTestCorrectionHelp.setVisible(true);
                                                         minSliderHelp.setVisible(true);
                                                         maxSliderHelp.setVisible(true);
-                                                        
+                                                        multipleTestCorrectionHeader.setVisible(true);
+                                                        pathwayFilterHeader.setVisible(true);
 						} else { // can't find this individual's DNA ID - may be a DB error
 							errorDialog("Can't find a DNA ID for " + currentHospitalID);
 						}
@@ -631,6 +636,8 @@ public class PathwaysPanel {
         }
         
         private void resultsPanelAddTabbedPane() {
+            //create info tab
+            loadInfoPane();
             resultsPanel.removeAll();
             tabbedPane = ViewUtil.getMSTabedPane();
             tabbedPane.setBackground(Color.CYAN);
@@ -642,7 +649,7 @@ public class PathwaysPanel {
             tablePanel.add(pathwayInfoPanel, "alignx center, growx, growy, gapbottom 0");
             tabbedPane.addTab("Results",tablePanel);
             pathwayImageLabel = new JLabel();
-            tabbedPane.addTab("Information",infoScrollPane);
+            tabbedPane.addTab("About",infoScrollPane);
             tabbedPane.setToolTipTextAt(0,"P-values for the enrichment of each pathway");
             tabbedPane.setToolTipTextAt(1,"Information about analysis methods");
             resultsPanel.add(tabbedPane, "alignx center, growx, growy, wrap");
@@ -897,7 +904,14 @@ public class PathwaysPanel {
                         @Override
 			protected Object doInBackground() {
 				
-                                choosePatientButton.setEnabled(false);
+                            choosePatientButton.setEnabled(false);
+                            multipleTestCorrectionList.setEditable(false);
+                            minPathwayGenesSlider.setEnabled(false);
+                            maxPathwayGenesSlider.setEnabled(false);
+                            fdrSlider.setEnabled(false);
+                            for (JCheckBox checkBox : mutationCheckBoxes) {
+                                checkBox.setEnabled(false);
+                            }
 				/* Create and perform a new analysis. Uses a CountDownLatch to 
 				 * ensure that currentPGXAnalysis is initilized before I can
 				 * do anything with it (for example, cancel it). */
@@ -921,19 +935,16 @@ public class PathwaysPanel {
 
 			@Override
 			protected void showSuccess(Object t) {
+                            multipleTestCorrectionList.setEditable(true);
+                            minPathwayGenesSlider.setEnabled(true);
+                            maxPathwayGenesSlider.setEnabled(true);
+                            fdrSlider.setEnabled(true);
+                            for (JCheckBox checkBox : mutationCheckBoxes) {
+                                checkBox.setEnabled(true);
+                            }
                             table = pathwayAnalysisObject.getTableOutput();
-                            resultsPanelAddTabbedPane();
+                            
                             choosePatientButton.setEnabled(true);
-                            //make combo box with pathway titles for user to select from
-                            //DELETE LATER - DO EVERYTHING FROM TABLE
-                            //addPathwayTitlesToSelectionBox(pathwayInfo[0], pathwayInfo[3]);
-                            //pathwayList.setVisible(true);
-                            //add OK button
-                            //openPathwayButton.setVisible(true);
-                            
-                            //create info tab
-                            loadInfoPane();
-                            
                             
                             int numGenes = pathwayAnalysisObject.genesInVariants();
                             if (numGenes < GENELIMIT) {
@@ -951,7 +962,7 @@ public class PathwaysPanel {
                             }
                             
                             optionsPanel.getRootPane().revalidate();
-                            
+                            resultsPanelAddTabbedPane();
                             updateResultsTable();
                             setTableColumnWidths();
                             resultsPanel.revalidate();
@@ -977,6 +988,7 @@ public class PathwaysPanel {
         
         
         private void loadInfoPane() {
+            infoPane.removeAll();
             JLabel largeTitleLabel = new JLabel("Pathway Analysis Notes and References");
             largeTitleLabel.setFont(headerFont);
             infoPane.add(largeTitleLabel, "alignx left, wrap");
@@ -1054,7 +1066,12 @@ public class PathwaysPanel {
                 JScrollPane genesUsedScrollPane = new JScrollPane();
                 JTextArea genesUsedText = new JTextArea(pathwayAnalysisObject.genesInGeneSetsText());
                 genesUsedText.setEditable(false);
-                genesUsedText.setRows(5);
+                if (genesUsed < 5) {
+                    genesUsedText.setRows(genesUsed);
+                }
+                else {
+                    genesUsedText.setRows(5);
+                }
                 genesUsedScrollPane.setViewportView(genesUsedText);
                 infoPane.add(genesUsedScrollPane,"alignx left, wrap");
             }
@@ -1063,11 +1080,17 @@ public class PathwaysPanel {
                 JScrollPane genesNotUsedScrollPane = new JScrollPane();
                 JTextArea genesNotUsedText = new JTextArea(pathwayAnalysisObject.genesNotInGeneSetsText());
                 genesNotUsedText.setEditable(false);
-                genesNotUsedText.setRows(5);
+                if (genesNotUsed < 5) {
+                    genesNotUsedText.setRows(genesNotUsed);
+                }
+                else {
+                    genesNotUsedText.setRows(5);
+                }
+                
                 genesNotUsedScrollPane.setViewportView(genesNotUsedText);
                 infoPane.add(genesNotUsedScrollPane,"alignx left, wrap");
             }
-            infoPane.add(new JLabel(" "));
+            infoPane.add(new JLabel(" "), "alignx left, wrap");
             infoPane.add(new JLabel("Number of pathways in Wikipathways gene set: "+pathwayAnalysisObject.getNumPathways()),"alignx left, wrap");
             JScrollPane allPathwaysScrollPane = new JScrollPane();
             JTextArea allPathwaysText = new JTextArea(pathwayAnalysisObject.allPathwaysText());
@@ -1076,14 +1099,21 @@ public class PathwaysPanel {
             allPathwaysScrollPane.setViewportView(allPathwaysText);
             infoPane.add(allPathwaysScrollPane,"alignx left, wrap");
             infoPane.add(new JLabel("Number of pathways in Wikipathways gene set with associated genetic variants in this analysis: "+pathwayAnalysisObject.getNumTestedPathways()),"alignx left, wrap");
-            if (pathwayAnalysisObject.getNumTestedPathways() > 0) {
+            int numTestedPathways = pathwayAnalysisObject.getNumTestedPathways();
+            if (numTestedPathways > 0) {
                 JScrollPane testedPathwaysScrollPane = new JScrollPane();
                 JTextArea testedPathwaysText = new JTextArea(pathwayAnalysisObject.testedPathwaysText());
                 testedPathwaysText.setEditable(false);
-                testedPathwaysText.setRows(5);
+                if (numTestedPathways < 5) {
+                    testedPathwaysText.setRows(numTestedPathways);
+                }
+                else {
+                    testedPathwaysText.setRows(5);
+                }
                 testedPathwaysScrollPane.setViewportView(testedPathwaysText);
                 infoPane.add(testedPathwaysScrollPane,"alignx left, wrap");
             }
+            infoPane.revalidate();
         }
         /**
 	 * Fill combobox with pathway titles for selection
@@ -1172,6 +1202,7 @@ public class PathwaysPanel {
                                                     codingCheckbox.setSelected(false);
                                                     nonsynonymousCheckbox.setSelected(false);
                                                 }
+                                                resultPanelStartAnalysisPrompt();
 					}
 				}
 			);
@@ -1197,6 +1228,7 @@ public class PathwaysPanel {
                 JScrollPane scrollPane = new JScrollPane();
                 scrollPane.setViewportView(mutationCheckList);
                 collapsibleMutation.setContentPane(scrollPane);
+                collapsibleMutation.setCollapsible(false);
 		return collapsibleMutation;
 	}
         
