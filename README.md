@@ -15,3 +15,9 @@ The next time you log into the MedSavant Client, the icon for Pathway Analysis s
 
 To build the project from source, you must have NetBeans installed. Download the source code, and go into the NetBeans menu to File > Open Project, and then navigate to the downloaded code. Select the project in the Project panel, and select Run > Clean and Build.
 
+##Future Directions
+Features that would be nice to have in the future include:
+* Ability to print out a comprehensive PDF report of results
+* [GREAT annotation](http://bejerano.stanford.edu/papers/GREAT.pdf) for intergenic variants
+* BiNGO test for Gene Ontology term enrichment
+* incorporate functional impact scores into enrichment tests

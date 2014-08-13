@@ -1,9 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-//FOR TESTING PURPOSES, USE PATIENT 12-GM17206-Seqnom (many multiple genes)
 
 package medsavant.pathways;
 
@@ -16,10 +10,14 @@ import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.*;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystem;
@@ -29,8 +27,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import javax.swing.ImageIcon;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
@@ -38,6 +39,13 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.*;
 import jsc.distributions.Hypergeometric;
+import org.apache.commons.io.FileUtils;
+import org.pathvisio.core.model.ObjectType;
+import org.pathvisio.core.model.Pathway;
+import org.pathvisio.core.model.PathwayElement;
+import org.pathvisio.wikipathways.webservice.WSPathway;
+import org.pathvisio.wikipathways.webservice.WSPathwayInfo;
+import org.pathvisio.wikipathways.webservice.WSSearchResult;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.ut.biolab.medsavant.MedSavantClient;
@@ -54,10 +62,10 @@ import org.ut.biolab.medsavant.shared.format.BasicVariantColumns;
 import org.ut.biolab.medsavant.shared.model.SessionExpiredException;
 import org.ut.biolab.medsavant.shared.serverapi.VariantManagerAdapter;
 import org.w3c.dom.*;
+import org.wikipathways.client.WikiPathwaysClient;
 import org.xml.sax.InputSource;
-import org.apache.commons.io.FileUtils;
 /**
- * This is a prototype for a MedSavant plugin that allows the user to
+ * This is a MedSavant plugin that allows the user to
  *  perform a hypergeometric test on a list of variants and pathways
  *  and visualize pathways statistically likely to be affected by the variants
  *  in their browser.
@@ -87,52 +95,99 @@ public class PathwayAnalysis {
     //Regular expressions for extracting variant information from VCF file
     final String GENE_REGEX="HGVS=([^:^(]*)";
     final String EFFECT_REGEX = "EFFECT=([^;]*)";
-    //link to local test VCF files
+    //folder where all program files are stored
     final String CACHEFOLDER = System.getProperty("user.home")+"/.medsavant/plugins/cache/";
+    //app specific storage folder
     final String OUTPUTDIR = "pathways_plugin/";
+    //folder for GPML files
     final String GPMLFOLDER = "gpml_files/";
+    //folder for HTML files (and associated javascript, css, and image files)
     final String HTMLFOLDER = "html_files/";
-    
-    final String TESTFILE1 = "src/resources/annotatedVCF/WGS-001-03.gatk.snp.indel.jv.vcf";
-    final String TESTFILE2 = "src/resources/annotatedVCF/WGS-002-03.gatk.snp.indel.jv.vcf";
-    final String TESTFILE3 = "src/resources/annotatedVCF/WGS-003-03.gatk.snp.indel.jv.vcf";
-    final String GENESETFOLDER = "src/genesets/";
+    //folder for original GPML files downloaded from Wikipathways
+    final String ORIGINAL_GPML_FOLDER = "wikipathways_GPML/";
+    //filel name for Wikipathways download
+    final String GPML_ZIP_FILE = "wikipathwaysGPML.zip";
+    //file name for text output of analysis results
     final String OUTPUTFILE = CACHEFOLDER+OUTPUTDIR+"enriched_pathways_and_Pvalues.txt";
-    //final String PATHWAYOUTPUTFOLDER = "output/gpml_files/";
+    //wikipathways geneset file name
     final String WIKIPATHWAYSGMTFILE = "wikipathways.gmt";
+    //path to GPML and PNG files in classpath
     final String WIKIPATHWAYSFOLDER = "medsavant/pathways/wikipathwaysGPML/";
     final String PNGFOLDER = "medsavant/pathways/wikipathwaysPNG/";
+    //file name for text file output of genes from the sample which are not
+    //  found in genesets
     final String GENES_NOT_IN_GENESETS_FILE = CACHEFOLDER+OUTPUTDIR+"genes_not_in_genesets.txt";
-    //final String PATHWAYSOUTPUTDIR = "output/gpml_files/";
+    //database stuff
     private static TableSchema ts= ProjectController.getInstance().getCurrentVariantTableSchema();
     private VariantManagerAdapter vma= MedSavantClient.VariantManager;
     private static final int DB_VARIANT_REQUEST_LIMIT= 500;
+    //header for columns in results table
     private ArrayList<String> header;
-    private List<PGXGene> pgxGenes= new LinkedList<PGXGene>();
+    //hashmap for retreiving pathway images for pathway linkout button icon,
+    //  by the beginning of the pathway file name
     private HashMap<String,ImageIcon> pathwayLinks;
+    //hashmap for retreiving pathway GPML file names by pathway titles
     private HashMap<String,String> pathwayGpmls;
+    //hashmap for retreiving pathway descriptions by pathway titles
     private HashMap<String,String> pathwayDescriptions;
+    //genes not found in gene sets (not used in analysis)
     private HashSet<String> genesNotInGeneSets;
+    //max and min number of genes in pathways
     private int minPathwayGenes;
     private int maxPathwayGenes;
+    //multiple test correction, may be equal to PathwaysPanel.BONFERRONI_INDEX
+    //  or PathwaysPanel.BENJAMINI_HOCHBERG_INDEX
     private int multipleTestCorrection;
+    //genesets folder
+    private final String GMT_FOLDER = "gmt_files/";
+    //FDR cutoff for Benjamini Hochberg multiple test correction
     private double fdrCutoff;
+    //max and min number of genes allowed in pathways used for analysis
     private int minPathwayGenesFilter;
     private int maxPathwayGenesFilter;
+    //classpath location of app icon
     private final String ICONPATH = "medsavant/pathways/icon/icon.jpg";
-    final public int NUM_TABLE_COLS=3;
-    final double PVALUE_CUTOFF = 0.0000001; // you could turn this into something related to the number of pathways
+    //download date of wikipathways files packaged in jar
+    final private int WIKIPATHWAYS_RESOURCE_DOWNLOAD_YEAR = 2014;
+    final private int WIKIPATHWAYS_RESOURCE_DOWNLOAD_MONTH = 6;
+    final private int WIKIPATHWAYS_RESOURCE_DOWNLOAD_DAY = 29;
+    //download date of wikipathways files used in analysis
+    private int wikipathways_download_year;
+    private int wikipathways_download_month;
+    private int wikipathways_download_day;
+    //the pathway panel associated with this pathway analysis object
+    private PathwaysPanel pathwaysPanelObject;
+    
     /**
-     * constructor, initializes positionMap
+     * Constructor, initializes pathway panel object, header,
+     *  wikipathways download date, and position map of nodes in pathways,
+     *  and also creates any missing output folders
      */
-    public PathwayAnalysis() {
+    public PathwayAnalysis(GregorianCalendar wikipathwaysDownloadDate, PathwaysPanel pathwaysPanelObject) {
+        //initialize pathway panel object
+        this.pathwaysPanelObject = pathwaysPanelObject;
+        //initialize results table column header
         header = new ArrayList<String>();
         header.add("P-values");
         header.add("Pathway Name");
         header.add("Genes associated with patient variants in pathway");
         header.add("Genes\nin\npathway");
+        //initialize wikipathways download date
+        wikipathways_download_year = wikipathwaysDownloadDate.get(GregorianCalendar.YEAR);
+        wikipathways_download_month = wikipathwaysDownloadDate.get(GregorianCalendar.MONTH);
+        wikipathways_download_day = wikipathwaysDownloadDate.get(GregorianCalendar.DAY_OF_MONTH);
+        //intialize positions map for nodes in pathway visualizations
         positionMap = new HashMap<String,String>();
+        
         //make output directories if they don't exist already
+        File cacheDir = new File(CACHEFOLDER);
+        if (!cacheDir.exists()) {
+            cacheDir.mkdir();
+        }
+        File pluginDir = new File(CACHEFOLDER+OUTPUTDIR);
+        if (!pluginDir.exists()) {
+            pluginDir.mkdir();
+        }
         File outputdir = new File(CACHEFOLDER+OUTPUTDIR+HTMLFOLDER);
         if (!outputdir.exists()) {
             outputdir.mkdir();
@@ -146,33 +201,15 @@ public class PathwayAnalysis {
             htmloutputdir.mkdir();
         }
     }
-    /**
-     * Main method used to test a mode of analysis (Wikipathways or GeneSets)
-     *  Wikipathways allows link outs to pathway visualizations.
-     *  GeneSets only outputs a table of pathways and p-values
-     * @param args 
-     */
-    /*public static void main(String[] args) {
-        String WIKIPATHWAYSFOLDER = "src/resources/wikipathways/";
-        String VCFFILE = "src/resources/annotatedVCF/WGS-001-03.gatk.snp.indel.jv.vcf";
-        String GENESETFILE = "src/resources/genesets/wikipathways.gmt";
-        PathwayAnalysis pathwayobject = new PathwayAnalysis();
-        
-        //run with wikipathways
-        pathwayobject.hypergeometricWithWikiPathways("ERROR", new ArrayList<String>());
-        
-        //run with GeneSets
-        //String GENESETFILE = "src/resources/genesets/Human_GO_AllPathways_no_GO_iea_symbol.gmt";
-        //pathwayobject.hypergeometricWithGeneSets(GENESETFILE, VCFFILE);
-        
-    }*/
+    
     /**
      * Run analysis with GeneSets (no visualizations), outputs table of
-     *  pathway titles and p-values
+     *  pathway titles and p-values. THIS MAY NOT WORK ANYMORE - the code
+     *  is from an old prototype of the app.
      * @param GENESETFILE
      * @param VcfFile 
      */
-    public void hypergeometricWithGeneSets(String GENESETFILE, String VcfFile) {
+    public void hypergeometricWithGeneSets(String GENESETFILE, String currentDNAID, HashSet<String> mutationTypes) {
         //make output directories if they don't exist already
         File outputdir = new File(OUTPUTDIR);
         if (!outputdir.exists()) {
@@ -189,23 +226,51 @@ public class PathwayAnalysis {
         //read in gene sets
         this.readGeneSet(GENESETFILE);
         //read in list of variants
-        this.readVCF(VcfFile);
+        try {
+            this.queryVariants(currentDNAID, mutationTypes);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         //perform analysis
         this.hypergeometricTest();
         //output list of pathways and p-values
         this.outputEnrichedGeneList(OUTPUTFILE);
         //output basic stats
-        System.out.println("Sample size: "+this.geneset.size()+", Population size: "+this.allgenes.size());
+        System.out.println("Sample size: "+this.geneset.size()+" genes, Population size: "+this.allgenes.size() + " genes");
     }
     
+    /**
+     * Run analysis with the Bonferroni multiple test correction since no
+     *  test correction has been specified.
+     * @param currentDNAID patient identifier
+     * @param mutationTypes variants of these mutation types will be used in
+     *  the analysis
+     * @param minPathwayGenesFilter minimum number of genes allowable in
+     *  pathways used for analysis
+     * @param maxPathwayGenesFilter maximum number of genes allowable in
+     *  pathways used for analysis
+     * @return 2D array of String with pathway names, GPML files, HTML files,
+     *  and p-values
+     */
     public String[][] hypergeometricWithWikiPathways(String currentDNAID, HashSet<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter) {
         return hypergeometricWithWikiPathways(currentDNAID, mutationTypes, minPathwayGenesFilter, maxPathwayGenesFilter, PathwaysPanel.BONFERRONI_INDEX);
     }
     /**
-     * Run analysis with Wikipathways, allows link-out visualizations of 
-     *  pathways suspected to be affected
-     * @param VcfFile
-     * @param pathwayfolder 
+     * Run analysis with Wikipathways data, allows link-out visualizations of 
+     *  pathways suspected to be affected, use the Bonferroni multiple test
+     *  correction
+     * @param currentDNAID patient identifier
+     * @param mutationTypes variants of these mutation types will be used in
+     *  the analysis
+     * @param minPathwayGenesFilter minimum number of genes allowable in
+     *  pathways used for analysis
+     * @param maxPathwayGenesFilter maximum number of genes allowable in
+     *  pathways used for analysis
+     * @param multipleTestCorrection an integer with value equal to either
+     *  PathwaysPanel.BONFERRONI_INDEX or PathwaysPanel.BENJAMINI_HOCHBERG_INDEX
+     * @return 2D array of String with pathway names, GPML files, HTML files,
+     *  and p-values
      */
     public String[][] hypergeometricWithWikiPathways(String currentDNAID, HashSet<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter, int multipleTestCorrection) {
         this.multipleTestCorrection = multipleTestCorrection;
@@ -213,22 +278,17 @@ public class PathwayAnalysis {
         this.maxPathwayGenesFilter = maxPathwayGenesFilter;
         
         try {
-            //this.wikipathways2GMT();
+            //get genes associated with variants from this patient
             this.queryVariants(currentDNAID, mutationTypes);
             //perform analysis
             this.hypergeometricWikiPathwaysTest();
             //output pathways and p-values
             this.outputEnrichedGeneList(OUTPUTFILE);
-            //make all non-inhibitor non-metabolite non-mutated gene products black
-            
-            /*String[][] pathwayInfo = new String[4][pathwayTitles.length];
-            pathwayInfo[0] = pathwayTitles;
-            pathwayInfo[1] = pathwayHtmlFileNames;
-            pathwayInfo[2] = pathwayGpmlFileNames;
-            pathwayInfo[3] = pathwayPValues;*/
+            //make list of pathway thumbnails
             this.assignPNGFiles();
             System.out.println("Sample size: "+this.geneset.size()+", Population size: "+this.allgenes.size());
-            
+            //return 2D String array with pathway names, GPML files, HTML files,
+            //  and p-values
             return TestedPathway.getPathwayInfoArray(testedPathways);
         }
         catch (Exception e) {
@@ -238,10 +298,21 @@ public class PathwayAnalysis {
     }
     
     /**
-     * Run analysis with Wikipathways, allows link-out visualizations of 
-     *  pathways suspected to be affected
-     * @param VcfFile
-     * @param pathwayfolder 
+     * Run analysis with Wikipathways data, allows link-out visualizations of 
+     *  pathways suspected to be affected, use the Benjamini-Hochberg
+     *  multiple test correction
+     * @param currentDNAID patient identifier
+     * @param mutationTypes variants of these mutation types will be used in
+     *  the analysis
+     * @param minPathwayGenesFilter minimum number of genes allowable in
+     *  pathways used for analysis
+     * @param maxPathwayGenesFilter maximum number of genes allowable in
+     *  pathways used for analysis
+     * @param multipleTestCorrection an integer with value equal to either
+     *  PathwaysPanel.BONFERRONI_INDEX or PathwaysPanel.BENJAMINI_HOCHBERG_INDEX
+     * @param fdr double representing the False Discovery Rate cutoff
+     * @return 2D array of String with pathway names, GPML files, HTML files,
+     *  and q-values
      */
     public String[][] hypergeometricWithWikiPathways(String currentDNAID, HashSet<String> mutationTypes, int minPathwayGenesFilter, int maxPathwayGenesFilter, int multipleTestCorrection, double fdr) {
         this.multipleTestCorrection = multipleTestCorrection;
@@ -249,22 +320,17 @@ public class PathwayAnalysis {
         this.maxPathwayGenesFilter = maxPathwayGenesFilter;
         this.fdrCutoff = fdr;
         try {
-            //this.wikipathways2GMT();
+            //get genes associated with variants from this patient
             this.queryVariants(currentDNAID, mutationTypes);
             //perform analysis
             this.hypergeometricWikiPathwaysTest();
             //output pathways and p-values
             this.outputEnrichedGeneList(OUTPUTFILE);
-            //make all non-inhibitor non-metabolite non-mutated gene products black
-            //this.makeGPMLnodesblack(PATHWAYOUTPUTFOLDER);
-            /*String[][] pathwayInfo = new String[4][pathwayTitles.length];
-            pathwayInfo[0] = pathwayTitles;
-            pathwayInfo[1] = pathwayHtmlFileNames;
-            pathwayInfo[2] = pathwayGpmlFileNames;
-            pathwayInfo[3] = pathwayPValues;*/
+            //make list of pathway thumbnails
             this.assignPNGFiles();
             System.out.println("Sample size: "+this.geneset.size()+", Population size: "+this.allgenes.size());
-            
+            //return 2D String array with pathway names, GPML files, HTML files,
+            //  and p-values
             return TestedPathway.getPathwayInfoArray(testedPathways);
         }
         catch (Exception e) {
@@ -273,31 +339,52 @@ public class PathwayAnalysis {
         }
     }
     
-    
+    /**
+     * Make hashmap so that file names without version numbers can be linked
+     *  to PNG file names with version numbers. This is done because the
+     *  version numbers of the GPML files often do not match the PNG files.
+     */
     private void assignPNGFiles() {
-        this.pathwayLinks = new HashMap<String,ImageIcon>();
-        String path;
-        int numPathways = pathwayTitles.length;
-        for (int i = 0; i < numPathways; i++) {
-            try {
-                path = pathwayHtmlFileNames[i].replaceFirst("html","png").toLowerCase();
-                URL imageURL = getClass().getClassLoader().getResource(PNGFOLDER+path);
+        try {
+            
+            this.pathwayLinks = new HashMap<String,ImageIcon>();
+            PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(getClass().getClassLoader());
+            Resource[] pngFiles = resolver.getResources("classpath*:medsavant/pathways/wikipathwaysPNG/*.png");
+            System.out.println("trying to assign png files, "+pngFiles.length+" files found.");
+            String shortName;
+            for (Resource png : pngFiles) {
+                
+                shortName = getFileNameWithoutVersion(png.getFilename());
+                URL imageURL = getClass().getClassLoader().getResource(PNGFOLDER+png.getFilename());
                 if (imageURL == null) {
                     imageURL = getClass().getClassLoader().getResource(ICONPATH);
                 }
-                pathwayLinks.put(pathwayTitles[i],new ImageIcon(imageURL));
-            }
-            catch (NullPointerException e) {
-                System.out.println("no resource at path: "+PNGFOLDER+pathwayHtmlFileNames[i].replaceFirst("html","png"));
-                
+                pathwayLinks.put(shortName,new ImageIcon(imageURL));
+
             }
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    /**
+     * Get file name without version numbers at the end.
+     * @param originalFileName
+     * @return String for file name without version numbers
+     */
+    private String getFileNameWithoutVersion(String originalFileName) {
+        int truncateIndex = originalFileName.indexOf("_wp");
+        if (truncateIndex == -1) {
+            return null;
+        }
+        return originalFileName.substring(0,truncateIndex);
     }
     
     /**
      * process gene sets (derived from Wikipathways GPML files) so that
      *  they are stored in this object
-     * @param filename 
      */
     public void readWikiPathwayGeneSet() {
         //store genesets as hashmap of hashset, hashmap is the pathway name.
@@ -310,8 +397,24 @@ public class PathwayAnalysis {
         pathwayGpmls = new HashMap<String,String>();
         String[] linecomponents = new String[0];
         try {
-            //BufferedReader br = new BufferedRßeader(new FileReader(this.GENESETFOLDER+filename));
-            BufferedReader br = new BufferedReader( new InputStreamReader(this.getClass().getResourceAsStream("/medsavant/pathways/geneSet/wikipathways.gmt")));
+            //check for recent wikipathways data
+            File wikipathwaysData = new File(CACHEFOLDER+OUTPUTDIR+GMT_FOLDER+wikipathways_download_year+wikipathways_download_month+wikipathways_download_day+WIKIPATHWAYSGMTFILE);
+            BufferedReader br;
+            if (!(WIKIPATHWAYS_RESOURCE_DOWNLOAD_YEAR==wikipathways_download_year && WIKIPATHWAYS_RESOURCE_DOWNLOAD_MONTH==wikipathways_download_month && WIKIPATHWAYS_RESOURCE_DOWNLOAD_DAY==wikipathways_download_day) && wikipathwaysData.exists()) {
+                br = new BufferedReader(new FileReader(wikipathwaysData));
+                System.out.println("using downloaded wikipathways data...");
+            }
+            else {
+                wikipathways_download_year = WIKIPATHWAYS_RESOURCE_DOWNLOAD_YEAR;
+                wikipathways_download_month = WIKIPATHWAYS_RESOURCE_DOWNLOAD_MONTH;
+                wikipathways_download_day = WIKIPATHWAYS_RESOURCE_DOWNLOAD_DAY;
+                GregorianCalendar packagedWikipathwaysDownloadDate = new GregorianCalendar(wikipathways_download_year, wikipathways_download_month, wikipathways_download_day);
+                pathwaysPanelObject.updateWikipathwaysDownloadDate(packagedWikipathwaysDownloadDate);
+                br = new BufferedReader( new InputStreamReader(this.getClass().getResourceAsStream("/medsavant/pathways/geneSet/wikipathways.gmt")));
+                SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+            
+                System.out.println("using packaged wikipathways data from "+format.format(packagedWikipathwaysDownloadDate.getTime())+"...");
+            }
             String line = br.readLine();
             String pathwayName;
             String pathwayDescription;
@@ -380,86 +483,95 @@ public class PathwayAnalysis {
     }
     
     /** 
-	 * Searchable table output for development testing. 
-	 * @param selectedViewColumns Columns preselected for SearchableTablePanel output
-	 */
-	public SearchableTablePanel getTableOutput() {
-            int[] selectedViewColumns = {0,1,2,3};
-		DataRetriever<Object[]> dr= new DataRetriever<Object[]>() {
-                        int numRows;
-			@Override
-			public List<Object[]> retrieve(int start, int limit) throws Exception {            
-				//return allVariants;
-                            if (multipleTestCorrection == PathwaysPanel.BONFERRONI_INDEX) {
-                                List<Object[]> filteredTestedPathways = TestedPathway.convertToObjectListBonferroni(testedPathways);
-                                this.numRows = filteredTestedPathways.size();
-                                return filteredTestedPathways;
-                            }
-                            else if (multipleTestCorrection == PathwaysPanel.BENJAMINI_HOCHBERG_INDEX) {
-                                List<Object[]> filteredTestedPathways = TestedPathway.convertToObjectListBH(testedPathways, fdrCutoff);
-                                this.numRows = filteredTestedPathways.size();
-                                return filteredTestedPathways;
-                            }
-                            else {
-                                System.out.println("INVALID MULTIPLE TEST CORRECTION");
-                            }
-                            return null;
-			}
-
-			@Override
-			public int getTotalNum() {
-                            return this.numRows;
-			}
-
-			@Override
-			public void retrievalComplete() {
-			}
-		};
-		
-                if (multipleTestCorrection == 1) {
-                    header.set(0, "Q-values");
+    * Searchable table output for development testing. 
+    * @param selectedViewColumns Columns preselected for SearchableTablePanel output
+    */
+    public SearchableTablePanel getTableOutput() {
+        int[] selectedViewColumns = {0,1,2,3};
+        DataRetriever<Object[]> dr= new DataRetriever<Object[]>() {
+            int numRows;
+            @Override
+            public List<Object[]> retrieve(int start, int limit) throws Exception {            
+                    //return allVariants;
+                if (multipleTestCorrection == PathwaysPanel.BONFERRONI_INDEX) {
+                    List<Object[]> filteredTestedPathways = TestedPathway.convertToObjectListBonferroni(testedPathways);
+                    this.numRows = filteredTestedPathways.size();
+                    return filteredTestedPathways;
                 }
-                
-		Class[] STRING_ONLY_COLUMN_CLASSES= new Class[header.size()];
-		for (int i= 0; i != STRING_ONLY_COLUMN_CLASSES.length; ++i)
-			STRING_ONLY_COLUMN_CLASSES[i]= String.class; // FOR NOW ONLY CALLING THESE STRINGS
-		
-		SearchableTablePanel t;
-		
-		// if the selected columns use incorrect/outdated indices, default to all columns
-		try {
-			
-			if (selectedViewColumns == null) {
-				t= new SearchableTablePanel("Results", header.toArray(new String[header.size()]), 
-					STRING_ONLY_COLUMN_CLASSES, new int[0], true, true, Integer.MAX_VALUE,
-					false, SearchableTablePanel.TableSelectionType.ROW, Integer.MAX_VALUE, dr);
-			} else {
-				t= new SearchableTablePanel("Results", header.toArray(new String[header.size()]), 
-					STRING_ONLY_COLUMN_CLASSES, new int[0], 
-					true, true, Integer.MAX_VALUE, false, 
-					SearchableTablePanel.TableSelectionType.ROW, Integer.MAX_VALUE, dr);
-			}
-		} catch (Exception e) {
-			t= new SearchableTablePanel("Results", header.toArray(new String[header.size()]), 
-				STRING_ONLY_COLUMN_CLASSES, new int[0], true, true, Integer.MAX_VALUE,
-				false, SearchableTablePanel.TableSelectionType.ROW, Integer.MAX_VALUE, dr);
-		}
-		
-                
-		t.setResizeOff();
-		t.setExportButtonVisible(true);
-		t.setExportButtonEnabled(true);
-		t.setHelpButtonVisible(false);
-		//t.setChooseColumnsButtonVisible(false);
-		t.forceRefreshData(); // without this, the table is empty with just a header
-		
-		return t;
-	}
+                else if (multipleTestCorrection == PathwaysPanel.BENJAMINI_HOCHBERG_INDEX) {
+                    List<Object[]> filteredTestedPathways = TestedPathway.convertToObjectListBH(testedPathways, fdrCutoff);
+                    this.numRows = filteredTestedPathways.size();
+                    return filteredTestedPathways;
+                }
+                else {
+                    System.out.println("INVALID MULTIPLE TEST CORRECTION");
+                }
+                return null;
+            }
+
+            @Override
+            public int getTotalNum() {
+                return this.numRows;
+            }
+
+            @Override
+            public void retrievalComplete() {
+            }
+        };
+        if (multipleTestCorrection == 1) {
+            header.set(0, "Q-values");
+        }
+
+        Class[] STRING_ONLY_COLUMN_CLASSES= new Class[header.size()];
+        for (int i= 0; i != STRING_ONLY_COLUMN_CLASSES.length; ++i)
+                STRING_ONLY_COLUMN_CLASSES[i]= String.class; // FOR NOW ONLY CALLING THESE STRINGS
+
+        SearchableTablePanel t;
+
+        // if the selected columns use incorrect/outdated indices, default to all columns
+        try {
+
+            if (selectedViewColumns == null) {
+                t= new SearchableTablePanel("Results", header.toArray(new String[header.size()]), 
+                        STRING_ONLY_COLUMN_CLASSES, new int[0], true, true, Integer.MAX_VALUE,
+                        false, SearchableTablePanel.TableSelectionType.ROW, Integer.MAX_VALUE, dr);
+            } else {
+                t= new SearchableTablePanel("Results", header.toArray(new String[header.size()]), 
+                        STRING_ONLY_COLUMN_CLASSES, new int[0], 
+                        true, true, Integer.MAX_VALUE, false, 
+                        SearchableTablePanel.TableSelectionType.ROW, Integer.MAX_VALUE, dr);
+            }
+        } catch (Exception e) {
+            t= new SearchableTablePanel("Results", header.toArray(new String[header.size()]), 
+                    STRING_ONLY_COLUMN_CLASSES, new int[0], true, true, Integer.MAX_VALUE,
+                    false, SearchableTablePanel.TableSelectionType.ROW, Integer.MAX_VALUE, dr);
+        }
+
+
+        t.setResizeOff();
+        t.setExportButtonVisible(true);
+        t.setExportButtonEnabled(true);
+        t.setHelpButtonVisible(false);
+        //t.setChooseColumnsButtonVisible(false);
+        t.forceRefreshData(); // without this, the table is empty with just a header
+
+        return t;
+    }
     
+    /**
+     * Get the maximum number of genes found in a pathway of this wikipathways
+     *  set
+     * @return int max number of genes
+     */
     public int getMaxPathwayGenes() {
         return this.maxPathwayGenes;
     }
     
+    /**
+     * Get the minimum number of genes found in a pathway of this wikipathways
+     *  set
+     * @return int max number of genes
+     */
     public int getMinPathwayGenes() {
         return this.minPathwayGenes;
     }
@@ -499,6 +611,7 @@ public class PathwayAnalysis {
             e.printStackTrace();
         }
     }
+    
     /**
      * make all nodes black in GPML files
      * @param folderpath 
@@ -530,6 +643,7 @@ public class PathwayAnalysis {
             e.printStackTrace();
         }
     }
+    
     /**
      * Generate HTML visualization of pathway, rendered by converting
      *  Wikipathways GPML into javascript displayable by cytoscape.js
@@ -669,9 +783,15 @@ public class PathwayAnalysis {
         
     }
     
+    /**
+     * Retrieve pathway description by pathway title.
+     * @param pathwayTitle
+     * @return String pathway description
+     */
     public String getDescription(String pathwayTitle) {
         return pathwayDescriptions.get(pathwayTitle);
     }
+    
     /**
      * output javascript file for HTML link out
      * @param pathwayName
@@ -731,23 +851,55 @@ public class PathwayAnalysis {
         
     }
     
+    /**
+     * Get the number of genes in a pathway, given the pathway name
+     * @param pathwayName
+     * @return int number of genes in pathway
+     */
     public int getNumGenesInPathway(String pathwayName) {
         return ( (HashMap)genesets.get(pathwayName) ).size();
     }
     
+    /**
+     * Get the total number of tested pathways.
+     * @return int num tested pathways
+     */
     public int getNumTestedPathways() {
         return this.testedPathways.size();
     }
+    
+    /**
+     * Get a list of the names of the tested pathways in a single string,
+     *  separated by line breaks.
+     * @return String tested pathways text
+     */
     public String testedPathwaysText() {
         String[] testedPathwayArray = TestedPathway.toStringArray(testedPathways);
         return Arrays.toString(testedPathwayArray).replace(", ", "\n").replaceAll("[\\[\\]]", "");
     }
+    
+    /**
+     * Get a list of the names of all the pathways in a single string,
+     *  separated by line breaks.
+     * @return String pathways text
+     */
     public String allPathwaysText() {
         return Arrays.toString(pathwayTitles).replace(", ", "\n").replaceAll("[\\[\\]]", "");
     }
+    
+    /**
+     * Get the number of pathways (including the ones not used in analysis).
+     * @return int num pathways
+     */
     public int getNumPathways() {
         return pathwayTitles.length;
     }
+    
+    /**
+     * Create the show more/show less javascript file for the pathway
+     *  descriptions in the cytoscape.js visualization link out.
+     * @param folder where the HTML files are
+     */
     private void writeShowMore(String folder) {
         try {
             PrintWriter writer = new PrintWriter(folder+"showmore.js");
@@ -758,6 +910,7 @@ public class PathwayAnalysis {
             e.printStackTrace();
         }
     }
+    
     /**
      * output HTML file for pathway visualization in browser
      * @param gpmlFileName
@@ -768,7 +921,6 @@ public class PathwayAnalysis {
     private void writeHTML(String gpmlFileName, String folder, String pathwayName, String pathwayDescription) {
         try {
             PrintWriter writer = new PrintWriter(folder+gpmlFileName.replaceFirst("\\.gpml","\\.html"));
-            
             
             writer.print("<!DOCTYPE html>\n<html>\n<head>\n<meta name=\"description\" content=\"[Pathway Display]\" />\n<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js\"></script>\n<meta charset=utf-8 />\n<title>");
             writer.print(pathwayName);
@@ -790,82 +942,62 @@ public class PathwayAnalysis {
         }
     }
     
-    
-    
-    
-    
-    
-    
-	/**
-	 * Build the standard pharmacogenomic conditions to be used when retrieving 
-	 * variants for any patient's analysis and store these in a list.
-	 * @return a Map of Conditions to be used for all PGx analyses
-	 * @throws SQLException
-	 */
-	private static Map<String, Condition> buildConditionList() throws SQLException {
-		Map<String, Condition> queryMap= new HashMap<String, Condition>();
-		
-                //RUTH - your condition should have DNAid and mutation types.
-                //I guess get it working with DNAID for now
-                
-                
-		/* Get all relevant markers for a particular gene and create a
-		 * ComboCondition for that set. Then add it to the List. */
-			for (String g : PGXDBFunctions.getGenes()) {
-				// generate a new query for this gene
-				ComboCondition query= new ComboCondition(ComboCondition.Op.OR);
-				
-				try {
-					/* Add all the marker positions for this gene.
-					 * NOTE: You can also search for variants using the dbSNP rsID,
-					 * however, then you rely on the DB to be up-to-date and annotated
-					 * correctly, which is not always the case. It's better to query
-					 * variants by chromosomal coordinates. Original code is commented
-					 * out below. */
-					for (PGXMarker pgxm : PGXDBFunctions.getMarkerInfo(g)) {
-						ComboCondition variantCondition= new ComboCondition(ComboCondition.Op.AND);
-						variantCondition.addCondition(
-							BinaryCondition.equalTo(ts.getDBColumn(BasicVariantColumns.CHROM), pgxm.chromosome));
-						variantCondition.addCondition(
-							BinaryCondition.equalTo(ts.getDBColumn(BasicVariantColumns.START_POSITION), Integer.parseInt(pgxm.position)));	
-						
-						query.addCondition(variantCondition);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				// add this gene-query pair to the list
-				queryMap.put(g, query);
-			}
-		
-		return queryMap;		
-	}
-	
+    /**
+     * get the number of genes associated with variants from the patient
+     * @return num genes for variants
+     */
     public int genesInVariants() {
         return this.geneset.size();
     }
     
-    
+    /**
+     * Get a string representation of all the genes not found in the gene sets
+     *  (not used in analysis), with genes separated by line breaks.
+     * @return genes not in gene sets text
+     */
     public String genesNotInGeneSetsText() {
         String[] geneArray = genesNotInGeneSets.toArray(new String[genesNotInGeneSets.size()]);
         return Arrays.toString(geneArray).replace(", ", "\n").replaceAll("[\\[\\]]", "");
     }
     
+    /**
+     * Get a string representation of all the genes found in the gene sets
+     *  (used in analysis), with genes separated by line breaks.
+     * @return genes in gene sets text
+     */
     public String genesInGeneSetsText() {
         String[] geneArray = geneset.toArray(new String[geneset.size()]);
         return Arrays.toString(geneArray).replace(", ", "\n").replaceAll("[\\[\\]]", "");
     }
     
+    /**
+     * Get the total number of genes associated with patient variants 
+     *  not found in gene sets and not used in analysis
+     * @return num genes not in gene sets
+     */
     public int numGenesNotInGeneSets() {
         return genesNotInGeneSets.size();
     }
+    
+    /**
+     * Get the total number of genes associated with patient variants
+     *  found in gene sets and used in analysis
+     * @return num genes in gene sets
+     */
     public int numGenesInGeneSets() {
         return geneset.size();
     }
     
+    /**
+     * Query variants for this patient from the database, and store the
+     *  associated genes in this pathway analysis object
+     * @param dnaID patient identifier
+     * @param filterMutationTypes mutation types allowed
+     * @throws SQLException
+     * @throws RemoteException
+     * @throws SessionExpiredException 
+     */
     private void queryVariants(String dnaID, HashSet<String> filterMutationTypes) throws SQLException, RemoteException, SessionExpiredException {
-            
         
         /* Take the standard combocondition and AND it to the DNA ID for this
          * individual before submitting for variants. */
@@ -873,14 +1005,12 @@ public class PathwayAnalysis {
         query.addCondition(
                 BinaryCondition.equalTo(ts.getDBColumn(BasicVariantColumns.DNA_ID), dnaID));
 
-
         ComboCondition mutationFilter = new ComboCondition(ComboCondition.Op.OR);
         // add conditions for mutation types. Only mutation types in filterMutationTypes will be allowed
         Iterator mutationTypeIterator = filterMutationTypes.iterator();
         String mutationtype;
         while (mutationTypeIterator.hasNext()) {
             mutationtype = (String) mutationTypeIterator.next();
-            System.out.println("adding "+mutationtype+" to query");
             mutationFilter.addCondition(
                     //VARIANT_TYPE instead of JANNOVAR EFFECT and then how do you get the variant type out ??
                 BinaryCondition.equalTo(ts.getDBColumn(BasicVariantColumns.JANNOVAR_EFFECT.getColumnName()), mutationtype));
@@ -893,11 +1023,14 @@ public class PathwayAnalysis {
         
         //extract genes from variants for pathway enrichment analysis
         extractGenesFromVariants(retrievedVariants);
-        
             
     }
 	
-    
+    /**
+     * Get genes from Variant objects and store them in this pathway analysis
+     *  object
+     * @param retrievedVariants 
+     */
     private void extractGenesFromVariants(List<Variant> retrievedVariants) {
         this.geneset = new HashSet<String>();
         Iterator<Variant> it = retrievedVariants.iterator();
@@ -913,71 +1046,60 @@ public class PathwayAnalysis {
                 for (int i = 0; i < multipleGenes.length; i++) {
                     currentGene = multipleGenes[i].split("\\(")[0];
                     geneset.add(currentGene);
-                    System.out.println("gene: "+currentGene+ " effect: "+v.getMutationSymbols());
                 }
             }
             else {
                 geneset.add(currentGene);
-                System.out.println("gene: "+currentGene+ " effect: "+v.getMutationType());
             }
             
         }
     }
     
-    
-    
+    /**
+     * Get variants from database
+     * @param query conditions to match variants with
+     * @return list of variants
+     * @throws SQLException
+     * @throws RemoteException
+     * @throws SessionExpiredException 
+     */
     private List<Variant> runRemoteQuery(Condition query) throws SQLException, RemoteException, SessionExpiredException{
-            List<Variant> output= new LinkedList<Variant>();
+        List<Variant> output= new LinkedList<Variant>();
 
-            /* For each query, a VariantIterator will be returned. When the Iterator
-            * is null, stop getting more VariantIterators. Iterate while
-            * this object hasNext() and store the Variant objects in a List of
-            * Variant objects. Variants are retrieved in chunks based on a request
-            * limit offset to allow for a cancellation. */
-            Condition[][] conditionMatrix= new Condition[1][1];
-            conditionMatrix[0][0]= query;
+        /* For each query, a VariantIterator will be returned. When the Iterator
+        * is null, stop getting more VariantIterators. Iterate while
+        * this object hasNext() and store the Variant objects in a List of
+        * Variant objects. Variants are retrieved in chunks based on a request
+        * limit offset to allow for a cancellation. */
+        Condition[][] conditionMatrix= new Condition[1][1];
+        conditionMatrix[0][0]= query;
 
-            int position= 0;
-            // initiate VariantIterator for first batch
-            List<Object[]> rows= vma.getVariants(LoginController.getInstance().getSessionID(),
+        int position= 0;
+        // initiate VariantIterator for first batch
+        List<Object[]> rows= vma.getVariants(LoginController.getInstance().getSessionID(),
+                ProjectController.getInstance().getCurrentProjectID(),
+                ReferenceController.getInstance().getCurrentReferenceID(),
+                conditionMatrix, position, DB_VARIANT_REQUEST_LIMIT);		
+        VariantIterator variantIterator= new VariantIterator(rows, ProjectController.getInstance().getCurrentAnnotationFormats());
+        while (variantIterator.hasNext()) {
+            // add all the variants to the list from the current batch
+            while (variantIterator != null && variantIterator.hasNext()) {
+                output.add(variantIterator.next());
+            }
+
+            // increment the request limit
+            position += DB_VARIANT_REQUEST_LIMIT;
+
+            // Get the next batch 
+            rows= vma.getVariants(LoginController.getInstance().getSessionID(),
                     ProjectController.getInstance().getCurrentProjectID(),
                     ReferenceController.getInstance().getCurrentReferenceID(),
                     conditionMatrix, position, DB_VARIANT_REQUEST_LIMIT);		
-            VariantIterator variantIterator= new VariantIterator(rows, ProjectController.getInstance().getCurrentAnnotationFormats());
-            while (variantIterator.hasNext()) {
-                    // add all the variants to the list from the current batch
-                    while (variantIterator != null && variantIterator.hasNext()) {
-                            output.add(variantIterator.next());
-                    }
+            variantIterator= new VariantIterator(rows, ProjectController.getInstance().getCurrentAnnotationFormats());
+        }
 
-                    // increment the request limit
-                    position += DB_VARIANT_REQUEST_LIMIT;
-
-                    // Get the next batch 
-                    rows= vma.getVariants(LoginController.getInstance().getSessionID(),
-                            ProjectController.getInstance().getCurrentProjectID(),
-                            ReferenceController.getInstance().getCurrentReferenceID(),
-                            conditionMatrix, position, DB_VARIANT_REQUEST_LIMIT);		
-                    variantIterator= new VariantIterator(rows, ProjectController.getInstance().getCurrentAnnotationFormats());
-            }
-
-            return output;
+        return output;
     }
-    
-    
-    
-	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     /**
      * write CSS file for pathway visualization in browser
@@ -993,6 +1115,7 @@ public class PathwayAnalysis {
             e.printStackTrace();
         }
     }
+    
     /**
      * Take a node and add its contents to the geneproduct list
      *  or the non geneproduct list. Put it in the position map if
@@ -1019,7 +1142,6 @@ public class PathwayAnalysis {
         String x = "x: ", y = ", y: ";
         String width = ", width: ", height = ", height: ";
 
-        
         NamedNodeMap attributes = node.getAttributes();
         String nodeText = "";
         String graphID = "", geneSymbol = "";
@@ -1031,7 +1153,6 @@ public class PathwayAnalysis {
         String elbowText=", elbow: true";
         String anchorText = ", anchor: true";
         boolean addToNonGeneProductNodes = false, addToGeneProductNodes = false;
-        
         
         //if shape is double lined, call processNode twice
         //once with slightly smaller width/height, once with slightly larger
@@ -1073,119 +1194,112 @@ public class PathwayAnalysis {
             }
         }
         
-        
-            
-            nodeText+=nodeTextStart;
-            
-            
-            graphID = getGraphRefID(node, nonGeneProductNodes, geneProducts, positionMap).trim();
-            nodeText+=graphID+singleQuote;
-            String nullString = "null";
-            if (attributes.getNamedItem("parentID")==null) {
-                String superparentString = "superparent'";
-                nodeText+=parentAttribute+superparentString;
+        nodeText+=nodeTextStart;
+        graphID = getGraphRefID(node, nonGeneProductNodes, geneProducts, positionMap).trim();
+        nodeText+=graphID+singleQuote;
+        String nullString = "null";
+        if (attributes.getNamedItem("parentID")==null) {
+            String superparentString = "superparent'";
+            nodeText+=parentAttribute+superparentString;
+        }
+        else if (!attributes.getNamedItem("parentID").getNodeValue().equals(nullString)) {
+            nodeText+=parentAttribute+attributes.getNamedItem("parentID").getNodeValue()+singleQuote;
+        }
+
+        nodeText+=nodeTextName;
+
+        if (attributes.getNamedItem("TextLabel")!=null) {
+            geneSymbol = attributes.getNamedItem("TextLabel").getNodeValue().trim().replace("\n"," ");
+            nodeText+=geneSymbol;
+        }
+        nodeText+= singleQuote;
+        if (this.geneset.contains(geneSymbol)) {
+            nodeText+=isMutatedText;
+        }
+
+        if (attributes.getNamedItem("Type")==null || (!attributes.getNamedItem("Type").getNodeValue().equals("GeneProduct") && !attributes.getNamedItem("Type").getNodeValue().equals("Protein") && !attributes.getNamedItem("Type").getNodeValue().equals("Rna"))) {
+            addToNonGeneProductNodes = true;
+        }
+        else if (attributes.getNamedItem("Type").getNodeValue().equals("GeneProduct") || attributes.getNamedItem("Type").getNodeValue().equals("Protein") || attributes.getNamedItem("Type").getNodeValue().equals("Rna")) {
+            addToGeneProductNodes = true;
+        }
+
+        if (attributes.getNamedItem("isPlacementNode")!=null) {
+            nodeText+=nodeTextPlacementNode;
+        }
+
+        if (attributes.getNamedItem("Elbow")!=null) {
+            nodeText+=elbowText;
+        }
+        if (attributes.getNamedItem("Anchor")!=null) {
+            nodeText+=anchorText;
+        }
+
+        if (node.getAttributes().getNamedItem("Type")!=null) {
+            if (node.getAttributes().getNamedItem("TextLabel")!=null && node.getAttributes().getNamedItem("TextLabel").getNodeValue().toLowerCase().contains("inhibitor")) {
+                nodeText+=inhibitorAttribute;
             }
-            else if (!attributes.getNamedItem("parentID").getNodeValue().equals(nullString)) {
-                nodeText+=parentAttribute+attributes.getNamedItem("parentID").getNodeValue()+singleQuote;
+            else if (node.getAttributes().getNamedItem("Type").getNodeValue().equals("Metabolite")) {
+                nodeText+=metaboliteAttribute;
             }
-            
-            nodeText+=nodeTextName;
-            
-            if (attributes.getNamedItem("TextLabel")!=null) {
-                geneSymbol = attributes.getNamedItem("TextLabel").getNodeValue().trim().replace("\n"," ");
-                nodeText+=geneSymbol;
-            }
-            nodeText+= singleQuote;
-            if (this.geneset.contains(geneSymbol)) {
-                nodeText+=isMutatedText;
-            }
-            
-            if (attributes.getNamedItem("Type")==null || (!attributes.getNamedItem("Type").getNodeValue().equals("GeneProduct") && !attributes.getNamedItem("Type").getNodeValue().equals("Protein") && !attributes.getNamedItem("Type").getNodeValue().equals("Rna"))) {
-                addToNonGeneProductNodes = true;
-            }
-            else if (attributes.getNamedItem("Type").getNodeValue().equals("GeneProduct") || attributes.getNamedItem("Type").getNodeValue().equals("Protein") || attributes.getNamedItem("Type").getNodeValue().equals("Rna")) {
-                addToGeneProductNodes = true;
-            }
-            
-            if (attributes.getNamedItem("isPlacementNode")!=null) {
-                nodeText+=nodeTextPlacementNode;
-            }
-            
-            if (attributes.getNamedItem("Elbow")!=null) {
-                nodeText+=elbowText;
-            }
-            if (attributes.getNamedItem("Anchor")!=null) {
-                nodeText+=anchorText;
-            }
-            
-            if (node.getAttributes().getNamedItem("Type")!=null) {
-                if (node.getAttributes().getNamedItem("TextLabel")!=null && node.getAttributes().getNamedItem("TextLabel").getNodeValue().toLowerCase().contains("inhibitor")) {
-                    nodeText+=inhibitorAttribute;
-                }
-                else if (node.getAttributes().getNamedItem("Type").getNodeValue().equals("Metabolite")) {
-                    nodeText+=metaboliteAttribute;
-                }
-                
-            }
-            
-            Node graphics = node.getFirstChild();
-            while (graphics!=null && !graphics.getNodeName().equals("Graphics")) {
-                graphics = graphics.getNextSibling();
-            }
-            
-            if (graphics!= null ) {
-                
-                attributes = graphics.getAttributes();
+
+        }
+
+        Node graphics = node.getFirstChild();
+        while (graphics!=null && !graphics.getNodeName().equals("Graphics")) {
+            graphics = graphics.getNextSibling();
+        }
+
+        if (graphics!= null ) {
+
+            attributes = graphics.getAttributes();
 
 
-                if (node.getNodeName().equals("Label")) {
-                    nodeText+=labelAttribute;
-                }
-                else if (node.getNodeName().equals("Shape")) {
-                    nodeText+=shapeAttribute;
-                    if (attributes.getNamedItem("ShapeType")!=null) {
-                        String shapetype = attributes.getNamedItem("ShapeType").getNodeValue();
-                        if (shapetype.equals("RoundedRectangle")) {
-                            nodeText+="'roundrectangle'";
-                        }
-                        else if (shapetype.equals("Oval")) {
-                            nodeText+="'ellipse'";
-                        }
-                        else {
-                            nodeText+="'"+shapetype.toLowerCase().trim()+"'";
-                        }
+            if (node.getNodeName().equals("Label")) {
+                nodeText+=labelAttribute;
+            }
+            else if (node.getNodeName().equals("Shape")) {
+                nodeText+=shapeAttribute;
+                if (attributes.getNamedItem("ShapeType")!=null) {
+                    String shapetype = attributes.getNamedItem("ShapeType").getNodeValue();
+                    if (shapetype.equals("RoundedRectangle")) {
+                        nodeText+="'roundrectangle'";
+                    }
+                    else if (shapetype.equals("Oval")) {
+                        nodeText+="'ellipse'";
                     }
                     else {
-                        nodeText+="'rectangle'";
+                        nodeText+="'"+shapetype.toLowerCase().trim()+"'";
                     }
                 }
-
-                //width/height
-                if (attributes.getNamedItem("Width")!=null && attributes.getNamedItem("Height")!=null) {
-                    String w = attributes.getNamedItem("Width").getNodeValue();
-                    String h = attributes.getNamedItem("Height").getNodeValue();
-                    nodeText+=width + w + height + h;
+                else {
+                    nodeText+="'rectangle'";
                 }
             }
-            
-            
-            nodeText+=nodeTextEnd;
-            
-            //position
-            if (attributes.getNamedItem("CenterX")!=null && attributes.getNamedItem("CenterY")!=null) {
-                String xpos = attributes.getNamedItem("CenterX").getNodeValue();
-                String ypos = attributes.getNamedItem("CenterY").getNodeValue();
-                this.positionMap.put(graphID,singleQuote+graphID+singleQuote+colon+space+startCurlyBrace+x+xpos+y+ypos+endCurlyBrace);
+
+            //width/height
+            if (attributes.getNamedItem("Width")!=null && attributes.getNamedItem("Height")!=null) {
+                String w = attributes.getNamedItem("Width").getNodeValue();
+                String h = attributes.getNamedItem("Height").getNodeValue();
+                nodeText+=width + w + height + h;
             }
-            else if (attributes.getNamedItem("X")!=null && attributes.getNamedItem("Y")!=null) {
-                String xpos = attributes.getNamedItem("X").getNodeValue();
-                String ypos = attributes.getNamedItem("Y").getNodeValue();
-                this.positionMap.put(graphID,singleQuote+graphID+singleQuote+colon+space+startCurlyBrace+x+xpos+y+ypos+endCurlyBrace);
-            }
-            
-            
-        
-        
+        }
+
+
+        nodeText+=nodeTextEnd;
+
+        //position
+        if (attributes.getNamedItem("CenterX")!=null && attributes.getNamedItem("CenterY")!=null) {
+            String xpos = attributes.getNamedItem("CenterX").getNodeValue();
+            String ypos = attributes.getNamedItem("CenterY").getNodeValue();
+            this.positionMap.put(graphID,singleQuote+graphID+singleQuote+colon+space+startCurlyBrace+x+xpos+y+ypos+endCurlyBrace);
+        }
+        else if (attributes.getNamedItem("X")!=null && attributes.getNamedItem("Y")!=null) {
+            String xpos = attributes.getNamedItem("X").getNodeValue();
+            String ypos = attributes.getNamedItem("Y").getNodeValue();
+            this.positionMap.put(graphID,singleQuote+graphID+singleQuote+colon+space+startCurlyBrace+x+xpos+y+ypos+endCurlyBrace);
+        }
+         
         if (addToNonGeneProductNodes) {
             nonGeneProductNodes.put(graphID, nodeText);
         }
@@ -1194,6 +1308,7 @@ public class PathwayAnalysis {
         }
         return nodeText;
     }
+    
     /**
      * Retrieve graphics information child node of a shape node.
      * @param node
@@ -1206,6 +1321,7 @@ public class PathwayAnalysis {
         }
         return childNode;
     }
+    
     /**
      * Remove attribute child node of given node
      * @param node 
@@ -1217,6 +1333,7 @@ public class PathwayAnalysis {
         }
         node.removeChild(childNode);
     }
+    
     /**
      * Create string representing edge specifications, for inclusion in
      *  javascript file. Extra processing ensures that elbow edges are
@@ -1307,30 +1424,13 @@ public class PathwayAnalysis {
                 target = source;
                 source = temp;
             }
-            /*Node anchor = edgeNode.getFirstChild();
-            while (anchor!=null && !anchor.getNodeName().equals("Anchor")) {
-                anchor = anchor.getNextSibling();
+            //check if elbow edge (perpendicular)
+            if (edgeNode.getAttributes().getNamedItem("ConnectorType")!=null && edgeNode.getAttributes().getNamedItem("ConnectorType").getNodeValue().equals("Elbow") && this.getElbowCoordinates(source, target, geneProducts, nonGeneProductNodes)!=null) {
+                edgeText += getElbowEdgeText(edgeNode, source, target, nonGeneProductNodes, geneProducts, false);
             }
-            if (anchor!=null) {
-                if (anchor.getAttributes().getNamedItem("GraphID")==null && anchor.getAttributes().getNamedItem("GraphRef")==null && anchor.getAttributes().getNamedItem("Type")==null) {
-                    ((Element) anchor).removeAttribute("Type");
-                    ((Element) anchor).setAttribute("Anchor","true");
-                    String anchorGraphID = getGraphRefID(anchor, nonGeneProductNodes, geneProducts, positionMap);
-                    ((Element) anchor).setAttribute("GraphId",anchorGraphID);
-                }
-                edgeText+=makeEdgeText(edgeNode,source, anchor, nonGeneProductNodes, geneProducts);
-                edgeText+=linebreak;
-                edgeText+=makeEdgeText(edgeNode,anchor, target, nonGeneProductNodes, geneProducts);
+            else {
+                edgeText += makeEdgeText(edgeNode,source, target, nonGeneProductNodes, geneProducts);
             }
-            else {*/
-                //check if elbow edge (perpendicular)
-                if (edgeNode.getAttributes().getNamedItem("ConnectorType")!=null && edgeNode.getAttributes().getNamedItem("ConnectorType").getNodeValue().equals("Elbow") && this.getElbowCoordinates(source, target, geneProducts, nonGeneProductNodes)!=null) {
-                    edgeText += getElbowEdgeText(edgeNode, source, target, nonGeneProductNodes, geneProducts, false);
-                }
-                else {
-                    edgeText += makeEdgeText(edgeNode,source, target, nonGeneProductNodes, geneProducts);
-                }
-           // }
         }
         if (edgeText.contains("[Point: null]")) {
             System.out.println("null node found");
@@ -1355,6 +1455,7 @@ public class PathwayAnalysis {
         elbowEdgeText += linebreak + makeEdgeText(edgeNode,elbow, target, nonGeneProductNodes, geneProducts);
         return elbowEdgeText;
     }
+    
     /**
      * create elbow edge
      * @param edgeNode
@@ -1384,8 +1485,8 @@ public class PathwayAnalysis {
         }
         elbow.setAttribute("TextLabel","");
         return (Node) elbow;
-        
     }
+    
     /**
      * return x and y coordinate of anchor at edge elbow, where the x-coordinate
      *  belongs to the source and the y-coordinate belongs to the target node
@@ -1398,6 +1499,7 @@ public class PathwayAnalysis {
     private String getElbowCoordinates(Node source, Node target, HashMap<String,String> geneProductNodes, HashMap<String,String> nonGeneProductNodes) {
         return getElbowCoordinates(source, target, geneProductNodes, nonGeneProductNodes, false);
     }
+    
     /**
      * return x and y coordinate of anchor at edge elbow, taking into account
      *  whether or not the segment connected to the source node should be
@@ -1491,6 +1593,7 @@ public class PathwayAnalysis {
         }
         return coordinates;
     }
+    
     /**
      * make text representing edge for javascript file
      * @param graphics
@@ -1557,6 +1660,7 @@ public class PathwayAnalysis {
         edgeText+=endlinetext;
         return edgeText;
     }
+    
     /**
      * Retrieve graphID of node. If node doesn't have one, use positional
      *  information (x_position space y_position) as the ID
@@ -1591,6 +1695,7 @@ public class PathwayAnalysis {
         }
         return graphID;
     }
+    
     /**
      * Returns string representing graph ID based on position, composed of
      *  x_position space y_position
@@ -1627,6 +1732,7 @@ public class PathwayAnalysis {
         }
         return graphID;
     }
+    
     /**
      * get graph ID during processing of edges (new node is made if the target
      *  or source is not already a node)
@@ -1666,106 +1772,7 @@ public class PathwayAnalysis {
         }
         return graphID;
     }
-    /**
-     * extract genes and effects from variant call format file
-     * @param filename
-     * @param GENE_REGEX
-     * @param EFFECT_REGEX
-     * @param GENES_NOT_IN_GENESETS_FILE 
-     */
-    public void readVCF(String filename) {
-        //dgenes = new ArrayList<String>();
-        //deffects = new ArrayList<String>();
-        geneset = new HashSet<String>();
-        effectset = new HashSet<String> ();
-        Pattern p;
-        Matcher m;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
-            String line = br.readLine();
-            String temp;
-            while (line != null) {
-                //skip header/preamble lines starting with #
-                line = line.trim();
-                if (line.charAt(0)!='#') {
-                    //8th column has extra information separated by ;
-                    p=Pattern.compile(GENE_REGEX);
-                    m = p.matcher(line);
-                    if (m.find()) {
-                        geneset.add(m.group(1));
-                        p=Pattern.compile(EFFECT_REGEX);
-                        m = p.matcher(line);
-                        m.find();
-                        effectset.add(m.group(1));
-                    }
-                }
-                line = br.readLine();
-            }
-            HashSet<String> genesNotInGeneSets = new HashSet<String>(geneset);
-            genesNotInGeneSets.removeAll(allgenes);
-            PrintWriter writer = new PrintWriter(GENES_NOT_IN_GENESETS_FILE, "UTF-8");
-            writer.println("Gene symbol");
-            Iterator<String> nonGenesetGenes = genesNotInGeneSets.iterator();
-            while (nonGenesetGenes.hasNext()) {
-                writer.println(nonGenesetGenes.next());
-            }
-            writer.close();
-            geneset.retainAll(allgenes); //geneset is the set of mutated genes
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    /**
-     * extract genes and effects from variant call format file
-     * @param filename
-     * @param GENE_REGEX
-     * @param EFFECT_REGEX
-     * @param GENES_NOT_IN_GENESETS_FILE 
-     */
-    public void readVCF(File filename) {
-        geneset = new HashSet<String>();
-        effectset = new HashSet<String> ();
-        Pattern p;
-        Matcher m;
-        try {
-            System.out.println("reached readVCF method");
-            BufferedReader br = new BufferedReader(new FileReader(filename));
-            System.out.println("able to parse filie into buffered reader");
-            String line = br.readLine();
-            while (line != null) {
-                //skip header/preamble lines starting with #
-                line = line.trim();
-                if (line.charAt(0)!='#') {
-                    //8th column has extra information separated by ;
-                    p=Pattern.compile(GENE_REGEX);
-                    m = p.matcher(line);
-                    if (m.find()) {
-                        geneset.add(m.group(1));
-                        p=Pattern.compile(EFFECT_REGEX);
-                        m = p.matcher(line);
-                        m.find();
-                        effectset.add(m.group(1));
-                    }
-                }
-                line = br.readLine();
-            }
-            HashSet<String> genesNotInGeneSets = new HashSet<String>(geneset);
-            genesNotInGeneSets.removeAll(allgenes);
-            PrintWriter writer = new PrintWriter(GENES_NOT_IN_GENESETS_FILE, "UTF-8");
-            writer.println("Gene symbol");
-            Iterator<String> nonGenesetGenes = genesNotInGeneSets.iterator();
-            while (nonGenesetGenes.hasNext()) {
-                writer.println(nonGenesetGenes.next());
-            }
-            writer.close();
-            geneset.retainAll(allgenes); //geneset is the set of mutated genes
-            
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    
     /**
      * perform analysis that produces a p-value to show how likely it is that
      *  a pathway is enriched for genetic variants
@@ -1810,13 +1817,13 @@ public class PathwayAnalysis {
         //Collections.sort(testedpathways, new PathwayNameComparator());
     }
     
-    
     /**
      * perform analysis that produces a p-value to show how likely it is that
      *  a pathway is enriched for genetic variants
      * @param WIKIPATHWAYSFOLDER 
      */
     public void hypergeometricWikiPathwaysTest() {
+        
         //for each pathway
         HashSet<String> commonGenes;
         String pathwayname;
@@ -1840,7 +1847,6 @@ public class PathwayAnalysis {
                 //see if there are common genes
                 //if (commonGenes.size() > 0) {
                     try {
-                        System.out.println("HYPERGEOMETRIC TEST: sample size - "+samplesize+", population size - "+populationsize+", marked items - "+markeditems);
                         h = new Hypergeometric(samplesize, populationsize, markeditems);
                         p = 1.0-h.cdf((double) commonGenes.size());
                         testedPathways.add(new TestedPathway(p, pathwayname,commonGenes, pathwayGpmls.get(pathwayname), numPathwayGenes));
@@ -1864,7 +1870,7 @@ public class PathwayAnalysis {
        //set geneset - give each pathway geneset i guess beforehand
         commonGenes.retainAll(geneset);
         this.makeGPMLnodesblack(pathwayFileName);
-        this.markPathwayGenesInGPML(commonGenes, pathwayFileName, CACHEFOLDER+OUTPUTDIR+GPMLFOLDER, PVALUE_CUTOFF);
+        this.markPathwayGenesInGPML(commonGenes, pathwayFileName, CACHEFOLDER+OUTPUTDIR+GPMLFOLDER);
                     
     }
     
@@ -1903,132 +1909,259 @@ public class PathwayAnalysis {
      * @param pathwayfolder
      * @param OUTFILE 
      */
-    /*public void wikipathways2GMT() {
+    private void wikipathways2GMT() {
         
         try {
-            Document doc;
-            XPath xpath;
-            String xpathexpression;
-            NodeList nodes;
-            String geneNodeName;
-            String[] geneNames;
-            PrintWriter writer = new PrintWriter(new File(this.getClass().getResource("geneSet/wikipathways.gmt").getPath()));
-            PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-            Resource[] gpmlFileResources = resolver.getResources("classpath*:**//*}}{{*.gpml");
-            //get number of folders in fileEntry list
-            int numPathways = gpmlFileResources.length;
-            this.pathwayTitles = new String[numPathways];
-            this.pathwayHtmlFileNames = new String[numPathways];
-            this.pathwayGpmlFileNames = new String[numPathways];
-            int pathwayIndex = 0;
-            
-            File fileEntry;
-            for (int i = 0; i < numPathways; i++) {
-                fileEntry = gpmlFileResources[i].getFile();
-                pathwayGpmlFileNames[pathwayIndex] = fileEntry.getName();
-                pathwayHtmlFileNames[pathwayIndex] = OUTPUTDIR+HTMLFOLDER+fileEntry.getName().replaceFirst("\\.gpml","\\.html");
-                doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(fileEntry.getPath()));
-                xpath = XPathFactory.newInstance().newXPath();
-                
-                writer.print(fileEntry.getName());
-                
-                xpathexpression = "/Pathway/@Name";
-                nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
-                if (nodes.getLength() >0 && nodes.item(0).getNodeType()==Node.ATTRIBUTE_NODE){
-                    writer.print("\t"+((Attr) nodes.item(0)).getValue());
-                    pathwayTitles[pathwayIndex] = ((Attr) nodes.item(0)).getValue();
-                }
-                else {
-                    System.out.println("unable to find pathway name in "+fileEntry.getName());
-                    pathwayTitles[pathwayIndex] = "No pathway title";
-                }
-                pathwayIndex++;
-                xpathexpression = "/Pathway/Comment[@Source='WikiPathways-description']";
-                nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
-                if (nodes.getLength() >0){
-                    writer.print("|"+nodes.item(0).getTextContent().replaceAll("\\n"," "));
-                }
-                HashSet<String> singlePathwayGenes = new HashSet<String>();
-                
-                xpathexpression = "/Pathway/DataNode[@Type='GeneProduct']";
-                nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
-                for (int counter = 0; counter < nodes.getLength(); counter++) {
-                    if (nodes.item(counter).getNodeType()==Node.ELEMENT_NODE) {
-                        geneNodeName = ((Element) nodes.item(counter)).getAttribute("TextLabel");
-                        geneNames = geneNodeName.split("[\\/]|\\s");
-                        for (int counter2 = 0; counter2<geneNames.length;counter2++) {
-                            geneNames[counter2] = geneNames[counter2].trim();
-                            //make sure there are no spaces and no lower case letters (indicative of a non-gene symbol)
-                            Pattern p = Pattern.compile("[^A-Z0-9-]");
-                            Matcher m = p.matcher(geneNames[counter2]);
-                            if (geneNames[counter2].length() != 0 && !m.find()) {
-                                singlePathwayGenes.add(geneNames[counter2]);
-                            }
-                        }
-                    }
-                }
-                xpathexpression = "/Pathway/DataNode[@Type='Protein']";
-                nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
-                for (int counter = 0; counter < nodes.getLength(); counter++) {
-                    if (nodes.item(counter).getNodeType()==Node.ELEMENT_NODE) {
-                        geneNodeName = ((Element) nodes.item(counter)).getAttribute("TextLabel");
-                        geneNames = geneNodeName.split("[\\/]|\\s");
-                        for (int counter2 = 0; counter2<geneNames.length;counter2++) {
-                            geneNames[counter2] = geneNames[counter2].trim();
-                            //make sure there are no spaces and no lower case letters (indicative of a non-gene symbol)
-                            Pattern p = Pattern.compile("[^A-Z0-9-]");
-                            Matcher m = p.matcher(geneNames[counter2]);
-                            if (geneNames[counter2].length() != 0 && !m.find()) {
-                                singlePathwayGenes.add(geneNames[counter2]);
-                            }
-                        }
-                    }
-                }
-                xpathexpression = "/Pathway/DataNode[@Type='Rna']";
-                nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
-                for (int counter = 0; counter < nodes.getLength(); counter++) {
-                    if (nodes.item(counter).getNodeType()==Node.ELEMENT_NODE) {
-                        geneNodeName = ((Element) nodes.item(counter)).getAttribute("TextLabel");
-                        geneNames = geneNodeName.split("[\\/]|\\s");
-                        for (int counter2 = 0; counter2<geneNames.length;counter2++) {
-                            geneNames[counter2] = geneNames[counter2].trim();
-                            //make sure there are no spaces and no lower case letters (indicative of a non-gene symbol)
-                            Pattern p = Pattern.compile("[^A-Z0-9-]");
-                            Matcher m = p.matcher(geneNames[counter2]);
-                            if (geneNames[counter2].length() != 0 && !m.find()) {
-                                singlePathwayGenes.add(geneNames[counter2]);
-                            }
-                        }
-                    }
-                }
-                
-                //print genes into genesets file
-                Iterator it = singlePathwayGenes.iterator();
-                while (it.hasNext()) {
-                    writer.print("\t"+it.next());
-                }
-                
-                writer.println();
+            File gmtDir = new File(CACHEFOLDER+OUTPUTDIR+GMT_FOLDER);
+            if (!gmtDir.exists()) {
+                gmtDir.mkdir();
             }
-            writer.close();
+            File pathwaysDownloadDir = new File(CACHEFOLDER+OUTPUTDIR+ORIGINAL_GPML_FOLDER);
+            if (pathwaysDownloadDir.exists() && pathwaysDownloadDir.list().length>1) {
+                Document doc;
+                XPath xpath;
+                String xpathexpression;
+                NodeList nodes;
+                String geneNodeName;
+                String[] geneNames;
+                
+                File gmtFile = new File(CACHEFOLDER+OUTPUTDIR+GMT_FOLDER+wikipathways_download_year+wikipathways_download_month+wikipathways_download_day+WIKIPATHWAYSGMTFILE);
+                if (gmtFile.exists()) {
+                    gmtFile.delete();
+                }
+                PrintWriter writer = new PrintWriter(gmtFile);
+                File[] gpmlFiles = pathwaysDownloadDir.listFiles();
+                //get number of folders in fileEntry list
+                int numPathways = gpmlFiles.length;
+                this.pathwayTitles = new String[numPathways];
+                this.pathwayHtmlFileNames = new String[numPathways];
+                this.pathwayGpmlFileNames = new String[numPathways];
+                int pathwayIndex = 0;
+                for (final File fileEntry : gpmlFiles) {
+                    String fileName = fileEntry.getName();
+                    int lastDot = fileName.lastIndexOf('.');
+                    if (fileName.substring(lastDot+1).toLowerCase().equals("gpml")) {
+                        pathwayGpmlFileNames[pathwayIndex] = fileEntry.getName();
+                        pathwayHtmlFileNames[pathwayIndex] = OUTPUTDIR+HTMLFOLDER+fileEntry.getName().replaceFirst("\\.gpml","\\.html");
+                        doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(fileEntry.getPath()));
+                        xpath = XPathFactory.newInstance().newXPath();
+                        System.out.println("printinf file name " + fileEntry.getName());
+                        writer.print(fileEntry.getName());
+
+                        xpathexpression = "/Pathway/@Name";
+                        nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
+                        if (nodes.getLength() >0 && nodes.item(0).getNodeType()==Node.ATTRIBUTE_NODE){
+                            writer.print("\t"+((Attr) nodes.item(0)).getValue());
+                            pathwayTitles[pathwayIndex] = ((Attr) nodes.item(0)).getValue();
+                        }
+                        else {
+                            System.out.println("unable to find pathway name in "+fileEntry.getName());
+                            pathwayTitles[pathwayIndex] = "No pathway title";
+                        }
+                        pathwayIndex++;
+                        xpathexpression = "/Pathway/Comment[@Source='WikiPathways-description']";
+                        nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
+                        if (nodes.getLength() >0){
+                            writer.print("|"+nodes.item(0).getTextContent().replaceAll("\\n"," "));
+                        }
+                        HashSet<String> singlePathwayGenes = new HashSet<String>();
+
+                        xpathexpression = "/Pathway/DataNode[@Type='GeneProduct']";
+                        nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
+                        for (int counter = 0; counter < nodes.getLength(); counter++) {
+                            if (nodes.item(counter).getNodeType()==Node.ELEMENT_NODE) {
+                                geneNodeName = ((Element) nodes.item(counter)).getAttribute("TextLabel");
+                                geneNames = geneNodeName.split("[\\/]|\\s");
+                                for (int counter2 = 0; counter2<geneNames.length;counter2++) {
+                                    geneNames[counter2] = geneNames[counter2].trim();
+                                    //make sure there are no spaces and no lower case letters (indicative of a non-gene symbol)
+                                    Pattern p = Pattern.compile("[^A-Z0-9-]");
+                                    Matcher m = p.matcher(geneNames[counter2]);
+                                    if (geneNames[counter2].length() != 0 && !m.find()) {
+                                        singlePathwayGenes.add(geneNames[counter2]);
+                                    }
+                                }
+                            }
+                        }
+                        xpathexpression = "/Pathway/DataNode[@Type='Protein']";
+                        nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
+                        for (int counter = 0; counter < nodes.getLength(); counter++) {
+                            if (nodes.item(counter).getNodeType()==Node.ELEMENT_NODE) {
+                                geneNodeName = ((Element) nodes.item(counter)).getAttribute("TextLabel");
+                                geneNames = geneNodeName.split("[\\/]|\\s");
+                                for (int counter2 = 0; counter2<geneNames.length;counter2++) {
+                                    geneNames[counter2] = geneNames[counter2].trim();
+                                    //make sure there are no spaces and no lower case letters (indicative of a non-gene symbol)
+                                    Pattern p = Pattern.compile("[^A-Z0-9-]");
+                                    Matcher m = p.matcher(geneNames[counter2]);
+                                    if (geneNames[counter2].length() != 0 && !m.find()) {
+                                        singlePathwayGenes.add(geneNames[counter2]);
+                                    }
+                                }
+                            }
+                        }
+                        xpathexpression = "/Pathway/DataNode[@Type='Rna']";
+                        nodes = (NodeList) xpath.evaluate(xpathexpression,doc,XPathConstants.NODESET);
+                        for (int counter = 0; counter < nodes.getLength(); counter++) {
+                            if (nodes.item(counter).getNodeType()==Node.ELEMENT_NODE) {
+                                geneNodeName = ((Element) nodes.item(counter)).getAttribute("TextLabel");
+                                geneNames = geneNodeName.split("[\\/]|\\s");
+                                for (int counter2 = 0; counter2<geneNames.length;counter2++) {
+                                    geneNames[counter2] = geneNames[counter2].trim();
+                                    //make sure there are no spaces and no lower case letters (indicative of a non-gene symbol)
+                                    Pattern p = Pattern.compile("[^A-Z0-9-]");
+                                    Matcher m = p.matcher(geneNames[counter2]);
+                                    if (geneNames[counter2].length() != 0 && !m.find()) {
+                                        singlePathwayGenes.add(geneNames[counter2]);
+                                    }
+                                }
+                            }
+                        }
+
+                        //print genes into genesets file
+                        Iterator it = singlePathwayGenes.iterator();
+                        while (it.hasNext()) {
+                            writer.print("\t"+it.next());
+                        }
+
+                        writer.println();
+                    }
+                }
+                writer.close();
+                System.out.println("closed writer");
+            }
+            else {
+                System.out.println("WIKIPATHWAYS FILES NOT FOUND");
+            }
+            
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
     
+    /**
+     * download the most current Homo Sapiens wikipathways set of GPML
+     *  files for use in analysis.
+     */
+    public void downloadCurrentWikipathways() {
+        try {
+            //download
+            URL website = new URL("http://wikipathways.org//wpi/batchDownload.php?species=Homo%20sapiens&fileType=gpml&tag=Curation:AnalysisCollection");
+            ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+            //make dir and file if they don't already exist
+            File outputdir = new File(CACHEFOLDER+OUTPUTDIR+ORIGINAL_GPML_FOLDER);
+            if (!outputdir.exists()) {
+                outputdir.mkdir();
+            }
+            FileUtils.cleanDirectory(outputdir);
+            File outputFile = new File(CACHEFOLDER+OUTPUTDIR+ORIGINAL_GPML_FOLDER+GPML_ZIP_FILE);
+            if (!outputFile.exists()) {
+                outputFile.createNewFile();
+            }
+            FileOutputStream fos = new FileOutputStream(CACHEFOLDER+OUTPUTDIR+ORIGINAL_GPML_FOLDER+GPML_ZIP_FILE);
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+            fos.close();
+            //update properties file with newest download date
+            GregorianCalendar newDownloadDate = new GregorianCalendar();
+            pathwaysPanelObject.updateWikipathwaysDownloadDate(newDownloadDate);
+            wikipathways_download_year = newDownloadDate.get(GregorianCalendar.YEAR);
+            wikipathways_download_month = newDownloadDate.get(GregorianCalendar.MONTH);
+            wikipathways_download_day = newDownloadDate.get(GregorianCalendar.DAY_OF_MONTH);
+            //unzip
+            unZipIt(CACHEFOLDER+OUTPUTDIR+ORIGINAL_GPML_FOLDER+GPML_ZIP_FILE, CACHEFOLDER+OUTPUTDIR+ORIGINAL_GPML_FOLDER);
+            //update GMT genesets file
+            wikipathways2GMT();
+            
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    /**
+     * Unzip it from http://www.mkyong.com/java/how-to-decompress-files-from-a-zip-file/
+     * @param zipFile input zip file
+     * @param output zip file output folder
+     * @author mkyong
+     */
+    private void unZipIt(String zipFile, String outputFolder){
+ 
+     byte[] buffer = new byte[1024];
+ 
+     try{
+    	//create output directory is not exists
+    	File folder = new File(outputFolder);
+    	if(!folder.exists()){
+    		folder.mkdir();
+    	}
+ 
+    	//get the zip file content
+    	ZipInputStream zis = 
+    		new ZipInputStream(new FileInputStream(zipFile));
+    	//get the zipped file list entry
+    	ZipEntry ze = zis.getNextEntry();
+ 
+    	while(ze!=null){
+ 
+    	   String fileName = ze.getName();
+           File newFile = new File(outputFolder + File.separator + fileName);
+ 
+            //create all non exists folders
+            //else you will hit FileNotFoundException for compressed folder
+            new File(newFile.getParent()).mkdirs();
+            FileOutputStream fos = new FileOutputStream(newFile);             
+            int len;
+            while ((len = zis.read(buffer)) > 0) {
+       		fos.write(buffer, 0, len);
+            }
+ 
+            fos.close();   
+            ze = zis.getNextEntry();
+    	}
+ 
+        zis.closeEntry();
+    	zis.close();
+    }catch(IOException ex){
+       ex.printStackTrace(); 
+    }
+   }    
+    
+    /**
+     * Retreive HTML file name by pathway title
+     * @param title
+     * @return String html file name
+     */
     public String getHTML(String title) {
         return this.pathwayGpmls.get(title).replaceFirst("gpml","html");
     }
     
+    /**
+     * Retreive GPML file name by pathway title
+     * @param title
+     * @return String gpml file name
+     */
     public String getGPML(String title) {
         return this.pathwayGpmls.get(title);
     }
     
+    /**
+     * Retreive pathway thumbnail image by pathway title
+     * @param pathwayName pathway title
+     * @return ImageIcon pathway thumbnail image
+     */
     public ImageIcon getPathwayImage(String pathwayName) {
-        return this.pathwayLinks.get(pathwayName);
+        String shortName = getFileNameWithoutVersion(pathwayGpmls.get(pathwayName).toLowerCase());
+        System.out.println("short name: "+shortName + " long name: "+pathwayGpmls.get(pathwayName));
+        if (pathwayLinks.get(shortName) != null) {
+            return this.pathwayLinks.get(shortName);
+        }
+        //return pathway app icon
+        ImageIcon pathwayAppIcon = new ImageIcon(getClass().getClassLoader().getResource(ICONPATH));
+        Image pathwayAppImage = pathwayAppIcon.getImage().getScaledInstance(250,250, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(pathwayAppImage);
     }
-    
     
     /**
      * increase border thickness of nodes in GPML files that have variants
@@ -2039,13 +2172,9 @@ public class PathwayAnalysis {
      * @param GPMLOUTPUTFOLDER
      * @param PVALUE_CUTOFF 
      */
-    public void markPathwayGenesInGPML (HashSet<String> commonGenes, String pathwayFileName, String GPMLOUTPUTFOLDER, double PVALUE_CUTOFF) {
+    public void markPathwayGenesInGPML (HashSet<String> commonGenes, String pathwayFileName, String GPMLOUTPUTFOLDER) {
         String gene,geneMatch;
         try {
-            //ClassLoader classloader = this.getClass().getClassLoader();
-            //PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(classloader);
-            //Resource[] gpmlFile = resolver.getResources("classpath*:medsavant/pathways/wikipathwaysGPML/"+pathwayFileName);
-            //Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(gpmlFile[0].getFile().getPath()));
             System.out.println(this.getClass().getClassLoader().getResourceAsStream("medsavant/pathways/wikipathwaysGPML"));
             System.out.println("pathway filename is: "+pathwayFileName);
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new BufferedReader(new InputStreamReader(new FileInputStream(CACHEFOLDER+OUTPUTDIR+GPMLFOLDER+pathwayFileName)))));
@@ -2095,6 +2224,7 @@ public class PathwayAnalysis {
         }
     }
 }
+
 /**
  * allows testedpathways to be sorted by p-value
  * @author ruthgrace
