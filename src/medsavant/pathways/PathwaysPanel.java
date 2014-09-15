@@ -1259,6 +1259,12 @@ public class PathwaysPanel {
         File propDir = new File(CACHEFOLDER+OUTPUTDIR+PROPERTIESDIR);
         if (!propDir.exists()) {
             propDir.mkdir();
+            try {
+                properties.loadFromXML(this.getClass().getClassLoader().getResourceAsStream(DEFAULTPROPERTIESDIR));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else if ((new File(CACHEFOLDER+OUTPUTDIR+PROPERTIESDIR+PROPERTIESFILENAME)).exists()) {
             try {
